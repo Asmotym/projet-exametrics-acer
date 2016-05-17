@@ -21,3 +21,8 @@ _- SALLES Rémy_
 - Getteurs / Setteurs : GetId / SetId
 - Fonctions : maFoncion / getAllId
 - Langue de codages : Anglais / Text Français
+
+## Framework
+
+- AQuery (Android)
+- Realm (iOS et Android)
