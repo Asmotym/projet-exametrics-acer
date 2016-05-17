@@ -14,3 +14,10 @@ _- SALLES Rémy_
 ## Convention de nommage
 
 - Images :  Nom tout en minuscule avec "-" en format .png, ex: logo-blblbl.png 
+- Variables Global : MA_VARIABLE
+- Variables simple : nomEditText
+- Variable de classe : MaClasse
+- Champs privés de classe : _id
+- Getteurs / Setteurs : GetId / SetId
+- Fonctions : maFoncion / getAllId
+- Langue de codages : Anglais / Text Français
