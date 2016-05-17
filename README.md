@@ -13,4 +13,4 @@ _- SALLES Rémy_
 
 ## Convention de nommage
 
-- **Images : ** Nom tout en minuscule avec "-" en format .png, ex: logo-blblbl.png 
+- Images :  Nom tout en minuscule avec "-" en format .png, ex: logo-blblbl.png 
