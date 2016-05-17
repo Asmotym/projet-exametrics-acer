@@ -1,7 +1,7 @@
 # projet-exametrics-acer
 
 _Contributeurs:_
-_- VILAINE Emilien_
+_VILAINE Emilien_
 _- BOUCHER Clément_
 _- BOIG Arnaud_
 _- SALLES Rémy_
