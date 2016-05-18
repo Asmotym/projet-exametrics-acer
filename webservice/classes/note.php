@@ -4,70 +4,61 @@
 Class Note{
     
     private $_id;
-    private $_auteur;
-    private $_texte;
+    private $_author;
+    private $_text;
     private $_date;
-    private $_laZone;
+    private $_theZone;
     
-    function get_id() {
+    function GetId() {
         return $this->_id;
     }
 
-    function get_auteur() {
-        return $this->_auteur;
+    function GetAuthor() {
+        return $this->_author;
     }
 
-    function get_texte() {
-        return $this->_texte;
+    function GetText() {
+        return $this->_text;
     }
 
-    function get_date() {
+    function GetDate() {
         return $this->_date;
     }
 
-    function get_laZone() {
-        return $this->_laZone;
+    function GetTheZone() {
+        return $this->_theZone;
     }
 
-    function set_id($_id) {
+    function SetId($id) {
+        $this->_id = $id;
+    }
+
+    function SetAuthor($author) {
+        $this->_author = $author;
+    }
+
+    function SetText($text) {
+        $this->_text = $text;
+    }
+
+    function SetDate($date) {
+        $this->_date = $date;
+    }
+
+    function SetTheZone($theZone) {
+        $this->_theZone = $theZone;
+    }
+
+
+    
+    function __construct($_id = null, $_author = null, $_text = null, $_date = null, $_theZone = null) {
         $this->_id = $_id;
-    }
-
-    function set_auteur($_auteur) {
-        $this->_auteur = $_auteur;
-    }
-
-    function set_texte($_texte) {
-        $this->_texte = $_texte;
-    }
-
-    function set_date($_date) {
+        $this->_author = $_author;
+        $this->_text = $_text;
         $this->_date = $_date;
+        $this->_theZone = $_theZone;
     }
 
-    function set_laZone($_laZone) {
-        $this->_laZone = $_laZone;
-    }
-
-    function __construct($_id = null, $_auteur = null, $_texte = null, $_date = null, $_laZone = null) {
-        $this->_id = $_id;
-        $this->_auteur = $_auteur;
-        $this->_texte = $_texte;
-        $this->_date = $_date;
-        $this->_laZone = $_laZone;
-    }
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
     
     
 }

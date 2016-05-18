@@ -5,47 +5,46 @@ Class Point{
     private $_id;
     private $_longitude;
     private $_latitude;
-    private $_laZone;
+    private $_theArea;
     
-    function get_id() {
+    function GetId() {
         return $this->_id;
     }
 
-    function get_longitude() {
+    function GetLongitude() {
         return $this->_longitude;
     }
 
-    function get_latitude() {
+    function GetLatitude() {
         return $this->_latitude;
     }
 
-    function get_laZone() {
-        return $this->_laZone;
+    function GetTheArea() {
+        return $this->_theArea;
     }
 
-    function set_id($_id) {
+    function SetId($id) {
+        $this->_id = $id;
+    }
+
+    function SetLongitude($longitude) {
+        $this->_longitude = $longitude;
+    }
+
+    function SetLatitude($latitude) {
+        $this->_latitude = $latitude;
+    }
+
+    function SetTheArea($theArea) {
+        $this->_theArea = $theArea;
+    }
+
+    function __construct($_id = null, $_longitude = null, $_latitude = null, $_theArea = null) {
         $this->_id = $_id;
-    }
-
-    function set_longitude($_longitude) {
-        $this->_longitude = $_longitude;
-    }
-
-    function set_latitude($_latitude) {
-        $this->_latitude = $_latitude;
-    }
-
-    function set_laZone($_laZone) {
-        $this->_laZone = $_laZone;
-    }
-
-    function __construct($_id = null, $_longitude = null, $_latitude = null, $_laZone = null) {
-        $this->_id = $_id;
         $this->_longitude = $_longitude;
         $this->_latitude = $_latitude;
-        $this->_laZone = $_laZone;
+        $this->_theArea = $_theArea;
     }
 
-    
     
 }

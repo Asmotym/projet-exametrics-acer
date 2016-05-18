@@ -3,39 +3,38 @@
 Class Zone{
     
     private $_id;
-    private $_nom;
-    private $_couleur;
+    private $_name;
+    private $_color;
     
-    function get_id() {
+    function Get_id() {
         return $this->_id;
     }
 
-    function get_nom() {
-        return $this->_nom;
+    function Get_name() {
+        return $this->_name;
     }
 
-    function get_couleur() {
-        return $this->_couleur;
+    function Get_color() {
+        return $this->_color;
     }
 
-    function set_id($_id) {
+    function Set_id($_id) {
         $this->_id = $_id;
     }
 
-    function set_nom($_nom) {
-        $this->_nom = $_nom;
+    function Set_name($_name) {
+        $this->_name = $_name;
     }
 
-    function set_couleur($_couleur) {
-        $this->_couleur = $_couleur;
+    function Set_color($_color) {
+        $this->_color = $_color;
     }
 
-    function __construct($_id = null, $_nom = null, $_couleur = null) {
+    function __construct($_id = null, $_name = null, $_color = null) {
         $this->_id = $_id;
-        $this->_nom = $_nom;
-        $this->_couleur = $_couleur;
+        $this->_name = $_name;
+        $this->_color = $_color;
     }
 
-    
     
 }
