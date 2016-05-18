@@ -6,27 +6,27 @@ Class Area{
     private $_name;
     private $_color;
     
-    function Get_id() {
+    function GetId() {
         return $this->_id;
     }
 
-    function Get_name() {
+    function GetName() {
         return $this->_name;
     }
 
-    function Get_color() {
+    function GetColor() {
         return $this->_color;
     }
 
-    function Set_id($_id) {
+    function SetId($_id) {
         $this->_id = $_id;
     }
 
-    function Set_name($_name) {
+    function SetName($_name) {
         $this->_name = $_name;
     }
 
-    function Set_color($_color) {
+    function SetColor($_color) {
         $this->_color = $_color;
     }
 
