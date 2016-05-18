@@ -1,6 +1,6 @@
 <?php
 
-Class Zone{
+Class Area{
     
     private $_id;
     private $_name;
