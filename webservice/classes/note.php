@@ -1,7 +1,7 @@
 <?php
 
 
-Class note{
+Class Note{
     
     private $_id;
     private $_auteur;

@@ -1,6 +1,6 @@
 <?php
 
-Class point{
+Class Point{
     
     private $_id;
     private $_longitude;
