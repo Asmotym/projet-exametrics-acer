@@ -4,7 +4,9 @@ require 'flight/Flight.php';
 
 class Loader {
 	
-	public function __construct($host, $db_name, $login, $password) {
+	private function __construct(){}
+	
+	public static function init($host, $db_name, $login, $password) {
 		Flight::register('db', 'PDO', 
 				array("mysql:host=$host;dbname=$db_name", 
 						$login, 

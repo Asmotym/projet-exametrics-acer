@@ -1,8 +1,8 @@
 <?php
 
-abstract class ServerConfig {
-	public $DB_NAME = "";
-	public $HOST = "";
-	public $LOGIN = "";
-	public $PASSWORD = "";
+class ServerConfig {
+	static $DB_NAME = "";
+	static $HOST = "";
+	static $LOGIN = "";
+	static $PASSWORD = "";
 }
