@@ -78,6 +78,7 @@
                             </tableView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1hm-yR-M2g">
                                 <rect key="frame" x="0.0" y="20" width="600" height="44"/>
+                                <color key="barTintColor" red="0.20007739302023675" green="0.77142111142017" blue="0.98685897435897441" alpha="1" colorSpace="calibratedRGB"/>
                                 <items>
                                     <navigationItem title="Zone" id="7Ue-J6-GOU">
                                         <barButtonItem key="rightBarButtonItem" title="+" id="DP7-Ut-hiG"/>
