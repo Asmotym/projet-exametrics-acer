@@ -2,5 +2,7 @@
 
 ## Routes WebService
 
-- /areas : Retourne toute les Zones.
-- /areas/@id : Retourne une Zone avec l'id.
+### Routes pour les Zones
+
+    - /areas : Retourne toute les Zones.
+    - /areas/@id : Retourne une Zone avec l'id.
