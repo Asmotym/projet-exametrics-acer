@@ -23,7 +23,7 @@
                 "colorArea": "600060"
             }]
         }
-        
+        ```
     - /areas/@idArea
         Retourne une Zone avec l'id.
 
