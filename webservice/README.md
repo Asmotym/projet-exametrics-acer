@@ -9,8 +9,7 @@
 ### Routes pour les Zones
 
 <dl><dt>http://172.30.1.178:8080/exametrics-ws/areas</dt>
-<dd>Retourne toute les Zones.</dd>
-</dl>
+<dd>Retourne toute les Zones.</dd></dl>
 ```json
 {
 	"count": 2,
@@ -28,7 +27,7 @@
         
 <dl>
 <dt>http://172.30.1.178:8080/exametrics-ws/areas/@idArea</dt>
-<dd>Retourne une Zone avec l'id.</dd>
+<dd>Retourne une Zone avec l'id.</dd></dl>
 ```json
 {
 	"count": 1,
@@ -43,11 +42,13 @@
 
 ### Routes pour les Points
 
-    - /points
-        Retourne tous les Points.
-        
-    - /points/@idArea
-        Retourne tous les Points pour une Zone donnée.
+<dl>
+<dt>http://172.30.1.178:8080/exametrics-ws/points</dt>
+<dd>Retourne tous les Points.</dd></dl>
+
+<dl>
+<dt>http://172.30.1.178:8080/exametrics-ws/points/@idArea</dt>
+<dd>Retourne les Points d'une Zone.</dd></dl>
 
 ### Routes pour les Notes
 
