@@ -4,8 +4,8 @@ require 'flight/Flight.php';
 require 'loader/server-loader.php';
 require 'configs/server-config.php';
 require 'configs/global-variables.php';
-require 'classes/area.php';
 require 'controllers/areas-controller.php';
+require 'controllers/points-controller.php';
 
 ServerLoader::init(ServerConfig::$HOST, 
 		ServerConfig::$DB_NAME, 
@@ -22,5 +22,6 @@ Flight::route('GET /', function(){
 });
 
 include 'routes/areas-routes.php';
+include 'routes/points-routes.php';
 
 Flight::start();
