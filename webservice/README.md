@@ -11,20 +11,20 @@
 <dl><dt>http://172.30.1.178:8080/exametrics-ws/areas</dt>
 <dd>Retourne toute les Zones.</dd>
 </dl>
-        ```javascript
-        {
-            "count": 2,
-            "result": [{
-                "idArea": "1",
-                "nameArea": "The World",
-                "colorArea": "121212"
-            }, {
-                "idArea": "2",
-                "nameArea": "Star Platinum",
-                "colorArea": "600060"
-            }]
-        }
-        ```
+```json
+{
+"count": 2,
+"result": [{
+"idArea": "1",
+"nameArea": "The World",
+"colorArea": "121212"
+}, {
+"idArea": "2",
+"nameArea": "Star Platinum",
+"colorArea": "600060"
+}]
+}
+```
         
 <dl>
 <dt>http://172.30.1.178:8080/exametrics-ws/areas/@idArea</dt>
