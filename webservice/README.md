@@ -26,8 +26,11 @@
             }]
         }
         ```
-    - /areas/@idArea
-        Retourne une Zone avec l'id.
+        
+<dl>
+<dt>http://172.30.1.178:8080/exametrics-ws/areas/@idArea</dt>
+<dd>Retourne une Zone avec l'id.</dd>
+
 
 ### Routes pour les Points
 
