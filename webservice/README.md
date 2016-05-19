@@ -29,6 +29,16 @@
 <dl>
 <dt>http://172.30.1.178:8080/exametrics-ws/areas/@idArea</dt>
 <dd>Retourne une Zone avec l'id.</dd>
+```json
+{
+	"count": 1,
+	"result": [{
+		"idArea": "1",
+		"nameArea": "The World",
+		"colorArea": "121212"
+	}]
+}
+```
 
 
 ### Routes pour les Points
