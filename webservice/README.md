@@ -2,9 +2,19 @@
 
 ## Routes WebService
 
+- [Zones]()
+- [Points]()
+
 ### Routes pour les Zones
 
     - /areas
         Retourne toute les Zones.
-    - /areas/@id
+    - /areas/@idArea
         Retourne une Zone avec l'id.
+
+### Routes pour les Points
+
+    - /points
+        Retourne tous les Points.
+    - /points/@idArea
+        Retourne tous les Points pour une Zone donnée.
