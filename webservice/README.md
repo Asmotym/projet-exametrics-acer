@@ -15,14 +15,14 @@
 {
 	"count": 2,
 	"result": [{
-	"idArea": "1",
-	"nameArea": "The World",
-    "colorArea": "121212"
-}, {
-	"idArea": "2",
-	"nameArea": "Star Platinum",
-	"colorArea": "600060"
-}]
+		"idArea": "1",
+		"nameArea": "The World",
+    	"colorArea": "121212"
+	}, {
+		"idArea": "2",
+		"nameArea": "Star Platinum",
+		"colorArea": "600060"
+	}]
 }
 ```
         
