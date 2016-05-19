@@ -12,40 +12,52 @@ class Point {
     
     // Champs
     private var _id : Int!
-    private var _longitude : String!
-    private var _lattitude : String!
+    private var _longitude : Float!
+    private var _latitude : Float!
+    private var _area : Area!
     
     // Getter & Setter
     func getId() -> Int{
-        return _id;
+        return _id
     }
     
     func setId(id: Int) {
         _id = id
     }
     
-    func getName() -> String{
-        return _name
+    func getLongitude() -> Float{
+        return _longitude
     }
     
-    func setName(name: String) {
-        _name = name
+    func setLongitude(longitude: Float) {
+        _longitude = longitude
     }
     
-    func getColor() -> String{
-        return _color;
+    func getLatitude() -> Float{
+        return _latitude
     }
     
-    func setColor(color: String) {
-        _color = color
+    func setLatitude(latitude: Float) {
+        _latitude = latitude
+    }
+    
+    func getArea() -> Area{
+        return _area
+    }
+    
+    func setArea(area: Area) {
+        _area = area
     }
     
     // Constructeurs
-    required init(id: Int, name: String, color: String){
+    required init(id: Int, longitude: Float, latitude: Float, area: Area){
         
         _id = id
-        _name = name
-        _color = color
+        _longitude = longitude
+        _latitude = latitude
+        _area = area
         
     }
+    
 }
+

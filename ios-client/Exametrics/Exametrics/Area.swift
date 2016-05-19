@@ -17,7 +17,7 @@ class Area {
     
     // Getter & Setter
     func getId() -> Int{
-        return _id;
+        return _id
     }
     
     func setId(id: Int) {
@@ -33,7 +33,7 @@ class Area {
     }
     
     func getColor() -> String{
-        return _color;
+        return _color
     }
     
     func setColor(color: String) {
