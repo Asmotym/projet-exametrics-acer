@@ -1,7 +1,6 @@
 <?php
 
 Class Area{
-    
     private $_id;
     private $_name;
     private $_color;
@@ -30,7 +29,7 @@ Class Area{
         $this->_color = $_color;
     }
 
-    function __construct($_id = null, $_name = null, $_color = null) {
+    function __construct($_id, $_name, $_color) {
         $this->_id = $_id;
         $this->_name = $_name;
         $this->_color = $_color;

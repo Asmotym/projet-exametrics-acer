@@ -1,8 +1,8 @@
 <?php
 
-class ServerConfig {
-	static $DB_NAME = "";
-	static $HOST = "";
-	static $LOGIN = "";
-	static $PASSWORD = "";
+abstract class ServerConfig {
+	public static $DB_NAME = "exametrics";
+	public static $HOST = "localhost";
+	public static $LOGIN = "clem";
+	public static $PASSWORD = "";
 }
