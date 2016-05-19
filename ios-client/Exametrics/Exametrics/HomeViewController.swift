@@ -10,6 +10,9 @@ import UIKit
 
 class HomeViewController: UIViewController {
 
+    var noteList : String!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
