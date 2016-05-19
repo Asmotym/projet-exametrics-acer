@@ -2,8 +2,8 @@
 
 ## Routes WebService
 
-- [Zones]()
-- [Points]()
+- [Zones](#routes-pour-les-zones)
+- [Points](#routes-pour-les-points)
 
 ### Routes pour les Zones
 
