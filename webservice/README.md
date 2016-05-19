@@ -8,8 +8,7 @@
 
 ### Routes pour les Zones
 
-<dl>
-<dt>http://172.30.1.178:8080/exametrics-ws/areas</dt>
+<dl><dt>http://172.30.1.178:8080/exametrics-ws/areas</dt>
 <dd>Retourne toute les Zones.</dd>
 </dl>
         ```javascript
