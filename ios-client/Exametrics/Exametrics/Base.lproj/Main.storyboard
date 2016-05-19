@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -27,6 +28,42 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BUD-1J-K27" id="N1w-aj-jKR">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="De :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9dY-Z8-wrg">
+                                                    <rect key="frame" x="18" y="0.0" width="31" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EOu-cb-Cla">
+                                                    <rect key="frame" x="54" y="0.0" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dma-RA-GI4">
+                                                    <rect key="frame" x="555" y="0.0" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Le :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ECU-OA-1CZ">
+                                                    <rect key="frame" x="522" y="0.0" width="28" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="9dY-Z8-wrg" firstAttribute="leading" secondItem="N1w-aj-jKR" secondAttribute="leadingMargin" constant="10" id="7zu-ou-a8Z"/>
+                                                <constraint firstItem="9dY-Z8-wrg" firstAttribute="top" secondItem="N1w-aj-jKR" secondAttribute="topMargin" constant="-8" id="8Tw-xH-ftR"/>
+                                                <constraint firstItem="EOu-cb-Cla" firstAttribute="leading" secondItem="9dY-Z8-wrg" secondAttribute="trailing" constant="5" id="DoT-3i-7MI"/>
+                                                <constraint firstItem="dma-RA-GI4" firstAttribute="baseline" secondItem="EOu-cb-Cla" secondAttribute="baseline" id="VXR-ii-D6a"/>
+                                                <constraint firstItem="ECU-OA-1CZ" firstAttribute="baseline" secondItem="dma-RA-GI4" secondAttribute="baseline" id="jZg-qh-fKv"/>
+                                                <constraint firstItem="dma-RA-GI4" firstAttribute="trailing" secondItem="N1w-aj-jKR" secondAttribute="trailingMargin" constant="5" id="oUH-9N-dVa"/>
+                                                <constraint firstItem="EOu-cb-Cla" firstAttribute="baseline" secondItem="9dY-Z8-wrg" secondAttribute="baseline" id="uFS-5g-5Gf"/>
+                                                <constraint firstItem="dma-RA-GI4" firstAttribute="leading" secondItem="ECU-OA-1CZ" secondAttribute="trailing" constant="5" id="v9h-9G-sqJ"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
