@@ -10,7 +10,8 @@ import UIKit
 
 class HomeViewController: UIViewController {
 
-    var noteList : String!
+    // Variables
+    var noteList = [Note]()
     
     
     override func viewDidLoad() {
