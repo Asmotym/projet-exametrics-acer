@@ -10,7 +10,7 @@
 
     - http://172.30.1.178:8080/exametrics-ws/areas
         Retourne toute les Zones.
-        
+        ```json
         {
             "count": 2,
             "result": [{
