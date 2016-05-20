@@ -30,4 +30,19 @@ class PointsController {
 		return Flight::json($response);
 	}
 	
+	/**
+	 * Add multiple points to the DB
+	 * @param unknown $points
+	 */
+	public static function addPoints($points) {
+		$db = Flight::db(false);
+		foreach ($points as $point) {
+			$longitude = $point["longitude"];
+			$latitude = $point["latitude"];
+			$idArea = $point["idArea"];
+			$req = $db->prepare("insert into point values('', :longitude, :latitude, :idArea)");
+			$req->execute(array("longitude" => "$longitude", "latitude" => "$latitude", "idArea" => $idArea));
+		}
+	}
+	
 }

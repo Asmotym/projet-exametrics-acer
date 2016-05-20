@@ -7,3 +7,8 @@ Flight::route('GET /points', function() {
 Flight::route('GET /points/@idArea', function($idArea) {
 	return PointsController::getPointsByAreaId($idArea);
 });
+
+Flight::route('POST /points', function() {
+	$points = Flight::request()->data;
+	return PointsController::addPoints($points);
+});

@@ -6,6 +6,7 @@ require 'configs/server-config.php';
 require 'configs/global-variables.php';
 require 'controllers/areas-controller.php';
 require 'controllers/points-controller.php';
+require 'controllers/notes-controller.php';
 
 ServerLoader::init(ServerConfig::$HOST, 
 		ServerConfig::$DB_NAME, 
@@ -22,6 +23,8 @@ Flight::route('GET /', function(){
 });
 
 include 'routes/areas-routes.php';
+include 'routes/notes-routes.php';
 include 'routes/points-routes.php';
+
 
 Flight::start();
