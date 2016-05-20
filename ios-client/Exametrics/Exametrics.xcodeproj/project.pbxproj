@@ -19,6 +19,7 @@
 		EB7BFC111CED9A21002FD318 /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7BFC101CED9A21002FD318 /* Point.swift */; };
 		EB7BFC131CEDA406002FD318 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7BFC121CEDA406002FD318 /* Note.swift */; };
 		EB7BFC151CEE0014002FD318 /* NoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7BFC141CEE0014002FD318 /* NoteTableViewCell.swift */; };
+		EB7BFC171CEF2FC9002FD318 /* AddNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7BFC161CEF2FC8002FD318 /* AddNoteViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		EB7BFC101CED9A21002FD318 /* Point.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
 		EB7BFC121CEDA406002FD318 /* Note.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 		EB7BFC141CEE0014002FD318 /* NoteTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteTableViewCell.swift; sourceTree = "<group>"; };
+		EB7BFC161CEF2FC8002FD318 /* AddNoteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNoteViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +155,7 @@
 			children = (
 				EB7BFC0C1CEC9EFB002FD318 /* HomeViewController.swift */,
 				EB7BFC141CEE0014002FD318 /* NoteTableViewCell.swift */,
+				EB7BFC161CEF2FC8002FD318 /* AddNoteViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -299,6 +302,7 @@
 				EB7BFC111CED9A21002FD318 /* Point.swift in Sources */,
 				EB7BFBDC1CEC9D0C002FD318 /* AppDelegate.swift in Sources */,
 				EB7BFC0F1CECA3F0002FD318 /* Area.swift in Sources */,
+				EB7BFC171CEF2FC9002FD318 /* AddNoteViewController.swift in Sources */,
 				EB7BFC0D1CEC9EFB002FD318 /* HomeViewController.swift in Sources */,
 				EB7BFC151CEE0014002FD318 /* NoteTableViewCell.swift in Sources */,
 				EB7BFC131CEDA406002FD318 /* Note.swift in Sources */,

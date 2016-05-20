@@ -19,7 +19,7 @@ class HomeViewController: UIViewController, UITableViewDataSource {
         super.viewDidLoad()
         
         
-        mArea = Area(id: 1, name: "The Waludo", color: "cd13b8")
+        mArea = Area(id: 1, name: "Za Waludo", color: "cd13b8")
         let note1 = Note(id: 0, login: "Admin", message: "Premier test", date: NSDate(), area: mArea)
         let note2 = Note(id: 1, login: "Admin", message: "Second test", date: NSDate(), area: mArea)
         noteList.append(note1)
@@ -55,5 +55,13 @@ class HomeViewController: UIViewController, UITableViewDataSource {
         
     }
 
+    
+    // Préparation du Segue, envoie de l'Album séléctionné
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if(segue.identifier == "toAddNote") {
+            let destination = segue.destinationViewController as! AddNoteViewController
+            destination.noteList = noteList
+        }
+    }
 
 }
