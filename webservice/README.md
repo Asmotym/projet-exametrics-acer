@@ -26,7 +26,7 @@
 ```
         
 <dl>
-<dt>http://172.30.1.178:8080/exametrics-ws/areas/@idArea GET</dt>
+<dt>http://172.30.1.178:8080/exametrics-ws/areas?id=@idArea GET</dt>
 <dd>Retourne une Zone avec l'id.</dd></dl>
 ```json
 {
