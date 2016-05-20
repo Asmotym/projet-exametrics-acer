@@ -12,6 +12,7 @@ class AddNoteViewController: UIViewController {
 
     // Variables
     var noteList = [Note]()
+    var mArea : Area!
     
     // Outlets
     @IBOutlet weak var inputLogin: UITextField!
@@ -21,11 +22,22 @@ class AddNoteViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
+        self.title = "Ajoutez une note"
         
     }
 
     @IBAction func touchAddButton(sender: AnyObject) {
+        
+        let newLogin   = inputLogin.text
+        let newMessage = inputMessage.text
+        let newDate    = NSDate()
+        
+        let newNote = Note(id: noteList.count + 1, login: newLogin!, message: newMessage, date: newDate, area: mArea)
+        
+        noteList.append(newNote)
+    
+        navigationController?.popViewControllerAnimated(true)
+        
     }
 
 }

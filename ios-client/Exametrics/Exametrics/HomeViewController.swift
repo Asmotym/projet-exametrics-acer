@@ -14,18 +14,25 @@ class HomeViewController: UIViewController, UITableViewDataSource {
     var mArea : Area!
     var noteList = [Note]()
     
+    // Outlets
+    @IBOutlet weak var noteTableView: UITableView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if(noteList.count != 0)
+        {
+            mArea = Area(id: 1, name: "Za Waludo", color: "cd13b8")
+            let note1 = Note(id: 0, login: "Admin", message: "Premier test", date: NSDate(), area: mArea)
+            let note2 = Note(id: 1, login: "Admin", message: "Second test", date: NSDate(), area: mArea)
+            noteList.append(note1)
+            noteList.append(note2)
+        }
         
-        mArea = Area(id: 1, name: "Za Waludo", color: "cd13b8")
-        let note1 = Note(id: 0, login: "Admin", message: "Premier test", date: NSDate(), area: mArea)
-        let note2 = Note(id: 1, login: "Admin", message: "Second test", date: NSDate(), area: mArea)
-        noteList.append(note1)
-        noteList.append(note2)
 
         self.title = mArea.getName()
+        noteTableView.reloadData()
         
     }
     
@@ -61,6 +68,7 @@ class HomeViewController: UIViewController, UITableViewDataSource {
         if(segue.identifier == "toAddNote") {
             let destination = segue.destinationViewController as! AddNoteViewController
             destination.noteList = noteList
+            destination.mArea = mArea
         }
     }
 
