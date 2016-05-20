@@ -166,8 +166,33 @@
 
 ### Routes pour les Notes
 
-    - /notes
-        Retourne toutes les Notes.
-        
-    - /notes/@idArea
-        Retourne toutes les Notes d'une Zone.
+<dl>
+<dt>http://172.30.1.178:8080/exametrics-ws/notes GET</dt>
+<dd>Retourne toutes les notes.</dd></dl>
+
+```json
+
+```
+
+<dl>
+<dt>http://172.30.1.178:8080/exametrics-ws/notes/@idArea GET</dt>
+<dd>Retourne les notes d'une zone.</dd></dl>
+
+```json
+
+```
+
+<dl>
+<dt>http://172.30.1.178:8080/exametrics-ws/notes POST</dt>
+<dd>Ajoute une note à une zone.</dd>
+<dd>Exemple de json à envoyer. L'auteur est définie à 'Anonyme' si il n'est pas renseigné.</dd></dl>
+
+```json
+{
+    "idNote": "",
+    "authorNote": "",
+    "textNote": "JAJAJAJA CHOUCROUTE",
+    "dateNote": "2016-05-20 11:00:00",
+    "idArea": "1"
+}
+```
