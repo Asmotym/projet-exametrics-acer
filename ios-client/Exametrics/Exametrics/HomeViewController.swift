@@ -14,6 +14,7 @@ class HomeViewController: UIViewController, UITableViewDataSource {
     var mArea : Area!
     var noteList = [Note]()
     
+    @IBOutlet weak var navigationBar: UINavigationBar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +25,7 @@ class HomeViewController: UIViewController, UITableViewDataSource {
         noteList.append(note1)
         noteList.append(note2)
 
+        navigationBar.topItem!.title = mArea.getName()
         
     }
     
