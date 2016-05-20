@@ -14,10 +14,10 @@ class HomeViewController: UIViewController, UITableViewDataSource {
     var mArea : Area!
     var noteList = [Note]()
     
-    @IBOutlet weak var navigationBar: UINavigationBar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         mArea = Area(id: 1, name: "The Waludo", color: "cd13b8")
         let note1 = Note(id: 0, login: "Admin", message: "Premier test", date: NSDate(), area: mArea)
@@ -25,7 +25,7 @@ class HomeViewController: UIViewController, UITableViewDataSource {
         noteList.append(note1)
         noteList.append(note2)
 
-        navigationBar.topItem!.title = mArea.getName()
+        self.title = mArea.getName()
         
     }
     
