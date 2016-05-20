@@ -2,6 +2,9 @@
 
 class PointsController {
 	
+	/**
+	 * Request all the points
+	 */
 	public static function getAllPoints() {
 		$db = Flight::db(false);
 		$response = new stdClass();
@@ -16,6 +19,10 @@ class PointsController {
 		return Flight::json($response);
 	}
 	
+	/**
+	 * Request an area with an id
+	 * @param unknown $idArea
+	 */
 	public static function getPointsByAreaId($idArea) {
 		$db = Flight::db(false);
 		$response = new stdClass();

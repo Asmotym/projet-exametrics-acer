@@ -20,6 +20,7 @@ class ServerLoader {
 						$login,
 						$password), function($db) {
 							$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+							$db->exec('SET NAMES utf8');
 		});
 	}
 	

@@ -1,11 +1,11 @@
 <?php
 
 Flight::route('GET /notes', function() {
-	return NotesController::getAllNotes();
-});
-
-Flight::route('GET /notes/@id', function($id) {
-	return NotesController::getNotesByAreaId($id);
+	if ($id = Flight::request()->query->id) {
+		return NotesController::getNotesByAreaId($id);
+	} else {
+		return NotesController::getAllNotes();
+	}
 });
 
 Flight::route('POST /notes', function() {
