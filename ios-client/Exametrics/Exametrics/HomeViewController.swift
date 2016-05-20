@@ -42,8 +42,12 @@ class HomeViewController: UIViewController, UITableViewDataSource {
         let login = noteList[indexPath.row].getLogin()
         let message  = noteList[indexPath.row].getMessage()
         let date  = noteList[indexPath.row].getDate()
-
-        cell.configureWithData(login, message: message, date: date)
+        
+        let timestamp = NSDateFormatter()
+        timestamp.dateFormat = "dd/MM/yyyy à hh:mm"
+        let string = timestamp.stringFromDate(date)
+        
+        cell.configureWithData(login, message: message, date: string)
         
         return cell
         
