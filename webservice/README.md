@@ -8,7 +8,7 @@
 
 ### Routes pour les Zones
 
-<dl><dt>http://172.30.1.178:8080/exametrics-ws/areas</dt>
+<dl><dt>http://172.30.1.178:8080/exametrics-ws/areas GET</dt>
 <dd>Retourne toute les Zones.</dd></dl>
 ```json
 {
@@ -26,7 +26,7 @@
 ```
         
 <dl>
-<dt>http://172.30.1.178:8080/exametrics-ws/areas/@idArea</dt>
+<dt>http://172.30.1.178:8080/exametrics-ws/areas/@idArea GET</dt>
 <dd>Retourne une Zone avec l'id.</dd></dl>
 ```json
 {
@@ -39,16 +39,130 @@
 }
 ```
 
+<dl>
+<dt>http://172.30.1.178:8080/exametrics-ws/areas POST</dt>
+<dd>Ajoute une zone.</dd>
+<dd>Exemple du json à envoyer.</dd></dl>
+
+```json
+{
+	"idArea": "",
+	"nameArea": "Toast",
+	"colorArea": "FFFFFF"
+}
+```
 
 ### Routes pour les Points
 
 <dl>
-<dt>http://172.30.1.178:8080/exametrics-ws/points</dt>
+<dt>http://172.30.1.178:8080/exametrics-ws/points GET</dt>
 <dd>Retourne tous les Points.</dd></dl>
 
+```json
+{
+	"count": 8,
+	"result": [{
+		"idPoint": "3",
+		"longitude": "42",
+		"latitude": "2",
+		"idArea": "1"
+	},{
+		"idPoint": "4",
+		"longitude": "43",
+		"latitude": "2",
+		"idArea": "1"
+	},{
+		"idPoint": "5",
+		"longitude": "43",
+		"latitude": "3",
+		"idArea": "1"
+	},{
+		"idPoint": "6",
+		"longitude": "42",
+		"latitude": "3",
+		"idArea": "1"
+	},{
+		"idPoint": "7",
+		"longitude": "40",
+		"latitude": "2",
+		"idArea": "2"
+	},{
+		"idPoint": "8",
+		"longitude": "41",
+		"latitude": "2",
+		"idArea": "2"
+	},{
+		"idPoint": "9",
+		"longitude": "41",
+		"latitude": "3",
+		"idArea": "2"
+	},{
+		"idPoint": "10",
+		"longitude": "40",
+		"latitude": "3",
+		"idArea": "2"
+	}]
+}
+```
+
 <dl>
-<dt>http://172.30.1.178:8080/exametrics-ws/points/@idArea</dt>
+<dt>http://172.30.1.178:8080/exametrics-ws/points/@idArea GET</dt>
 <dd>Retourne les Points d'une Zone.</dd></dl>
+
+```json
+{
+	"count": 8,
+	"result": [{
+		"idPoint": "3",
+		"longitude": "42",
+		"latitude": "2",
+		"idArea": "1"
+	},{
+		"idPoint": "4",
+		"longitude": "43",
+		"latitude": "2",
+		"idArea": "1"
+	},{
+		"idPoint": "5",
+		"longitude": "43",
+		"latitude": "3",
+		"idArea": "1"
+	},{
+		"idPoint": "6",
+		"longitude": "42",
+		"latitude": "3",
+		"idArea": "1"
+	}]
+}
+```
+
+<dl>
+<dt>http://172.30.1.178:8080/exametrics-ws/points POST</dt>
+<dd>Ajoute des points à une zone</dd>
+<dd>Exemple du type de json à envoyer.</dd></dl>
+
+```json
+{
+    "0": {
+        "idPoint": "",
+        "longitude": 40,
+        "latitude": 3,
+        "idArea": 5
+    },
+    "1": {
+        "idPoint": "",
+        "longitude": 45,
+        "latitude": 2,
+        "idArea": 5
+    },
+    "2": {
+        "idPoint": "",
+        "longitude": 50,
+        "latitude": 3,
+        "idArea": 5
+    }
+}
+```
 
 ### Routes pour les Notes
 
