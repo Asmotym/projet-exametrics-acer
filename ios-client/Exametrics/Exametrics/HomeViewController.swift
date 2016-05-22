@@ -21,9 +21,10 @@ class HomeViewController: UIViewController, UITableViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if(noteList.count != 0)
+        mArea = Area(id: 1, name: "Za Waludo", color: "cd13b8")
+        if(noteList.count == 0)
         {
-            mArea = Area(id: 1, name: "Za Waludo", color: "cd13b8")
+            
             let note1 = Note(id: 0, login: "Admin", message: "Premier test", date: NSDate(), area: mArea)
             let note2 = Note(id: 1, login: "Admin", message: "Second test", date: NSDate(), area: mArea)
             noteList.append(note1)

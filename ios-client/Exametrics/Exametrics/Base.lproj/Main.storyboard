@@ -7,7 +7,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Home View Controller-->
+        <!--Item-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="HomeViewController" customModule="Exametrics" customModuleProvider="target" sceneMemberID="viewController">
@@ -19,7 +19,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="71" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vEs-wd-YEa">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="71" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vEs-wd-YEa">
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -94,6 +94,7 @@
                             <constraint firstItem="vEs-wd-YEa" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="P1s-lx-nAW"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="CN2-ST-Afh"/>
                     <navigationItem key="navigationItem" id="2gg-Rl-a7P">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Ivd-I0-RYj">
                             <connections>
@@ -109,6 +110,58 @@
             </objects>
             <point key="canvasLocation" x="334" y="387"/>
         </scene>
+        <!--Map-->
+        <scene sceneID="JIn-90-QXg">
+            <objects>
+                <viewController id="HOe-NL-PpA" customClass="MapViewController" customModule="Exametrics" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Lkb-J1-Mfr"/>
+                        <viewControllerLayoutGuide type="bottom" id="k1z-j3-gOv"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="b44-yQ-j8D">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="n6A-Qn-VDo">
+                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="n6A-Qn-VDo" firstAttribute="leading" secondItem="b44-yQ-j8D" secondAttribute="leadingMargin" constant="-20" id="1Fj-7q-pHp"/>
+                            <constraint firstItem="n6A-Qn-VDo" firstAttribute="top" secondItem="Lkb-J1-Mfr" secondAttribute="bottom" id="MTY-uL-xwg"/>
+                            <constraint firstItem="k1z-j3-gOv" firstAttribute="top" secondItem="n6A-Qn-VDo" secondAttribute="bottom" id="YLa-hn-2qX"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="n6A-Qn-VDo" secondAttribute="trailing" constant="-20" id="opX-mR-KDE"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Map" id="DTo-HU-yEl"/>
+                    <connections>
+                        <outlet property="map" destination="n6A-Qn-VDo" id="k9b-jf-GRK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0v5-Ee-kdf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="334" y="1144"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="QgL-WI-RZf">
+            <objects>
+                <tabBarController id="SNU-cH-Wae" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="Nz1-Z9-z8c"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="g8W-S2-iHE">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="sbW-XM-Mnf"/>
+                        <segue destination="HOe-NL-PpA" kind="relationship" relationship="viewControllers" id="Ivc-Ab-ulW"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6Ro-rB-6oz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-518" y="761"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="1U5-Tu-ydl">
             <objects>
@@ -118,12 +171,12 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="uH6-n9-7wB"/>
+                        <segue destination="SNU-cH-Wae" kind="relationship" relationship="rootViewController" id="vCS-hW-kcT"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FBq-XN-Y7t" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-394" y="387"/>
+            <point key="canvasLocation" x="-1276" y="761"/>
         </scene>
         <!--Add Note View Controller-->
         <scene sceneID="yeb-gz-drT">
