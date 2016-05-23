@@ -18,6 +18,10 @@
 		EB7BFC0F1CECA3F0002FD318 /* Area.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7BFC0E1CECA3F0002FD318 /* Area.swift */; };
 		EB7BFC111CED9A21002FD318 /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7BFC101CED9A21002FD318 /* Point.swift */; };
 		EB7BFC131CEDA406002FD318 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7BFC121CEDA406002FD318 /* Note.swift */; };
+		EB7BFC2D1CF337E7002FD318 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7BFC2C1CF337E7002FD318 /* MapViewController.swift */; };
+		EB7BFC2F1CF33965002FD318 /* AddNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7BFC2E1CF33965002FD318 /* AddNoteViewController.swift */; };
+		EB7BFC311CF33979002FD318 /* PointController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7BFC301CF33979002FD318 /* PointController.swift */; };
+		EB7BFC331CF33A52002FD318 /* NoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7BFC321CF33A52002FD318 /* NoteTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +59,10 @@
 		EB7BFC0E1CECA3F0002FD318 /* Area.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Area.swift; sourceTree = "<group>"; };
 		EB7BFC101CED9A21002FD318 /* Point.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
 		EB7BFC121CEDA406002FD318 /* Note.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
+		EB7BFC2C1CF337E7002FD318 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		EB7BFC2E1CF33965002FD318 /* AddNoteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNoteViewController.swift; sourceTree = "<group>"; };
+		EB7BFC301CF33979002FD318 /* PointController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointController.swift; sourceTree = "<group>"; };
+		EB7BFC321CF33A52002FD318 /* NoteTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +158,10 @@
 			isa = PBXGroup;
 			children = (
 				EB7BFC0C1CEC9EFB002FD318 /* HomeViewController.swift */,
+				EB7BFC321CF33A52002FD318 /* NoteTableViewCell.swift */,
+				EB7BFC2E1CF33965002FD318 /* AddNoteViewController.swift */,
+				EB7BFC2C1CF337E7002FD318 /* MapViewController.swift */,
+				EB7BFC301CF33979002FD318 /* PointController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -294,10 +306,14 @@
 			files = (
 				EB7BFBDE1CEC9D0C002FD318 /* ViewController.swift in Sources */,
 				EB7BFC111CED9A21002FD318 /* Point.swift in Sources */,
+				EB7BFC2F1CF33965002FD318 /* AddNoteViewController.swift in Sources */,
 				EB7BFBDC1CEC9D0C002FD318 /* AppDelegate.swift in Sources */,
+				EB7BFC311CF33979002FD318 /* PointController.swift in Sources */,
 				EB7BFC0F1CECA3F0002FD318 /* Area.swift in Sources */,
 				EB7BFC0D1CEC9EFB002FD318 /* HomeViewController.swift in Sources */,
 				EB7BFC131CEDA406002FD318 /* Note.swift in Sources */,
+				EB7BFC2D1CF337E7002FD318 /* MapViewController.swift in Sources */,
+				EB7BFC331CF33A52002FD318 /* NoteTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -441,6 +457,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Exametrics/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = IMERIR.Exametrics;
@@ -452,6 +472,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Exametrics/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = IMERIR.Exametrics;

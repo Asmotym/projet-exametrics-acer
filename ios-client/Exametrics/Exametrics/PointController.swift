@@ -7,20 +7,24 @@
 //
 
 import Foundation
-
-
 class PointController {
     
-    var urlPath = "http://172.30.1.178:8080/exametrics-ws/"
+    
+    // Champs
+    var urlPath : String
     var url : NSURL!
     
-    
+    // Init
+    init(urlPath : String){
+        self.urlPath = urlPath
+        self.url = NSURL()
+    }
     
     // Fonction permettant de vérifier le formulaire de connexion
-    func getPoints() {
+    func getPoints() -> [Point]{
         
         // Déclaration de l'url
-        url += "points"
+        urlPath += "points"
         let url = NSURL(string: urlPath.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)!
         
         // Mise en place de la tâche
@@ -47,16 +51,40 @@ class PointController {
                 return
             }
             
-            guard let result = root["result"] as? NSDictionary else {
+            guard let result = root["result"] as? NSArray else {
                 NSLog("PoinController : Probleme result")
                 return
             }
             
-            guard let validation = result["isValid"] as? Bool,
+            
+            
+            /*
+            guard let validation = result[1] as? Bool,
                 let outputMessage = result["message"] as? String else {
-                    NSLog("PoinController : Probleme isValid")
+                    NSLog("PoinController : Probleme création Points")
                     return
             }
+            
+            
+            // Write our movie objects to the database
+            let realm = RLMRealm.defaultRealm()
+            realm.beginWriteTransaction()
+            
+            for point in movies {
+                /*  This method will avoid duplicating records by looking at the
+                 primary key we've set on our object. Go look at the XMCMovie
+                 class to see that method defined.
+                 */
+                XMCMovie.createOrUpdateInDefaultRealmWithObject(movie)
+                
+                // Alternatively, you could add new objects by calling this method
+                // realm.addObject(movie)
+                // or
+                // realm.addObjects(movies) // An array of objects
+            }
+            
+            realm.commitWriteTransaction()
+ 
             
             // Ajout de l'opération traitant les résultats
             NSOperationQueue.mainQueue().addOperationWithBlock({
@@ -70,12 +98,15 @@ class PointController {
                     self.messageLabel.hidden = false;
                 }
             })
-            
+            */
         }
         task.resume()
         
+        let listPoints = [Point]()
+        
+        return listPoints
+        
     }
-
 }
 
 
