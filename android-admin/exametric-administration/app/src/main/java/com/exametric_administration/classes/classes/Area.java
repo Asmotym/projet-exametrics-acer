@@ -1,34 +1,38 @@
-package com.exametric_administration.classes;
+package com.exametric_administration.classes.classes;
 
-public class Area {
+import io.realm.RealmObject;
 
-    private int _idArea;
-    private String _nameArea;
-    private String _colorArea;
+public class Area extends RealmObject {
+
+    private int idArea;
+    private String nameArea;
+    private String colorArea;
 
     public int GetIdArea() {
-        return this._idArea;
+        return this.idArea;
     }
 
     public void SetIdArea(int idArea) {
-        this._idArea = idArea;
+        this.idArea = idArea;
     }
 
     public String GetNameArea() {
-        return this._nameArea;
+        return this.nameArea;
     }
 
     public void SetNameArea(String nameArea) {
-        this._nameArea = nameArea;
+        this.nameArea = nameArea;
     }
 
     public String GetColorArea() {
-        return this._colorArea;
+        return this.colorArea;
     }
 
     public void SetColorArea(String colorArea) {
-        this._colorArea = colorArea;
+        this.colorArea = colorArea;
     }
+
+    public Area() {}
 
     public Area(int idArea, String nameArea, String colorArea) {
         SetIdArea(idArea);
