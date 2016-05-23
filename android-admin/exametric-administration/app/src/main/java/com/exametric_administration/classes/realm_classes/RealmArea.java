@@ -1,10 +1,7 @@
 package com.exametric_administration.classes.realm_classes;
 
 import com.exametric_administration.classes.classes.Area;
-import com.exametric_administration.tools.RealmConfig;
-
 import java.util.ArrayList;
-
 import io.realm.Realm;
 import io.realm.RealmResults;
 

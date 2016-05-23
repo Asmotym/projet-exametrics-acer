@@ -10,13 +10,16 @@ import com.exametric_administration.classes.classes.Note;
 import android.content.Context;
 import android.widget.TextView;
 
+import java.util.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class NoteAdapter extends BaseAdapter {
     private ArrayList<Note> notes;
     LayoutInflater inflater;
     Context context;
-    TextView noteTextTextView;
+    TextView noteTextTextView, noteAuthorTextview, noteDateTextView;
 
     public NoteAdapter(Context _context, ArrayList<Note> _notes) {
         this.notes = _notes;
@@ -46,8 +49,20 @@ public class NoteAdapter extends BaseAdapter {
         }
         Note note = notes.get(position);
 
-        noteTextTextView = (TextView) convertView.findViewById(R.id.noteTextTextField);
-        noteTextTextView.setText(note.GetTextNote().substring(0, 30));
+        noteTextTextView = (TextView) convertView.findViewById(R.id.noteTextTextView);
+        noteAuthorTextview = (TextView) convertView.findViewById(R.id.noteAuthorTextView);
+        noteDateTextView = (TextView) convertView.findViewById(R.id.noteDateTextView);
+
+        noteTextTextView.setText(note.GetTextNote());
+        noteAuthorTextview.setText(convertView.getResources().getString(R.string.notesAdapterAuthorPrefix, note.GetAuthorNote()));
+
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.FRENCH);
+            Date date = sdf.parse(note.GetDateNote());
+            noteDateTextView.setText(convertView.getResources().getString(R.string.notesAdapterDatePrefix, date.toString()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         return convertView;
     }

@@ -1,10 +1,6 @@
 package com.exametric_administration.classes.classes;
 
-
-import android.graphics.Region;
-
 import java.util.Date;
-
 import io.realm.RealmObject;
 
 public class Note extends RealmObject {

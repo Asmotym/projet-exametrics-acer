@@ -1,7 +1,6 @@
 package com.exametric_administration.classes.realm_classes;
 
 import com.exametric_administration.classes.classes.Note;
-
 import java.util.ArrayList;
 import io.realm.Realm;
 import io.realm.RealmResults;
@@ -20,7 +19,7 @@ public class RealmNote {
         _realm.commitTransaction();
     }
 
-    public static ArrayList<Note> getNotesByAreaId(Realm _realm) {
+    public static ArrayList<Note> getAllNotes(Realm _realm) {
         _realm.beginTransaction();
         ArrayList<Note> notes = new ArrayList<>();
         RealmResults<Note> results = _realm.where(Note.class).findAll();
@@ -28,9 +27,8 @@ public class RealmNote {
             _realm.commitTransaction();
             return notes;
         } else {
-            for (Note note: notes) {
+            for (Note note: results) {
                 notes.add(note);
-                System.out.println(note.GetTextNote());
             }
             _realm.commitTransaction();
             return notes;

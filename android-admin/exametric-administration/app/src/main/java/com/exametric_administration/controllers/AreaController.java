@@ -26,7 +26,6 @@ public class AreaController {
                 try {
                     JSONArray result = json.getJSONArray("result");
                     for (int i = 0; i < result.length(); i++) {
-                        System.out.println("Downloaded result : "+result.getString(i));
                         RealmArea.createObjectFromJson(RealmConfig.realmInstance, result.getString(i));
                     }
                 } catch (JSONException jse) {

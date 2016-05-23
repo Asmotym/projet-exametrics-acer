@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">exametric-administration</string>
+    <string name="app_name">Examétrics</string>
+    <string name="app_notes">%1$s</string>
+
+    <string name="notesAdapterAuthorPrefix">Par %1$s</string>
+    <string name="notesAdapterDatePrefix">Le %1$s</string>
 </resources>
