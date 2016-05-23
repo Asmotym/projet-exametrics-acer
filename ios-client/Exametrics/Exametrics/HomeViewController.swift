@@ -6,6 +6,8 @@
 //  Copyright © 2016 IMERIR. All rights reserved.
 //
 
+// Clef GoogleAPI IOS : AIzaSyBrBX4Q_tXvnCezexSX0c61SjvGICiJ_0w
+
 import UIKit
 
 class HomeViewController: UIViewController, UITableViewDataSource {
@@ -16,7 +18,6 @@ class HomeViewController: UIViewController, UITableViewDataSource {
     
     // Outlets
     @IBOutlet weak var noteTableView: UITableView!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()

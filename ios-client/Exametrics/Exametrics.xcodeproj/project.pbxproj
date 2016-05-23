@@ -21,6 +21,10 @@
 		EB7BFC151CEE0014002FD318 /* NoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7BFC141CEE0014002FD318 /* NoteTableViewCell.swift */; };
 		EB7BFC171CEF2FC9002FD318 /* AddNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7BFC161CEF2FC8002FD318 /* AddNoteViewController.swift */; };
 		EB7BFC191CEF5E2D002FD318 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7BFC181CEF5E2D002FD318 /* MapViewController.swift */; };
+<<<<<<< HEAD
+		EB7BFC291CF30AC7002FD318 /* PointController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7BFC281CF30AC7002FD318 /* PointController.swift */; };
+=======
+>>>>>>> parent of ea3dc8d... Ios GoogleMap API
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +65,10 @@
 		EB7BFC141CEE0014002FD318 /* NoteTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteTableViewCell.swift; sourceTree = "<group>"; };
 		EB7BFC161CEF2FC8002FD318 /* AddNoteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNoteViewController.swift; sourceTree = "<group>"; };
 		EB7BFC181CEF5E2D002FD318 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+<<<<<<< HEAD
+		EB7BFC281CF30AC7002FD318 /* PointController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointController.swift; sourceTree = "<group>"; };
+=======
+>>>>>>> parent of ea3dc8d... Ios GoogleMap API
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +96,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+<<<<<<< HEAD
+		64C430439FC3DC3E33905CB1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+=======
+>>>>>>> parent of ea3dc8d... Ios GoogleMap API
 		EB7BFBCF1CEC9D0C002FD318 = {
 			isa = PBXGroup;
 			children = (
@@ -95,6 +113,10 @@
 				EB7BFBEF1CEC9D0C002FD318 /* ExametricsTests */,
 				EB7BFBFA1CEC9D0C002FD318 /* ExametricsUITests */,
 				EB7BFBD91CEC9D0C002FD318 /* Products */,
+<<<<<<< HEAD
+				64C430439FC3DC3E33905CB1 /* Frameworks */,
+=======
+>>>>>>> parent of ea3dc8d... Ios GoogleMap API
 			);
 			sourceTree = "<group>";
 		};
@@ -111,6 +133,7 @@
 		EB7BFBDA1CEC9D0C002FD318 /* Exametrics */ = {
 			isa = PBXGroup;
 			children = (
+				EB7BFC271CF30AA5002FD318 /* View */,
 				EB7BFC0B1CEC9DC6002FD318 /* Configs */,
 				EB7BFC0A1CEC9DBA002FD318 /* Controllers */,
 				EB7BFC091CEC9DAB002FD318 /* Classes */,
@@ -155,10 +178,7 @@
 		EB7BFC0A1CEC9DBA002FD318 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				EB7BFC0C1CEC9EFB002FD318 /* HomeViewController.swift */,
-				EB7BFC141CEE0014002FD318 /* NoteTableViewCell.swift */,
-				EB7BFC161CEF2FC8002FD318 /* AddNoteViewController.swift */,
-				EB7BFC181CEF5E2D002FD318 /* MapViewController.swift */,
+				EB7BFC281CF30AC7002FD318 /* PointController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -168,6 +188,17 @@
 			children = (
 			);
 			name = Configs;
+			sourceTree = "<group>";
+		};
+		EB7BFC271CF30AA5002FD318 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EB7BFC0C1CEC9EFB002FD318 /* HomeViewController.swift */,
+				EB7BFC141CEE0014002FD318 /* NoteTableViewCell.swift */,
+				EB7BFC161CEF2FC8002FD318 /* AddNoteViewController.swift */,
+				EB7BFC181CEF5E2D002FD318 /* MapViewController.swift */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -305,6 +336,7 @@
 				EB7BFC111CED9A21002FD318 /* Point.swift in Sources */,
 				EB7BFBDC1CEC9D0C002FD318 /* AppDelegate.swift in Sources */,
 				EB7BFC0F1CECA3F0002FD318 /* Area.swift in Sources */,
+				EB7BFC291CF30AC7002FD318 /* PointController.swift in Sources */,
 				EB7BFC191CEF5E2D002FD318 /* MapViewController.swift in Sources */,
 				EB7BFC171CEF2FC9002FD318 /* AddNoteViewController.swift in Sources */,
 				EB7BFC0D1CEC9EFB002FD318 /* HomeViewController.swift in Sources */,
@@ -453,10 +485,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Exametrics/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = IMERIR.Exametrics;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Exametrics-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -464,10 +499,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Exametrics/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = IMERIR.Exametrics;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Exametrics-Bridging-Header.h";
 			};
 			name = Release;
 		};
