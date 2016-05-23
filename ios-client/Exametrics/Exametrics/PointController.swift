@@ -11,13 +11,10 @@ class PointController {
     
     
     // Champs
-    var urlPath : String
-    var url : NSURL!
+    var urlPath = "http://127.0.0.1:8888/exametrics-ws/"
     
     // Init
-    init(urlPath : String){
-        self.urlPath = urlPath
-        self.url = NSURL()
+    init(){
     }
     
     // Fonction permettant de vérifier le formulaire de connexion
@@ -52,6 +49,11 @@ class PointController {
             }
             
             guard let result = root["result"] as? NSArray else {
+                NSLog("PoinController : Probleme result")
+                return
+            }
+            
+            guard let result2 = result[0] as? NSArray else {
                 NSLog("PoinController : Probleme result")
                 return
             }

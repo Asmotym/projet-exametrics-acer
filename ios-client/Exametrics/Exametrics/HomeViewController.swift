@@ -32,7 +32,7 @@ class HomeViewController: UIViewController, UITableViewDataSource {
             noteList.append(note2)
         }
         
-        let pointC = PointController(urlPath: "http://172.30.1.178:8080/exametrics-ws/")
+        let pointC = PointController()
         
         pointC.getPoints()
 
