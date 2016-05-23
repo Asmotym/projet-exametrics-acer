@@ -15,9 +15,8 @@ class AddNoteViewController: UIViewController {
     var mArea : Area!
     
     // Outlets
-    @IBOutlet weak var inputLogin: UITextField!
     @IBOutlet weak var inputMessage: UITextView!
-    
+    @IBOutlet weak var inputAuthor: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,11 +27,12 @@ class AddNoteViewController: UIViewController {
 
     @IBAction func touchAddButton(sender: AnyObject) {
         
-        let newLogin   = inputLogin.text
-        let newMessage = inputMessage.text
+        let newId      = "\(noteList.count + 1)"
+        let newAuthor  = inputAuthor.text
+        let newText    = inputMessage.text
         let newDate    = NSDate()
         
-        let newNote = Note(id: noteList.count + 1, login: newLogin!, message: newMessage, date: newDate, area: mArea)
+        let newNote = Note(id: newId, author: newAuthor!, text: newText, date: newDate, idArea: mArea.getId())
         
         noteList.append(newNote)
     

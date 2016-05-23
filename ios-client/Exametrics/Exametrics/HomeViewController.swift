@@ -22,12 +22,12 @@ class HomeViewController: UIViewController, UITableViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        mArea = Area(id: 1, name: "Za Waludo", color: "cd13b8")
+        mArea = Area(id: "1", name: "Za Waludo", color: "cd13b8")
         if(noteList.count == 0)
         {
             
-            let note1 = Note(id: 0, login: "Admin", message: "Premier test", date: NSDate(), area: mArea)
-            let note2 = Note(id: 1, login: "Admin", message: "Second test", date: NSDate(), area: mArea)
+            let note1 = Note(id: "0", login: "Admin", message: "Premier test", date: NSDate(), idArea: mArea.getId())
+            let note2 = Note(id: "1", login: "Admin", message: "Second test", date: NSDate(), idArea: mArea.getId())
             noteList.append(note1)
             noteList.append(note2)
         }
@@ -53,8 +53,8 @@ class HomeViewController: UIViewController, UITableViewDataSource {
         let cell = tableView.dequeueReusableCellWithIdentifier(NoteTableViewCell.identifier, forIndexPath: indexPath) as! NoteTableViewCell
         
         // Configuration de la cellule
-        let login = noteList[indexPath.row].getLogin()
-        let message  = noteList[indexPath.row].getMessage()
+        let author = noteList[indexPath.row].getAuthor()
+        let text  = noteList[indexPath.row].getText()
         let date  = noteList[indexPath.row].getDate()
         
         let timestamp = NSDateFormatter()

@@ -75,8 +75,8 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="authorLabel" destination="EOu-cb-Cla" id="08a-TZ-hyd"/>
                                             <outlet property="dateLabel" destination="dma-RA-GI4" id="r9r-e2-Ueh"/>
-                                            <outlet property="loginLabel" destination="EOu-cb-Cla" id="50r-bI-XaG"/>
                                             <outlet property="messageLabel" destination="Vky-j1-4IM" id="RM5-P2-oKq"/>
                                         </connections>
                                     </tableViewCell>
@@ -263,7 +263,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="inputLogin" destination="2On-0V-hZp" id="AeH-YT-hsC"/>
+                        <outlet property="inputAuthor" destination="2On-0V-hZp" id="d2E-pR-cb4"/>
                         <outlet property="inputMessage" destination="9jM-VI-e9J" id="LUo-69-tUZ"/>
                     </connections>
                 </viewController>

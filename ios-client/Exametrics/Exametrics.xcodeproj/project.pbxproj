@@ -22,6 +22,7 @@
 		EB7BFC2F1CF33965002FD318 /* AddNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7BFC2E1CF33965002FD318 /* AddNoteViewController.swift */; };
 		EB7BFC311CF33979002FD318 /* PointController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7BFC301CF33979002FD318 /* PointController.swift */; };
 		EB7BFC331CF33A52002FD318 /* NoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7BFC321CF33A52002FD318 /* NoteTableViewCell.swift */; };
+		EB7BFC3C1CF38FF1002FD318 /* NoteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7BFC3B1CF38FF1002FD318 /* NoteController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		EB7BFC2E1CF33965002FD318 /* AddNoteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNoteViewController.swift; sourceTree = "<group>"; };
 		EB7BFC301CF33979002FD318 /* PointController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointController.swift; sourceTree = "<group>"; };
 		EB7BFC321CF33A52002FD318 /* NoteTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteTableViewCell.swift; sourceTree = "<group>"; };
+		EB7BFC3B1CF38FF1002FD318 /* NoteController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +115,7 @@
 		EB7BFBDA1CEC9D0C002FD318 /* Exametrics */ = {
 			isa = PBXGroup;
 			children = (
+				EB7BFC3A1CF38939002FD318 /* View */,
 				EB7BFC0B1CEC9DC6002FD318 /* Configs */,
 				EB7BFC0A1CEC9DBA002FD318 /* Controllers */,
 				EB7BFC091CEC9DAB002FD318 /* Classes */,
@@ -157,11 +160,8 @@
 		EB7BFC0A1CEC9DBA002FD318 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				EB7BFC0C1CEC9EFB002FD318 /* HomeViewController.swift */,
-				EB7BFC321CF33A52002FD318 /* NoteTableViewCell.swift */,
-				EB7BFC2E1CF33965002FD318 /* AddNoteViewController.swift */,
-				EB7BFC2C1CF337E7002FD318 /* MapViewController.swift */,
 				EB7BFC301CF33979002FD318 /* PointController.swift */,
+				EB7BFC3B1CF38FF1002FD318 /* NoteController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -171,6 +171,17 @@
 			children = (
 			);
 			name = Configs;
+			sourceTree = "<group>";
+		};
+		EB7BFC3A1CF38939002FD318 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EB7BFC0C1CEC9EFB002FD318 /* HomeViewController.swift */,
+				EB7BFC321CF33A52002FD318 /* NoteTableViewCell.swift */,
+				EB7BFC2E1CF33965002FD318 /* AddNoteViewController.swift */,
+				EB7BFC2C1CF337E7002FD318 /* MapViewController.swift */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -310,6 +321,7 @@
 				EB7BFBDC1CEC9D0C002FD318 /* AppDelegate.swift in Sources */,
 				EB7BFC311CF33979002FD318 /* PointController.swift in Sources */,
 				EB7BFC0F1CECA3F0002FD318 /* Area.swift in Sources */,
+				EB7BFC3C1CF38FF1002FD318 /* NoteController.swift in Sources */,
 				EB7BFC0D1CEC9EFB002FD318 /* HomeViewController.swift in Sources */,
 				EB7BFC131CEDA406002FD318 /* Note.swift in Sources */,
 				EB7BFC2D1CF337E7002FD318 /* MapViewController.swift in Sources */,

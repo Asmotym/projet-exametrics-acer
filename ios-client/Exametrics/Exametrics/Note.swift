@@ -11,35 +11,35 @@ import Foundation
 class Note {
     
     // Champs
-    private var _id : Int!
-    private var _login : String!
-    private var _message : String!
+    private var _id : String!
+    private var _author : String!
+    private var _text : String!
     private var _date : NSDate!
-    private var _area : Area!
+    private var _idArea : String!
     
     // Getter & Setter
-    func getId() -> Int{
+    func getId() -> String{
         return _id
     }
     
-    func setId(id: Int) {
+    func setId(id: String) {
         _id = id
     }
     
-    func getLogin() -> String{
-        return _login
+    func getAuthor() -> String{
+        return _author
     }
     
-    func setLogin(login: String) {
-        _login = login
+    func setAuthor(author: String) {
+        _author = author
     }
     
-    func getMessage() -> String{
-        return _message
+    func getText() -> String{
+        return _text
     }
     
-    func setMessage(message: String) {
-        _message = message
+    func setText(text: String) {
+        _text = text
     }
     
     func getDate() -> NSDate{
@@ -50,22 +50,22 @@ class Note {
         _date = date
     }
     
-    func getArea() -> Area{
-        return _area
+    func getIdArea() -> String{
+        return _idArea
     }
     
-    func setArea(area: Area) {
-        _area = area
+    func setIdArea(idArea: String) {
+        _idArea = idArea
     }
     
     // Constructeurs
-    required init(id: Int, login: String, message: String, date: NSDate, area : Area){
+    required init(id: String, author: String, text: String, date: NSDate, idArea : String){
         
         _id = id
-        _login = login
-        _message = message
+        _author = author
+        _text = text
         _date = date
-        _area = area
+        _idArea = idArea
         
     }
     

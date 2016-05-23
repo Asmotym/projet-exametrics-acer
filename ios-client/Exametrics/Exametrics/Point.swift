@@ -11,17 +11,17 @@ import Foundation
 class Point {
     
     // Champs
-    private var _id : Int!
+    private var _id : String!
     private var _longitude : Float!
     private var _latitude : Float!
-    private var _area : Area!
+    private var _idArea : String!
     
     // Getter & Setter
-    func getId() -> Int{
+    func getId() -> String{
         return _id
     }
     
-    func setId(id: Int) {
+    func setId(id: String) {
         _id = id
     }
     
@@ -41,21 +41,21 @@ class Point {
         _latitude = latitude
     }
     
-    func getArea() -> Area{
-        return _area
+    func getIdArea() -> String{
+        return _idArea
     }
     
-    func setArea(area: Area) {
-        _area = area
+    func setIdArea(idArea: String) {
+        _idArea = idArea
     }
     
     // Constructeurs
-    required init(id: Int, longitude: Float, latitude: Float, area: Area){
+    required init(id: String, longitude: Float, latitude: Float, idArea: String){
         
         _id = id
         _longitude = longitude
         _latitude = latitude
-        _area = area
+        _idArea = idArea
         
     }
     

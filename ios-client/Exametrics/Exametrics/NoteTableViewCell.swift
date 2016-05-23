@@ -11,7 +11,7 @@ import UIKit
 class NoteTableViewCell: UITableViewCell {
 
     // Outlets
-    @IBOutlet weak var loginLabel: UILabel!
+    @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var messageLabel: UILabel!
     
@@ -20,10 +20,10 @@ class NoteTableViewCell: UITableViewCell {
     static let identifier = "noteCell"
     
     // Fonction permettant la configuration de la cellule
-    func configureWithData(login: String,message: String,  date: String){
+    func configureWithData(author: String, text: String, date: String){
         
-        loginLabel.text = login
-        messageLabel.text = message
+        authorLabel.text = author
+        messageLabel.text = text
         dateLabel.text = date
         
     }

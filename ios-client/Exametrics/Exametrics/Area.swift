@@ -11,16 +11,16 @@ import Foundation
 class Area {
     
     // Champs
-    private var _id : Int!
+    private var _id : String!
     private var _name : String!
     private var _color : String!
     
     // Getter & Setter
-    func getId() -> Int{
+    func getId() -> String{
         return _id
     }
     
-    func setId(id: Int) {
+    func setId(id: String) {
         _id = id
     }
     
@@ -41,7 +41,7 @@ class Area {
     }
     
     // Constructeurs
-    required init(id: Int, name: String, color: String){
+    required init(id: String, name: String, color: String){
         
         _id = id
         _name = name
