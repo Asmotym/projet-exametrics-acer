@@ -1,6 +1,5 @@
 package com.exametric_administration.classes.realm_classes;
 
-import com.exametric_administration.activities.DetailsNote;
 import com.exametric_administration.classes.classes.Note;
 import java.util.ArrayList;
 import io.realm.Realm;
@@ -40,7 +39,6 @@ public class RealmNote {
         _realm.beginTransaction();
         Note note = _realm.where(Note.class).equalTo("idNote", _idNote).findFirst();
         _realm.commitTransaction();
-        System.out.println(note.GetTextNote());
         return note;
     }
 

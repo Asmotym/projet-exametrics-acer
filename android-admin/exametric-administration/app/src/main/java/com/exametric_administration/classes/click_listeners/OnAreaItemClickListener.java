@@ -9,6 +9,7 @@ import com.exametric_administration.activities.NoteListView;
 import com.exametric_administration.classes.adapters.AreaAdapter;
 import com.exametric_administration.classes.classes.Area;
 import com.exametric_administration.classes.realm_classes.RealmNote;
+import com.exametric_administration.tools.GlobalVariables;
 import com.exametric_administration.tools.RealmConfig;
 
 
@@ -21,6 +22,7 @@ public class OnAreaItemClickListener implements ListView.OnItemClickListener {
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        GlobalVariables.ACTUAL_AREA = 0;
         RealmNote.clearNotes(RealmConfig.realmInstance);
         Area area = (Area) areaAdapter.getItem(position);
         Intent intent = new Intent(view.getContext(), NoteListView.class);

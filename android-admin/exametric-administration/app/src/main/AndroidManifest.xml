@@ -36,13 +36,6 @@
                 android:value=".activities.AreaListView" />
         </activity>
 
-        <activity android:name=".activities.DetailsNote"
-            android:parentActivityName=".activities.NoteListView"
-            android:screenOrientation="landscape">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activities.NoteListView"/>
-        </activity>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -57,7 +50,15 @@
 
         <activity
             android:name=".activities.MapsActivity"
-            android:label="@string/title_activity_maps"/>
+            android:label="@string/title_activity_maps" />
+
+        <activity android:name=".activities.DetailsNote"
+            android:parentActivityName=".activities.NoteListView"
+            android:screenOrientation="landscape">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.NoteListView"/>
+        </activity>
     </application>
 
 </manifest>

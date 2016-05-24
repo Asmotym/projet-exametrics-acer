@@ -21,6 +21,7 @@ import com.exametric_administration.classes.click_listeners.OnNoteItemClickListe
 import com.exametric_administration.classes.realm_classes.RealmArea;
 import com.exametric_administration.classes.realm_classes.RealmNote;
 import com.exametric_administration.controllers.NoteController;
+import com.exametric_administration.tools.GlobalVariables;
 import com.exametric_administration.tools.RealmConfig;
 import android.os.Handler;
 import java.util.ArrayList;
@@ -33,7 +34,11 @@ public class NoteListView extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_note);
-        area = RealmArea.getAreaById(RealmConfig.realmInstance, getIntent().getExtras().getInt("idArea"));
+        if (GlobalVariables.ACTUAL_AREA == 0) {
+            area = RealmArea.getAreaById(RealmConfig.realmInstance, getIntent().getExtras().getInt("idArea"));
+        } else {
+            area = RealmArea.getAreaById(RealmConfig.realmInstance, GlobalVariables.ACTUAL_AREA);
+        }
         Toolbar toolbar = (Toolbar) findViewById(R.id.noteToolbar);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
@@ -61,7 +66,7 @@ public class NoteListView extends AppCompatActivity {
         notesListView = (ListView) findViewById(R.id.noteListView);
         NoteAdapter noteAdapter = new NoteAdapter(getBaseContext(), _notes);
         notesListView.setAdapter(noteAdapter);
-        notesListView.setOnItemClickListener(new OnNoteItemClickListener(noteAdapter));
+        notesListView.setOnItemClickListener(new OnNoteItemClickListener(noteAdapter, area.GetColorArea().substring(4)));
     }
 
     public static void notifyDataChange(ArrayList<Note> _notes) {
@@ -80,5 +85,10 @@ public class NoteListView extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }

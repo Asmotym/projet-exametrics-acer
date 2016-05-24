@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
     <android.support.v7.widget.Toolbar
         android:id="@+id/detailsNoteToolbar"
         android:layout_width="match_parent"
@@ -14,23 +14,22 @@
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/scrollView">
+        android:layout_height="wrap_content">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
             <TextView
-                android:id="@+id/textNoteDetailTextView"
+                android:id="@+id/textDetailsNoteTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="FDGSFDHVERDTHVDYTDJDCY "/>
+                android:padding="10dp"/>
             <TextView
-                android:id="@+id/dateNoteDetailTextView"
+                android:id="@+id/dateDetailsNoteTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:padding="10dp"
                 android:layout_gravity="end"/>
         </LinearLayout>
     </ScrollView>
-
 </LinearLayout>
