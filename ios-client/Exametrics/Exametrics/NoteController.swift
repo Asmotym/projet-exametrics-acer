@@ -144,6 +144,8 @@ import Foundation
 class NoteController {
     
     
+    let connectControl = ConnectionController()
+    
     // Init
     init(){
     }
@@ -154,7 +156,6 @@ class NoteController {
         // Déclaration de l'url et de la liste de Notes
         
         var listNotes = [Note]()
-        let connectControl = ConnectionController()
         
         let result = connectControl.getListTuples("notes")
             
@@ -178,30 +179,50 @@ class NoteController {
             listNotes.append(newNote)
         }
             
-            /*
-             // Write our movie objects to the database
-             let realm = RLMRealm.defaultRealm()
-             realm.beginWriteTransaction()
-             
-             for point in movies {
-             /*  This method will avoid duplicating records by looking at the
-             primary key we've set on our object. Go look at the XMCMovie
-             class to see that method defined.
-             */
-             XMCMovie.createOrUpdateInDefaultRealmWithObject(movie)
-             
-             // Alternatively, you could add new objects by calling this method
-             // realm.addObject(movie)
-             // or
-             // realm.addObjects(movies) // An array of objects
-             }
-             
-             realm.commitWriteTransaction()
-             
-             */
+            // Stock Realm / UserDefault
+        
         return listNotes
         
     }
+    
+    
+    // Fonction permettant de récupérer les Notes selon l'id d'une Zone
+    func getNotesByIdArea(idArea: String) -> [Note]{
+        
+        // Déclaration de l'url et de la liste de Note
+        
+        var listNotes = [Note]()
+        
+        let result = connectControl.getListTuples("notes?id=\(idArea)")
+        
+        for index in 0...(result.count - 1) {
+            let newId        = result[index]["idNote"] as! String
+            let newAuthor    = result[index]["authorNote"] as! String
+            let newText      = result[index]["textNote"] as! String
+            let newDate      = result[index]["dateNote"] as! String
+            let newIdArea    = result[index]["idArea"] as! String
+            
+            // Formattage de la date
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
+            guard let newNSDate = dateFormatter.dateFromString(newDate) else {
+                NSLog("Note Controller : Format date error")
+                break
+            }
+            
+            let newNote = Note(id: newId, author: newAuthor, text: newText, date: newNSDate, idArea: newIdArea)
+            
+            listNotes.append(newNote)
+        }
+
+        
+        // Stock Realm / UserDefault
+        
+        return listNotes
+        
+    }
+    
+    
 }
  
  

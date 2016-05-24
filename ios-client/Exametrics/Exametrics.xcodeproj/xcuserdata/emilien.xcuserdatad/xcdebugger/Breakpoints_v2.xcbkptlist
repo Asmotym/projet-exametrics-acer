@@ -151,6 +151,38 @@
             endingLineNumber = "30"
             landmarkName = "getListTuples(_:)"
             landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Exametrics.ConnectionController.getListTuples (Swift.String) -&gt; __ObjC.NSArray"
+                  moduleName = "Exametrics"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/emilien/Desktop/Projet%20d&apos;inte%CC%81gration/projet-exametrics-acer/ios-client/Exametrics/Exametrics/ConnectionController.swift"
+                  timestampString = "485776235.604169"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30"
+                  offsetFromSymbolStart = "928">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Exametrics.ConnectionController.(getListTuples (Swift.String) -&gt; __ObjC.NSArray).(closure #1)"
+                  moduleName = "Exametrics"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/emilien/Desktop/Projet%20d&apos;inte%CC%81gration/projet-exametrics-acer/ios-client/Exametrics/Exametrics/ConnectionController.swift"
+                  timestampString = "485776235.610397"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "25"
+                  endingLineNumber = "25"
+                  offsetFromSymbolStart = "39">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

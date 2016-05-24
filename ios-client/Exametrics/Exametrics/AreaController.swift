@@ -37,7 +37,7 @@ class AreaController {
         
         // Stockage Realm / UserDefault
         
-        return listNotes
+        return listAreas
         
     }
     
@@ -51,16 +51,17 @@ class AreaController {
         
         let result = connectControl.getListTuples("areas?id=\(idArea)")
         
-        let newId    = result[index]["idArea"] as! String
-        let newName  = result[index]["nameArea"] as! String
-        let newColor = result[index]["colorArea"] as! String
+        let newId    = result[0]["idArea"] as! String
+        let newName  = result[0]["nameArea"] as! String
+        let newColor = result[0]["colorArea"] as! String
         
         let newArea = Area(id: newId, name: newName, color: newColor)
         
         myArea = newArea
+        
         // Stock Realm / UserDefault
         
-        return listNotes
+        return myArea
         
     }
     

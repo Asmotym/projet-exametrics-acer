@@ -110,6 +110,7 @@ import Foundation
 
 class PointController {
     
+    let connectControl = ConnectionController()
     
     // Init
     init(){
@@ -121,11 +122,10 @@ class PointController {
         // Déclaration de l'url et de la liste de Points
         
         var listPoints = [Point]()
-        let connectControl = ConnectionController()
         
         let result = connectControl.getListTuples("points")
             
-        for index in 0...result.count {
+        for index in 0...(result.count - 1) {
             let newIdPoint   = result[index]["idPoint"] as! String
             let newLongitude = result[index]["longitude"] as! String
             let newLatitude  = result[index]["latitude"] as! String
@@ -141,26 +141,27 @@ class PointController {
     }
     
     
-    // Fonction permettant de récupérer une zone selon son id
-    func getAreaById(idArea: String) -> Area{
+    // Fonction permettant de récupérer les Points selon l'id d'une Zone
+    func getPointsByIdArea(idArea: String) -> [Point]{
         
-        // Déclaration de l'url et de la Zone
+        // Déclaration de l'url et de la liste de Point
         
-        var myArea : Area!
-        let connectControl = ConnectionController()
+        var listPoints = [Point]()
         
-        let result = connectControl.getListTuples("areas?id=\(idArea)")
+        let result = connectControl.getListTuples("point?id=\(idArea)")
         
-        let newIdPoint   = result[index]["idPoint"] as! String
-        let newLongitude = result[index]["longitude"] as! String
-        let newLatitude  = result[index]["latitude"] as! String
-        let newIdArea    = result[index]["idArea"] as! String
-        
-        let newPoint     = Point(id: newIdPoint, longitude: Float(newLongitude)!, latitude: Float(newLatitude)!, idArea: newIdArea)
+        for index in 0...(result.count - 1) {
+            let newIdPoint   = result[index]["idPoint"] as! String
+            let newLongitude = result[index]["longitude"] as! String
+            let newLatitude  = result[index]["latitude"] as! String
+            let newIdArea    = result[index]["idArea"] as! String
+            let newPoint     = Point(id: newIdPoint, longitude: Float(newLongitude)!, latitude: Float(newLatitude)!, idArea: newIdArea)
+            listPoints.append(newPoint)
+        }
         
         // Stock Realm / UserDefault
         
-        return listNotes
+        return listPoints
         
     }
     
