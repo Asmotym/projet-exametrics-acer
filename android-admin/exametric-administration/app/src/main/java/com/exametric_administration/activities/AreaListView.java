@@ -24,6 +24,7 @@ import android.widget.Toast;
 
 public class AreaListView extends AppCompatActivity {
     private static ListView areasListview;
+    private static AreaAdapter areaAdapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -34,7 +35,7 @@ public class AreaListView extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle(getResources().getString(R.string.app_name));
         RealmConfig.configure(this);
-        AreaController.downloadAllAreas(getBaseContext());
+        AreaController.downloadAllAreas(this);
     }
 
     @Override
@@ -61,6 +62,15 @@ public class AreaListView extends AppCompatActivity {
             case R.id.menuAdd:
                 Toast.makeText(this, "Add clicked", Toast.LENGTH_SHORT).show();
                 return true;
+            case R.id.menuReloadData:
+                AreaController.downloadAllAreas(this);
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        setUpAreasAdapter(RealmArea.getAllAreas(RealmConfig.realmInstance));
+                    }
+                }, 2000);
+
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -68,7 +78,7 @@ public class AreaListView extends AppCompatActivity {
 
     public void setUpAreasAdapter(ArrayList<Area> _areas) {
         areasListview = (ListView) findViewById(R.id.areaListView);
-        AreaAdapter areaAdapter = new AreaAdapter(getBaseContext(), _areas);
+        areaAdapter = new AreaAdapter(this, _areas);
         areasListview.setAdapter(areaAdapter);
         areasListview.setOnItemClickListener(new OnAreaItemClickListener(areaAdapter));
     }
@@ -88,8 +98,6 @@ class OnAreaItemClickListener implements ListView.OnItemClickListener {
         Area area = (Area) areaAdapter.getItem(position);
         Intent intent = new Intent(view.getContext(), NoteListView.class);
         intent.putExtra("idArea", area.GetIdArea());
-        intent.putExtra("colorArea", area.GetColorArea());
-        intent.putExtra("nameArea", area.GetNameArea());
         view.getContext().startActivity(intent);
     }
 

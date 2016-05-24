@@ -1,5 +1,6 @@
 package com.exametric_administration.activities;
 
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.ActionBar;
 import android.graphics.Color;
@@ -11,12 +12,11 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 import com.exametric_administration.R;
 import com.exametric_administration.classes.adapters.NoteAdapter;
+import com.exametric_administration.classes.classes.Area;
 import com.exametric_administration.classes.classes.Note;
 import com.exametric_administration.classes.realm_classes.RealmArea;
 import com.exametric_administration.classes.realm_classes.RealmNote;
@@ -30,23 +30,21 @@ public class NoteListView extends AppCompatActivity {
     private static ListView notesListView;
     private static int idArea;
     private static String colorArea, nameArea;
+    private static Area area;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_note);
-        idArea = getIntent().getExtras().getInt("idArea");
-        colorArea = getIntent().getExtras().getString("colorArea");
-        nameArea = getIntent().getExtras().getString("nameArea");
+        area = RealmArea.getAreaById(RealmConfig.realmInstance, getIntent().getExtras().getInt("idArea"));
         Toolbar toolbar = (Toolbar) findViewById(R.id.noteToolbar);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle(nameArea);
+        actionBar.setTitle(area.GetNameArea());
         actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#80" + colorArea.substring(4))));
-
+        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#80" + area.GetColorArea().substring(4))));
         actionBar.setDisplayShowTitleEnabled(true);
-        NoteController.downloadNotesById(getBaseContext(), idArea);
+        NoteController.downloadNotesById(getBaseContext(), area.GetIdArea());
     }
 
     @Override
@@ -86,6 +84,7 @@ class OnNoteItemClickListener implements ListView.OnItemClickListener {
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Note note = (Note) noteAdapter.getItem(position);
-        //TODO Display the entire note
+        Intent intent = new Intent(view.getContext(), DetailsNote.class);
+
     }
 }

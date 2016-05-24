@@ -24,6 +24,12 @@
             <meta-data android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.AreaListView"/>
         </activity>
+        <activity android:name=".activities.DetailsNote"
+            android:parentActivityName=".activities.NoteListView"
+            android:screenOrientation="landscape">
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.NoteListView"/>
+        </activity>
     </application>
 
 </manifest>

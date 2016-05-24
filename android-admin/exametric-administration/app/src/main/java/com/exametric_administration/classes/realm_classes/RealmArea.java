@@ -35,6 +35,13 @@ public class RealmArea {
         }
     }
 
+    public static Area getAreaById(Realm _realm, int _idArea) {
+        _realm.beginTransaction();
+        Area area = _realm.where(Area.class).equalTo("idArea", _idArea).findFirst();
+        _realm.commitTransaction();
+        return area;
+    }
+
     public static void clearAreas(Realm _realm) {
         _realm.beginTransaction();
         _realm.delete(Area.class);

@@ -5,4 +5,8 @@
         android:icon="@drawable/ic_action_add"
         android:title="Add"
         app:showAsAction="ifRoom"/>
+    <item android:id="@+id/menuReloadData"
+        android:icon="@drawable/ic_action_reload"
+        android:title="Reload"
+        app:showAsAction="always"/>
 </menu>

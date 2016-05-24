@@ -1,5 +1,7 @@
 package com.exametric_administration.classes.classes;
 
+import java.io.Serializable;
+
 import io.realm.RealmObject;
 
 public class Area extends RealmObject {
