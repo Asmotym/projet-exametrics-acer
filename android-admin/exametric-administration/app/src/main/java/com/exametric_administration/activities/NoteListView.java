@@ -81,6 +81,10 @@ public class NoteListView extends AppCompatActivity {
                 NoteController.downloadNotesById(this, area.GetIdArea());
                 return true;
             case R.id.menuAdd:
+                GlobalVariables.ACTUAL_AREA = area.GetIdArea();
+                Intent intent = new Intent(this, AddNote.class);
+                intent.putExtra("color", area.GetColorArea().substring(4));
+                startActivity(intent);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

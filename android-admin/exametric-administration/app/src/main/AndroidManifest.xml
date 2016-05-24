@@ -59,6 +59,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.NoteListView"/>
         </activity>
+        <activity android:name=".activities.AddNote"
+            android:parentActivityName=".activities.NoteListView"
+            android:screenOrientation="landscape">
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".activities.NoteListView"/>
+    </activity>
+
     </application>
 
 </manifest>

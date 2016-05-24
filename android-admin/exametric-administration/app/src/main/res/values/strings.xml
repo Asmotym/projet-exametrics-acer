@@ -5,4 +5,9 @@
     <string name="notesAdapterAuthorPrefix">Par %1$s</string>
     <string name="notesAdapterDatePrefix">Le %1$s</string>
     <string name="title_activity_maps">Map</string>
+
+    <string name="add_note_hint_author">Pseudonyme</string>
+    <string name="add_note_hint_text">Message...</string>
+    <string name="add_note_hint_send_button">Envoyer</string>
+    <string name="add_note_appbar_title">Ajouter une note</string>
 </resources>

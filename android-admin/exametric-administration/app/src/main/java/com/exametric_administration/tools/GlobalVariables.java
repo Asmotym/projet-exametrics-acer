@@ -14,6 +14,7 @@ public class GlobalVariables {
     public static String BY_ID_AREAS_URI = "/areas?id=";
 
     public static String BY_ID_NOTES_URI = "/notes?id=";
+    public static String UPLOAD_NOTE_URI = "/notes";
 
     public static int ACTUAL_AREA = 0;
 }
