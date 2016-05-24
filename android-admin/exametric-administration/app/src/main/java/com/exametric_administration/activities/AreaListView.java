@@ -60,6 +60,9 @@ public class AreaListView extends AppCompatActivity {
                 Intent intent = new Intent(getBaseContext(), MapsActivity.class);
                 startActivity(intent);
                 return true;
+            case R.id.menuReload:
+                AreaController.downloadAllAreas(getBaseContext());
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
