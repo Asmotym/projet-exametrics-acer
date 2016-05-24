@@ -35,6 +35,13 @@ public class RealmNote {
         }
     }
 
+    public static Note getNoteById(Realm _realm, int _idNote) {
+        _realm.beginTransaction();
+        Note note = _realm.where(Note.class).equalTo("idNote", _idNote).findFirst();
+        _realm.commitTransaction();
+        return note;
+    }
+
     public static void clearNotes(Realm _realm) {
         _realm.beginTransaction();
         _realm.delete(Note.class);

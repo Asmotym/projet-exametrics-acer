@@ -54,4 +54,10 @@ public class AreaAdapter extends BaseAdapter {
 
         return convertView;
     }
+
+    public void setData(ArrayList<Area> _areas) {
+        this.areas = _areas;
+        this.notifyDataSetChanged();
+    }
+
 }

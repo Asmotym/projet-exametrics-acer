@@ -66,4 +66,10 @@ public class NoteAdapter extends BaseAdapter {
 
         return convertView;
     }
+
+    public void setData(ArrayList<Note> _notes) {
+        this.notes = _notes;
+        this.notifyDataSetChanged();
+    }
+
 }

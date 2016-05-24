@@ -5,6 +5,7 @@ import android.content.Context;
 import com.androidquery.AQuery;
 import com.androidquery.callback.AjaxCallback;
 import com.androidquery.callback.AjaxStatus;
+import com.exametric_administration.activities.NoteListView;
 import com.exametric_administration.classes.realm_classes.RealmNote;
 import com.exametric_administration.tools.GlobalVariables;
 import com.exametric_administration.tools.RealmConfig;
@@ -27,6 +28,7 @@ public class NoteController {
                     for (int i = 0; i < result.length(); i++) {
                         RealmNote.createObjectFromJson(RealmConfig.realmInstance, result.getString(i));
                     }
+                    NoteListView.notifyDataChange(RealmNote.getAllNotes(RealmConfig.realmInstance));
                 } catch (JSONException jse) {
                     jse.printStackTrace();
                 }

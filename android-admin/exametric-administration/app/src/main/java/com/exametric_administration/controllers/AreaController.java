@@ -5,6 +5,7 @@ import android.content.Context;
 import com.androidquery.AQuery;
 import com.androidquery.callback.AjaxCallback;
 import com.androidquery.callback.AjaxStatus;
+import com.exametric_administration.activities.AreaListView;
 import com.exametric_administration.classes.realm_classes.RealmArea;
 import com.exametric_administration.tools.GlobalVariables;
 import com.exametric_administration.tools.RealmConfig;
@@ -28,6 +29,7 @@ public class AreaController {
                     for (int i = 0; i < result.length(); i++) {
                         RealmArea.createObjectFromJson(RealmConfig.realmInstance, result.getString(i));
                     }
+                    AreaListView.notifyDataChange(RealmArea.getAllAreas(RealmConfig.realmInstance));
                 } catch (JSONException jse) {
                     jse.printStackTrace();
                 }

@@ -13,7 +13,10 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import com.exametric_administration.R;
 import com.exametric_administration.classes.adapters.AreaAdapter;
+import com.exametric_administration.classes.adapters.NoteAdapter;
 import com.exametric_administration.classes.classes.Area;
+import com.exametric_administration.classes.classes.Note;
+import com.exametric_administration.classes.click_listeners.OnAreaItemClickListener;
 import com.exametric_administration.classes.realm_classes.RealmArea;
 import com.exametric_administration.classes.realm_classes.RealmNote;
 import com.exametric_administration.controllers.AreaController;
@@ -40,12 +43,7 @@ public class AreaListView extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                setUpAreasAdapter(RealmArea.getAllAreas(RealmConfig.realmInstance));
-            }
-        }, 1000);
+        setUpAreasAdapter(RealmArea.getAllAreas(RealmConfig.realmInstance));
     }
 
     @Override
@@ -59,7 +57,7 @@ public class AreaListView extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menuAdd:
-                Intent intent = new Intent(this, MapsActivity.class);
+                Intent intent = new Intent(getBaseContext(), MapsActivity.class);
                 startActivity(intent);
                 return true;
             default:
@@ -74,24 +72,9 @@ public class AreaListView extends AppCompatActivity {
         areasListview.setOnItemClickListener(new OnAreaItemClickListener(areaAdapter));
     }
 
-}
-
-class OnAreaItemClickListener implements ListView.OnItemClickListener {
-    private AreaAdapter areaAdapter;
-
-    public OnAreaItemClickListener(AreaAdapter _areaAdapter) {
-        this.areaAdapter = _areaAdapter;
-    }
-
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        RealmNote.clearNotes(RealmConfig.realmInstance);
-        Area area = (Area) areaAdapter.getItem(position);
-        Intent intent = new Intent(view.getContext(), NoteListView.class);
-        intent.putExtra("idArea", area.GetIdArea());
-        intent.putExtra("colorArea", area.GetColorArea());
-        intent.putExtra("nameArea", area.GetNameArea());
-        view.getContext().startActivity(intent);
+    public static void notifyDataChange(ArrayList<Area> _areas) {
+        AreaAdapter areaAdapter = (AreaAdapter) areasListview.getAdapter();
+        areaAdapter.setData(_areas);
     }
 
 }
