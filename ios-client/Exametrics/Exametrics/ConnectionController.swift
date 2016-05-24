@@ -12,7 +12,7 @@ class ConnectionController {
     
     
     // Champs
-    var urlPath = "http://127.0.0.1:8888/exametrics-ws/"
+    var urlPath = "http://172.30.1.178:8080/exametrics-ws/"
     
     // Init
     init(){
@@ -22,7 +22,7 @@ class ConnectionController {
     func getListTuples(tuples: String) -> NSArray{
         
         // Déclaration de l'url et de la liste de Points
-        
+        var myResult = NSArray()
         urlPath += tuples
         let url = NSURL(string: urlPath.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)!
         
@@ -55,10 +55,12 @@ class ConnectionController {
                 return
             }
             
+            myResult = result
+            
         }
         task.resume()
+        return myResult
         
-        return result
         
     }
 }

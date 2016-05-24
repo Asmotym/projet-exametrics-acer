@@ -17,31 +17,32 @@ class NoteController {
     // Fonction permettant de vérifier le formulaire de connexion
     func getNotes() -> [Note]{
         
-        // Déclaration de l'url et de la liste de Points
+        // Déclaration de l'url et de la liste de Notes
         
         var listNotes = [Note]()
-        var connectControl = ConnectionController()
+        let connectControl = ConnectionController()
         
-        var result = connectControl.getListTuples("notes")
+        let result = connectControl.getListTuples("notes")
             
-            for index in 0...(result.count - 1) {
-                let newId        = result[index]["idNote"] as! String
-                let newAuthor    = result[index]["authorNote"] as! String
-                let newText      = result[index]["textNote"] as! String
-                let newDate      = result[index]["dateNote"] as! String
-                let newIdArea    = result[index]["idArea"] as! String
+        for index in 0...(result.count - 1) {
+            let newId        = result[index]["idNote"] as! String
+            let newAuthor    = result[index]["authorNote"] as! String
+            let newText      = result[index]["textNote"] as! String
+            let newDate      = result[index]["dateNote"] as! String
+            let newIdArea    = result[index]["idArea"] as! String
                 
-                // Formattage de la date
-                let dateFormatter = NSDateFormatter()
-                dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
-                guard let newNSDate = dateFormatter.dateFromString(newDate) else {
-                    NSLog("Note Controller : Format date error")
-                }
-                
-                let newNote = Note(id: newId, author: newAuthor, text: newText, date: newNSDate!, idArea: newIdArea)
-                
-                listNotes.append(newNote)
+            // Formattage de la date
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
+            guard let newNSDate = dateFormatter.dateFromString(newDate) else {
+                NSLog("Note Controller : Format date error")
+                break
             }
+                
+            let newNote = Note(id: newId, author: newAuthor, text: newText, date: newNSDate, idArea: newIdArea)
+                
+            listNotes.append(newNote)
+        }
             
             /*
              // Write our movie objects to the database
@@ -64,11 +65,6 @@ class NoteController {
              realm.commitWriteTransaction()
              
              */
-            
-            
-        }
-        task.resume()
-        
         return listNotes
         
     }

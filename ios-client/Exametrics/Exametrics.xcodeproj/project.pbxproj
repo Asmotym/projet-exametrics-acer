@@ -162,9 +162,9 @@
 		EB7BFC0A1CEC9DBA002FD318 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				EB7BFC3D1CF42976002FD318 /* ConnectionController.swift */,
 				EB7BFC301CF33979002FD318 /* PointController.swift */,
 				EB7BFC3B1CF38FF1002FD318 /* NoteController.swift */,
-				EB7BFC3D1CF42976002FD318 /* ConnectionController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";

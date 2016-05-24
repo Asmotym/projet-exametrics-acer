@@ -15,6 +15,7 @@ class HomeViewController: UIViewController, UITableViewDataSource {
     // Variables
     var mArea : Area!
     var noteList  = [Note]()
+    var pointList = [Point]()
     let pointCont = PointController()
     let noteCont  = NoteController()
     
@@ -24,8 +25,9 @@ class HomeViewController: UIViewController, UITableViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        noteList = noteCont.getNotes()
+        pointList = pointCont.getPoints()
+
+        noteList  = noteCont.getNotes()
         
         if(noteList.count == 0)
         {
