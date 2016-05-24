@@ -54,13 +54,7 @@ class PointController {
                 NSLog("PoinController : Probleme result")
                 return
             }
-            
-            guard let idPoint = result[0]["idPoint"] as? String else {
-                NSLog("PoinController : Probleme result")
-                return
-            }
-
-            
+        
             for index in 0...result.count {
                 let newIdPoint   = result[index]["idPoint"] as! String
                 let newLongitude = result[index]["longitude"] as! String

@@ -23,6 +23,7 @@
 		EB7BFC311CF33979002FD318 /* PointController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7BFC301CF33979002FD318 /* PointController.swift */; };
 		EB7BFC331CF33A52002FD318 /* NoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7BFC321CF33A52002FD318 /* NoteTableViewCell.swift */; };
 		EB7BFC3C1CF38FF1002FD318 /* NoteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7BFC3B1CF38FF1002FD318 /* NoteController.swift */; };
+		EB7BFC3E1CF42976002FD318 /* ConnectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7BFC3D1CF42976002FD318 /* ConnectionController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		EB7BFC301CF33979002FD318 /* PointController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointController.swift; sourceTree = "<group>"; };
 		EB7BFC321CF33A52002FD318 /* NoteTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteTableViewCell.swift; sourceTree = "<group>"; };
 		EB7BFC3B1CF38FF1002FD318 /* NoteController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteController.swift; sourceTree = "<group>"; };
+		EB7BFC3D1CF42976002FD318 /* ConnectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +164,7 @@
 			children = (
 				EB7BFC301CF33979002FD318 /* PointController.swift */,
 				EB7BFC3B1CF38FF1002FD318 /* NoteController.swift */,
+				EB7BFC3D1CF42976002FD318 /* ConnectionController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -316,6 +319,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EB7BFBDE1CEC9D0C002FD318 /* ViewController.swift in Sources */,
+				EB7BFC3E1CF42976002FD318 /* ConnectionController.swift in Sources */,
 				EB7BFC111CED9A21002FD318 /* Point.swift in Sources */,
 				EB7BFC2F1CF33965002FD318 /* AddNoteViewController.swift in Sources */,
 				EB7BFBDC1CEC9D0C002FD318 /* AppDelegate.swift in Sources */,
