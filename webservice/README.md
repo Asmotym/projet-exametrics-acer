@@ -106,7 +106,7 @@
 ```
 
 <dl>
-<dt>http://172.30.1.178:8080/exametrics-ws/points/@idArea GET</dt>
+<dt>http://172.30.1.178:8080/exametrics-ws/points?=@idArea GET</dt>
 <dd>Retourne les Points d'une Zone.</dd></dl>
 
 ```json
@@ -220,7 +220,7 @@
 ```
 
 <dl>
-<dt>http://172.30.1.178:8080/exametrics-ws/notes/@idArea GET</dt>
+<dt>http://172.30.1.178:8080/exametrics-ws/notes?=@idArea GET</dt>
 <dd>Retourne les notes d'une zone.</dd></dl>
 
 ```json
