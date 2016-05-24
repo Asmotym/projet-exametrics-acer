@@ -25,7 +25,7 @@ class HomeViewController: UIViewController, UITableViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        pointList = pointCont.getPoints()
+        //pointList = pointCont.getPoints()
 
         noteList  = noteCont.getNotes()
         

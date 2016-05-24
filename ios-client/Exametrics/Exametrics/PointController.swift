@@ -1,3 +1,5 @@
+/*
+
 //
 //  PointController.swift
 //  Exametrics
@@ -94,5 +96,76 @@ class PointController {
         
     }
 }
+
+*/
+
+//
+//  PointController.swift
+//  Exametrics
+//
+//  Created by Vilaine Emilien on 23/05/2016.
+//  Copyright © 2016 IMERIR. All rights reserved.
+//
+import Foundation
+
+class PointController {
+    
+    
+    // Init
+    init(){
+    }
+    
+    // Fonction permettant de récupérer le liste de tous les Points
+    func getPoints() -> [Point]{
+        
+        // Déclaration de l'url et de la liste de Points
+        
+        var listPoints = [Point]()
+        let connectControl = ConnectionController()
+        
+        let result = connectControl.getListTuples("points")
+            
+        for index in 0...result.count {
+            let newIdPoint   = result[index]["idPoint"] as! String
+            let newLongitude = result[index]["longitude"] as! String
+            let newLatitude  = result[index]["latitude"] as! String
+            let newIdArea    = result[index]["idArea"] as! String
+            let newPoint     = Point(id: newIdPoint, longitude: Float(newLongitude)!, latitude: Float(newLatitude)!, idArea: newIdArea)
+            listPoints.append(newPoint)
+        }
+        
+        // Stock Realm / UserDefault
+        
+        return listPoints
+        
+    }
+    
+    
+    // Fonction permettant de récupérer une zone selon son id
+    func getAreaById(idArea: String) -> Area{
+        
+        // Déclaration de l'url et de la Zone
+        
+        var myArea : Area!
+        let connectControl = ConnectionController()
+        
+        let result = connectControl.getListTuples("areas?id=\(idArea)")
+        
+        let newIdPoint   = result[index]["idPoint"] as! String
+        let newLongitude = result[index]["longitude"] as! String
+        let newLatitude  = result[index]["latitude"] as! String
+        let newIdArea    = result[index]["idArea"] as! String
+        
+        let newPoint     = Point(id: newIdPoint, longitude: Float(newLongitude)!, latitude: Float(newLatitude)!, idArea: newIdArea)
+        
+        // Stock Realm / UserDefault
+        
+        return listNotes
+        
+    }
+    
+}
+
+
 
 
