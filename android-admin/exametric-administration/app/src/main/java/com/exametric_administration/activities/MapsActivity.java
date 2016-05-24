@@ -44,7 +44,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private AjaxCallback<JSONObject> cbAreas;
     private AjaxCallback<JSONObject> cbPointsByAreas;
     private AjaxCallback<JSONObject> cbLastArea;
-    private AjaxCallback<JSONObject> cb;
+    private AjaxCallback<JSONObject> cbAddArea;
+    private AjaxCallback<JSONObject> cbAddPoints;
     private String urlAreas = "http://172.30.1.178:8080/exametrics-ws/areas";
     private String urlLastAreas = "http://172.30.1.178:8080/exametrics-ws/areas/last";
     private String urlPoints = "http://172.30.1.178:8080/exametrics-ws/points";
@@ -73,10 +74,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         switchMapType = (Switch) findViewById(R.id.switchMap);
         switchMapType.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked == true){
+                if (isChecked == true) {
                     switchMapType.setText("Plan");
                     mMap.setMapType(2);
-                }else{
+                } else {
                     switchMapType.setText("Satellite");
                     mMap.setMapType(1);
                 }
@@ -160,14 +161,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                         point = new Point();
                                         point.SetIdPoint(result.getJSONObject(i).getInt("idPoint"));
 
-                                        point.SetLongitude(Float.parseFloat(result.getJSONObject(i).getString("longitude")));
+                                        point.SetLongitude(Float.valueOf(result.getJSONObject(i).getString("longitude")));
                                         System.out.println("longitude : " + point.GetLongitude());
 
-                                        point.SetLatitude(Float.parseFloat(result.getJSONObject(i).getString("latitude")));
+                                        point.SetLatitude(Float.valueOf(result.getJSONObject(i).getString("latitude")));
                                         System.out.println("latitude : " + point.GetLatitude());
 
                                         point.SetIdArea(result.getJSONObject(i).getInt("idArea"));
                                         polygonOptions.add(new LatLng(point.GetLongitude(), point.GetLatitude()));
+                                        mMap.addMarker(new MarkerOptions().position(new LatLng(point.GetLongitude(), point.GetLatitude())));
+                                        System.out.println(new LatLng(point.GetLongitude(), point.GetLatitude()));
                                         arraylistPoints.add(point);
                                     }
                                     for (int x = 0; x < arraylistAreas.size(); x++) {
@@ -275,9 +278,22 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 .fillColor(Color.argb(128, seek1.getProgress(), seek2.getProgress(), seek3.getProgress()))
                                 .strokeColor(0x00000000)
                                 .zIndex(100));
+
                         String redHexValue = Integer.toHexString(seek1.getProgress());
                         String greenHexValue = Integer.toHexString(seek2.getProgress());
                         String blueHexValue = Integer.toHexString(seek3.getProgress());
+
+                        if (redHexValue.length() < 2 ){
+                            redHexValue = "0" + redHexValue;
+                        }
+                        if (greenHexValue.length() < 2 ){
+                            greenHexValue = "0" + greenHexValue;
+                        }
+                        if (blueHexValue.length() < 2 ){
+                            blueHexValue = "0" + blueHexValue;
+                        }
+
+
                         Area areaUpload = new Area();
                         areaUpload.SetColorArea(redHexValue + greenHexValue + blueHexValue);
                         areaUpload.SetNameArea(textName.getText().toString());
@@ -303,12 +319,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 JSONObject area = new JSONObject();
                 JSONObject point;
                 JSONObject points = new JSONObject();
-                cb = new AjaxCallback<JSONObject>() {
-                    public void callback(String url, JSONObject json, AjaxStatus status) {
-                        arrayLng.clear();
-                        arrayLat.clear();
-                    }
-                };
+
+
                 polygonOptions = new PolygonOptions();
                 try {
                     JSONArray result = json.getJSONArray("result");
@@ -323,10 +335,27 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         point.put("idArea", result.getJSONObject(0).getInt("idArea") + 1);
                         points.put("" + j, point);
                     }
-                    System.out.println("area " + area);
-                    System.out.println("points " + points);
-                    ajax.post(urlAreas, area, JSONObject.class, cb);
-                    ajax.post(urlPoints, points, JSONObject.class, cb);
+                    final JSONObject addPoint = points;
+                    cbAddArea = new AjaxCallback<JSONObject>() {
+                        public void callback(String url, JSONObject json, AjaxStatus status) {
+
+                            cbAddPoints = new AjaxCallback<JSONObject>() {
+                                public void callback(String url, JSONObject json, AjaxStatus status) {
+
+                                }
+                            };
+                            ajax.post(urlPoints, addPoint, JSONObject.class, cbAddPoints);
+                        }
+                    };
+
+
+                    System.out.println(area);
+                    System.out.println(points);
+                    System.out.println(addPoint);
+
+                    ajax.post(urlAreas, area, JSONObject.class, cbAddArea);
+
+
                 } catch (JSONException e) {
                     System.out.println("PROBLEME JSON POINTS : " + e.getMessage());
                 }
