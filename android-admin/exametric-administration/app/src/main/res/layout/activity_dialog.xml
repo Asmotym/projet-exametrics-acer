@@ -1,0 +1,109 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_dialog"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/txtRed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rouge"
+        android:layout_below="@+id/txtcolor"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="30dp" />
+
+    <SeekBar
+        android:id="@+id/seekBar1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtRed"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:max="255" />
+
+    <TextView
+        android:id="@+id/txtGreen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Vert  : "
+        android:layout_below="@+id/seekBar1"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <SeekBar
+        android:id="@+id/seekBar2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtGreen"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:max="255" />
+
+    <TextView
+        android:id="@+id/txtBlue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bleu"
+        android:layout_below="@+id/seekBar2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <SeekBar
+        android:id="@+id/seekBar3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtBlue"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:max="255"
+        android:indeterminate="false" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Couleur"
+        android:id="@+id/txtcolor"
+        android:singleLine="true"
+        android:textSize="30sp"
+        android:layout_below="@+id/editText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="34dp" />
+
+    <Button
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:id="@+id/btnColor"
+        android:background="#000000"
+        android:layout_marginRight="31dp"
+        android:layout_marginEnd="31dp"
+        android:layout_alignTop="@+id/txtcolor"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Nom"
+        android:id="@+id/textView"
+        android:textSize="30sp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText"
+        android:layout_alignParentStart="true"
+        android:singleLine="true"
+        android:descendantFocusability="beforeDescendants"
+        android:maxLines="1"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentLeft="true" />
+
+</RelativeLayout>
