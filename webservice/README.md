@@ -171,7 +171,52 @@
 <dd>Retourne toutes les notes.</dd></dl>
 
 ```json
-
+{
+	"count": 7,
+	"result": [{
+		"idNote": "1",
+		"authorNote": "Clément",
+		"textNote": "test",
+		"dateNote": "2016-05-19 00:00:00",
+		"idArea": "1"
+	},{
+		"idNote": "2",
+		"authorNote": "Clement",
+		"textNote": "test",
+		"dateNote": "2016-05-16 00:00:00",
+		"idArea": "1"
+	},{
+		"idNote": "3",
+		"authorNote": "Anonyme",
+		"textNote": "sfgdf",
+		"dateNote": "2016-05-19 00:00:00",
+		"idArea": "2"
+	},{
+		"idNote": "4",
+		"authorNote": "test",
+		"textNote": "test choucroute",
+		"dateNote": "2016-05-20 11:00:00",
+		"idArea": "1"
+	},{
+		"idNote": "5",
+		"authorNote": "Anonyme",
+		"textNote": "OUI",
+		"dateNote": "2016-05-20 13:00:00",
+		"idArea": "2"
+	},{
+		"idNote": "6",
+		"authorNote": "Anonyme",
+		"textNote": "NON",
+		"dateNote": "2016-05-20 14:00:00",
+		"idArea": "2"
+	},{
+		"idNote": "7",
+		"authorNote": "Anonyme",
+		"textNote": "erztret\ngesrfyhrt-yhydcryjv\ndxjydxtyj\ncd\njvyxd\nvjtdyvjtd\nyjv\ndjvyx\nyjytd\njyftd\njd\njdvr\nyjvyd\ntjfdutjrvtyjtdyjdbtyjtfydjtfydjvftyjvftryjbvftydjvftyjrtyjdhvtrhdvtyj\nvtrd\nyvj\nd\nyjvd\nyjv\ntydj\nftvuy\nj\nufyj\nf\njf\njf\nyt\njrufty\njvf\ntykjr\nuyk\nfyuv\nktyu\nbkfy\nubkt\nfyubk\ntgyuf\nbky\ngufbk\nfgyu\nk\ntyubk\ntgyuk\nfuyk\ntyuk\ntyu\nk\ntyukbty\nukt\nub",
+		"dateNote": "2016-05-24 00:00:00",
+		"idArea": "1"
+	}]
+}
 ```
 
 <dl>
@@ -179,7 +224,34 @@
 <dd>Retourne les notes d'une zone.</dd></dl>
 
 ```json
-
+{
+	"count": 1,
+	"result": [{
+		"idNote": "1",
+		"authorNote": "Clément",
+		"textNote": "test",
+		"dateNote": "2016-05-19 00:00:00",
+		"idArea": "1"
+	},{
+		"idNote": "2",
+		"authorNote": "Clement",
+		"textNote": "test",
+		"dateNote": "2016-05-16 00:00:00",
+		"idArea": "1"
+	},{
+		"idNote": "4",
+		"authorNote": "test",
+		"textNote": "test choucroute",
+		"dateNote": "2016-05-20 11:00:00",
+		"idArea": "1"
+	},{
+		"idNote": "7",
+		"authorNote": "Anonyme",
+		"textNote": "erztret\ngesrfyhrt-yhydcryjv\ndxjydxtyj\ncd\njvyxd\nvjtdyvjtd\nyjv\ndjvyx\nyjytd\njyftd\njd\njdvr\nyjvyd\ntjfdutjrvtyjtdyjdbtyjtfydjtfydjvftyjvftryjbvftydjvftyjrtyjdhvtrhdvtyj\nvtrd\nyvj\nd\nyjvd\nyjv\ntydj\nftvuy\nj\nufyj\nf\njf\njf\nyt\njrufty\njvf\ntykjr\nuyk\nfyuv\nktyu\nbkfy\nubkt\nfyubk\ntgyuf\nbky\ngufbk\nfgyu\nk\ntyubk\ntgyuk\nfuyk\ntyuk\ntyu\nk\ntyukbty\nukt\nub",
+		"dateNote": "2016-05-24 00:00:00",
+		"idArea": "1"
+	}]
+}
 ```
 
 <dl>
