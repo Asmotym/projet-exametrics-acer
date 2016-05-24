@@ -24,10 +24,11 @@ class ConnectionController {
         // Déclaration de l'url et de la liste de Points
         var myResult = NSArray()
         urlPath += tuples
-        let url = NSURL(string: urlPath.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)!
+        
+        let myUrl = NSURL(string: "http://172.30.1.178:8080/exametrics-ws/points")!
         
         // Mise en place de la tâche
-        let task = NSURLSession.sharedSession().dataTaskWithURL(url) {
+        let task = NSURLSession.sharedSession().dataTaskWithURL(myUrl) {
             dataMaybe, _, errorMaybe in
             
             guard errorMaybe == nil else {

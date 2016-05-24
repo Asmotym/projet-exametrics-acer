@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		EB7BFBDC1CEC9D0C002FD318 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7BFBDB1CEC9D0C002FD318 /* AppDelegate.swift */; };
-		EB7BFBDE1CEC9D0C002FD318 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7BFBDD1CEC9D0C002FD318 /* ViewController.swift */; };
 		EB7BFBE11CEC9D0C002FD318 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB7BFBDF1CEC9D0C002FD318 /* Main.storyboard */; };
 		EB7BFBE31CEC9D0C002FD318 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB7BFBE21CEC9D0C002FD318 /* Assets.xcassets */; };
 		EB7BFBE61CEC9D0C002FD318 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB7BFBE41CEC9D0C002FD318 /* LaunchScreen.storyboard */; };
@@ -47,7 +46,6 @@
 /* Begin PBXFileReference section */
 		EB7BFBD81CEC9D0C002FD318 /* Exametrics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Exametrics.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB7BFBDB1CEC9D0C002FD318 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		EB7BFBDD1CEC9D0C002FD318 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		EB7BFBE01CEC9D0C002FD318 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EB7BFBE21CEC9D0C002FD318 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EB7BFBE51CEC9D0C002FD318 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -124,7 +122,6 @@
 				EB7BFC0A1CEC9DBA002FD318 /* Controllers */,
 				EB7BFC091CEC9DAB002FD318 /* Classes */,
 				EB7BFBDB1CEC9D0C002FD318 /* AppDelegate.swift */,
-				EB7BFBDD1CEC9D0C002FD318 /* ViewController.swift */,
 				EB7BFBDF1CEC9D0C002FD318 /* Main.storyboard */,
 				EB7BFBE21CEC9D0C002FD318 /* Assets.xcassets */,
 				EB7BFBE41CEC9D0C002FD318 /* LaunchScreen.storyboard */,
@@ -258,6 +255,7 @@
 				TargetAttributes = {
 					EB7BFBD71CEC9D0C002FD318 = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = 7LVX5TRHSA;
 					};
 					EB7BFBEB1CEC9D0C002FD318 = {
 						CreatedOnToolsVersion = 7.3;
@@ -321,7 +319,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EB7BFBDE1CEC9D0C002FD318 /* ViewController.swift in Sources */,
 				EB7BFC3E1CF42976002FD318 /* ConnectionController.swift in Sources */,
 				EB7BFC111CED9A21002FD318 /* Point.swift in Sources */,
 				EB7BFC2F1CF33965002FD318 /* AddNoteViewController.swift in Sources */,
@@ -477,6 +474,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -485,6 +484,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = IMERIR.Exametrics;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -492,6 +492,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -500,6 +502,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = IMERIR.Exametrics;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

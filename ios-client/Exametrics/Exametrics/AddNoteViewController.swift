@@ -23,6 +23,16 @@ class AddNoteViewController: UIViewController {
 
         self.title = "Ajoutez une note"
         
+        inputAuthor.layer.borderColor = UIColor.blackColor().CGColor;
+        inputAuthor.layer.borderColor = UIColor(red: 0.5, green: 0.5, blue:0, alpha: 1.0 ).CGColor;
+        inputAuthor.layer.borderWidth = 1.0;
+        inputAuthor.layer.cornerRadius = 5.0;
+        
+        inputMessage.layer.borderColor = UIColor.blackColor().CGColor;
+        inputMessage.layer.borderColor = UIColor(red: 0.5, green: 0.5, blue:0, alpha: 1.0 ).CGColor;
+        inputMessage.layer.borderWidth = 1.0;
+        inputMessage.layer.cornerRadius = 5.0;
+        
     }
 
     @IBAction func touchAddButton(sender: AnyObject) {

@@ -27,7 +27,7 @@ class HomeViewController: UIViewController, UITableViewDataSource {
         
         //pointList = pointCont.getPoints()
 
-        noteList  = noteCont.getNotes()
+        //noteList = noteCont.getNotes()
         
         if(noteList.count == 0)
         {

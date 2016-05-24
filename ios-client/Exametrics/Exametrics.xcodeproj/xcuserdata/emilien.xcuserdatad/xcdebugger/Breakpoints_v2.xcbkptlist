@@ -98,11 +98,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Exametrics/AddNoteViewController.swift"
-            timestampString = "485726352.660854"
+            timestampString = "485787810.498052"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "35"
-            endingLineNumber = "35"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
             landmarkName = "touchAddButton(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -114,11 +114,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Exametrics/NoteController.swift"
-            timestampString = "485773598.757412"
+            timestampString = "485786358.098638"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "248"
-            endingLineNumber = "248">
+            startingLineNumber = "269"
+            endingLineNumber = "269">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -128,11 +128,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Exametrics/NoteController.swift"
-            timestampString = "485773598.757412"
+            timestampString = "485786358.098638"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "170"
-            endingLineNumber = "170"
+            startingLineNumber = "171"
+            endingLineNumber = "171"
             landmarkName = "getNotes()"
             landmarkType = "5">
          </BreakpointContent>
@@ -144,45 +144,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Exametrics/ConnectionController.swift"
-            timestampString = "485767245.988209"
+            timestampString = "485791671.369954"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "30"
-            endingLineNumber = "30"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
             landmarkName = "getListTuples(_:)"
             landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Exametrics.ConnectionController.getListTuples (Swift.String) -&gt; __ObjC.NSArray"
-                  moduleName = "Exametrics"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/emilien/Desktop/Projet%20d&apos;inte%CC%81gration/projet-exametrics-acer/ios-client/Exametrics/Exametrics/ConnectionController.swift"
-                  timestampString = "485776235.604169"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "30"
-                  endingLineNumber = "30"
-                  offsetFromSymbolStart = "928">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Exametrics.ConnectionController.(getListTuples (Swift.String) -&gt; __ObjC.NSArray).(closure #1)"
-                  moduleName = "Exametrics"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/emilien/Desktop/Projet%20d&apos;inte%CC%81gration/projet-exametrics-acer/ios-client/Exametrics/Exametrics/ConnectionController.swift"
-                  timestampString = "485776235.610397"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "25"
-                  endingLineNumber = "25"
-                  offsetFromSymbolStart = "39">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -211,6 +179,70 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "26"
             endingLineNumber = "26">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Exametrics.NoteController.__deallocating_deinit"
+                  moduleName = "Exametrics"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/emilien/Desktop/Projet%20d&apos;inte%CC%81gration/projet-exametrics-acer/ios-client/Exametrics/Exametrics/NoteController.swift"
+                  timestampString = "485797354.867519"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "9">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Exametrics.NoteController.deinit"
+                  moduleName = "Exametrics"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/emilien/Desktop/Projet%20d&apos;inte%CC%81gration/projet-exametrics-acer/ios-client/Exametrics/Exametrics/NoteController.swift"
+                  timestampString = "485797354.867752"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "9">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Exametrics/MapViewController.swift"
+            timestampString = "485797353.339796"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Exametrics/MapViewController.swift"
+            timestampString = "485797353.339796"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
+            landmarkName = "mapView(_:rendererForOverlay:)"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
