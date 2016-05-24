@@ -14,7 +14,10 @@ class HomeViewController: UIViewController, UITableViewDataSource {
 
     // Variables
     var mArea : Area!
-    var noteList = [Note]()
+    var noteList  = [Note]()
+    var pointList = [Point]()
+    let pointCont = PointController()
+    let noteCont  = NoteController()
     
     // Outlets
     @IBOutlet weak var noteTableView: UITableView!
@@ -22,21 +25,20 @@ class HomeViewController: UIViewController, UITableViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        mArea = Area(id: "1", name: "Za Waludo", color: "cd13b8")
+        pointList = pointCont.getPoints()
+
+        noteList  = noteCont.getNotes()
+        
         if(noteList.count == 0)
         {
-            
-            let note1 = Note(id: "0", login: "Admin", message: "Premier test", date: NSDate(), idArea: mArea.getId())
-            let note2 = Note(id: "1", login: "Admin", message: "Second test", date: NSDate(), idArea: mArea.getId())
+            mArea = Area(id: "1", name: "Za Waludo", color: "cd13b8")
+            let note1 = Note(id: "0", author: "Admin", text: "Premier test", date: NSDate(), idArea: mArea.getId())
+            let note2 = Note(id: "1", author: "Admin", text: "Second test", date: NSDate(), idArea: mArea.getId())
             noteList.append(note1)
             noteList.append(note2)
         }
-        
-        let pointC = PointController()
-        
-        pointC.getPoints()
 
-        self.title = mArea.getName()
+        // self.title = mArea.getName()
         noteTableView.reloadData()
         
     }
@@ -54,14 +56,14 @@ class HomeViewController: UIViewController, UITableViewDataSource {
         
         // Configuration de la cellule
         let author = noteList[indexPath.row].getAuthor()
-        let text  = noteList[indexPath.row].getText()
-        let date  = noteList[indexPath.row].getDate()
+        let text   = noteList[indexPath.row].getText()
+        let date   = noteList[indexPath.row].getDate()
         
         let timestamp = NSDateFormatter()
         timestamp.dateFormat = "dd/MM/yyyy à hh:mm"
         let string = timestamp.stringFromDate(date)
         
-        cell.configureWithData(login, message: message, date: string)
+        cell.configureWithData(author, text: text, date: string)
         
         return cell
         
