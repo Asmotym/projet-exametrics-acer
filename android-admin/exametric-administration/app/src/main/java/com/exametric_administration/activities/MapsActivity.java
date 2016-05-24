@@ -9,8 +9,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.SeekBar;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.androidquery.AQuery;
@@ -62,18 +64,25 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private SeekBar seek1;
     private SeekBar seek2;
     private SeekBar seek3;
+    private Switch switchMapType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.map_edit);
-        buttonEdit = (Button) findViewById(R.id.btnAddMap);
-        buttonEdit.setOnLongClickListener(new View.OnLongClickListener() {
-            public boolean onLongClick(View v) {
-                mMap.clear();
-                return true;
+        switchMapType = (Switch) findViewById(R.id.switchMap);
+        switchMapType.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked == true){
+                    switchMapType.setText("Plan");
+                    mMap.setMapType(2);
+                }else{
+                    switchMapType.setText("Satellite");
+                    mMap.setMapType(1);
+                }
             }
         });
+        buttonEdit = (Button) findViewById(R.id.btnAddMap);
         buttonEdit.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (isEditing == false) {
@@ -141,6 +150,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         area.SetIdArea(result.getJSONObject(j).getInt("idArea"));
                         area.SetNameArea(result.getJSONObject(j).getString("nameArea"));
                         area.SetColorArea(result.getJSONObject(j).getString("colorArea"));
+
                         cbPointsByAreas = new AjaxCallback<JSONObject>() {
                             public void callback(String urlPointsByAreas, JSONObject json, AjaxStatus status) {
                                 polygonOptions = new PolygonOptions();
@@ -149,17 +159,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                     for (int i = 0; i < result.length(); i++) {
                                         point = new Point();
                                         point.SetIdPoint(result.getJSONObject(i).getInt("idPoint"));
+
                                         point.SetLongitude(Float.parseFloat(result.getJSONObject(i).getString("longitude")));
                                         System.out.println("longitude : " + point.GetLongitude());
+
                                         point.SetLatitude(Float.parseFloat(result.getJSONObject(i).getString("latitude")));
                                         System.out.println("latitude : " + point.GetLatitude());
+
                                         point.SetIdArea(result.getJSONObject(i).getInt("idArea"));
                                         polygonOptions.add(new LatLng(point.GetLongitude(), point.GetLatitude()));
                                         arraylistPoints.add(point);
                                     }
                                     for (int x = 0; x < arraylistAreas.size(); x++) {
                                         if (arraylistAreas.get(x).GetIdArea() == point.GetIdArea()) {
-                                            polygonOptions.fillColor(Integer.decode("0x7f" + arraylistAreas.get(x).GetColorArea()));
+                                            polygonOptions.fillColor(Integer.decode(arraylistAreas.get(x).GetColorArea()));
                                         }
                                     }
                                     polygon = mMap.addPolygon(polygonOptions
