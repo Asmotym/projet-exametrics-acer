@@ -61,7 +61,7 @@ public class NoteListView extends AppCompatActivity {
         notesListView = (ListView) findViewById(R.id.noteListView);
         NoteAdapter noteAdapter = new NoteAdapter(getBaseContext(), _notes);
         notesListView.setAdapter(noteAdapter);
-        notesListView.setOnItemClickListener(new OnNoteItemClickListener(noteAdapter, area.GetColorArea().substring(4)));
+        notesListView.setOnItemClickListener(new OnNoteItemClickListener(noteAdapter));
     }
 
     public static void notifyDataChange(ArrayList<Note> _notes) {

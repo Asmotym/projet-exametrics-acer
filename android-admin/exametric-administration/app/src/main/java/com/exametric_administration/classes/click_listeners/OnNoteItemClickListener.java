@@ -10,18 +10,16 @@ import com.exametric_administration.classes.classes.Note;
 
 public class OnNoteItemClickListener implements ListView.OnItemClickListener {
     private NoteAdapter noteAdapter;
-    private String color;
 
-    public OnNoteItemClickListener(NoteAdapter _noteAdapter, String _color) {
+    public OnNoteItemClickListener(NoteAdapter _noteAdapter) {
         this.noteAdapter = _noteAdapter;
-        this.color = _color;
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Note note = (Note) noteAdapter.getItem(position);
         Intent intent = new Intent(view.getContext(), DetailsNote.class);
-        intent.putExtra("color", color);
         intent.putExtra("idNote", note.GetIdNote());
+        view.getContext().startActivity(intent);
     }
 }
