@@ -60,7 +60,8 @@ public class AreaListView extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menuAdd:
-                Toast.makeText(this, "Add clicked", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(this, MapsActivity.class);
+                startActivity(intent);
                 return true;
             case R.id.menuReloadData:
                 AreaController.downloadAllAreas(this);
