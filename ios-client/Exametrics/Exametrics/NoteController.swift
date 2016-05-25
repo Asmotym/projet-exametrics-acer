@@ -213,7 +213,7 @@ class NoteController {
         
         let raw = ["idNote": "", "authorNote": newNote.getAuthor(), "textNote": newNote.getText(), "dateNote": newNote.getDate(), "idArea" : newNote.getIdArea()]
         
-        connectControl.uploadTuples(raw, tuple: "notes")
+        connectControl.uploadTuple(raw, tuple: "notes")
         
     }
     

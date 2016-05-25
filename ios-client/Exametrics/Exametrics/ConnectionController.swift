@@ -6,7 +6,7 @@
 //  Copyright © 2016 IMERIR. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 class ConnectionController {
     
@@ -28,7 +28,7 @@ class ConnectionController {
         let myUrl = NSURL(string: urlPath)!
         
         // Mise en place de la tâche
-        let task = NSURLSession.sharedSession().data {
+        let task = NSURLSession.sharedSession().dataTaskWithURL(myUrl) {
             dataMaybe, _, errorMaybe in
             
             guard errorMaybe == nil else {
@@ -66,7 +66,7 @@ class ConnectionController {
     }
     
     
-    func uploadTuples(myJson: [String : String], tuple: String ) {
+    func uploadTuple(myJson: [String : String], tuple: String ) {
         
         urlPath += tuple
         let myUrl = NSURL(string: urlPath)!
