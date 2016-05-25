@@ -10,4 +10,9 @@
     <string name="add_note_hint_text">Message...</string>
     <string name="add_note_hint_send_button">Envoyer</string>
     <string name="add_note_appbar_title">Ajouter une note</string>
+
+    <string name="add_note_success">Note ajoutée</string>
+    <string name="add_note_fail">Problème d\'ajout de note</string>
+
+    <string name="map_marker_name">Ma location</string>
 </resources>

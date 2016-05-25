@@ -8,22 +8,15 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
 import com.exametric_administration.R;
 import com.exametric_administration.classes.adapters.AreaAdapter;
-import com.exametric_administration.classes.adapters.NoteAdapter;
 import com.exametric_administration.classes.classes.Area;
-import com.exametric_administration.classes.classes.Note;
 import com.exametric_administration.classes.click_listeners.OnAreaItemClickListener;
 import com.exametric_administration.classes.realm_classes.RealmArea;
-import com.exametric_administration.classes.realm_classes.RealmNote;
 import com.exametric_administration.controllers.AreaController;
 import com.exametric_administration.tools.RealmConfig;
 import java.util.ArrayList;
-import android.os.Handler;
-import android.widget.Toast;
 
 public class AreaListView extends AppCompatActivity {
     private static ListView areasListview;

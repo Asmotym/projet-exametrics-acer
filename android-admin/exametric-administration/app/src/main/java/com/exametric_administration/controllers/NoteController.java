@@ -1,10 +1,12 @@
 package com.exametric_administration.controllers;
 
 import android.content.Context;
+import android.widget.Toast;
 
 import com.androidquery.AQuery;
 import com.androidquery.callback.AjaxCallback;
 import com.androidquery.callback.AjaxStatus;
+import com.exametric_administration.R;
 import com.exametric_administration.activities.NoteListView;
 import com.exametric_administration.classes.classes.Note;
 import com.exametric_administration.classes.realm_classes.RealmNote;
@@ -37,7 +39,7 @@ public class NoteController {
         });
     }
 
-    public static void uploadNote(Context _context, Note _note, String _idArea) {
+    public static void uploadNote(final Context _context, Note _note, String _idArea) {
         String url = GlobalVariables.BASE_URL + GlobalVariables.UPLOAD_NOTE_URI;
         JSONObject json = new JSONObject();
         try {
@@ -51,7 +53,13 @@ public class NoteController {
             aq.post(url, json, JSONObject.class, new AjaxCallback<JSONObject>() {
                 @Override
                 public void callback(String url, JSONObject object, AjaxStatus status) {
-                    System.out.println(object);
+                    System.out.println(status.getCode());
+                    if (status.getCode() == 201) {
+                        Toast.makeText(_context.getApplicationContext(), _context.getResources().getString(R.string.add_note_success), Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(_context.getApplicationContext(), _context.getResources().getString(R.string.add_note_fail), Toast.LENGTH_SHORT).show();
+                    }
+
                 }
             });
         } catch (JSONException jse) {
