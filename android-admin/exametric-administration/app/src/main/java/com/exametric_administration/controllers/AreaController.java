@@ -17,6 +17,10 @@ import java.util.ArrayList;
 
 public class AreaController {
 
+    /**
+     * Download all areas from the Database using the Web Service
+     * @param _context
+     */
     public static void downloadAllAreas(Context _context) {
         String url = GlobalVariables.BASE_URL+GlobalVariables.AREAS_URI;
         RealmArea.clearAreas(RealmConfig.realmInstance);
@@ -67,7 +71,6 @@ public class AreaController {
                 } catch (JSONException jse) {
                     jse.printStackTrace();
                 }
-
             }
         });
 

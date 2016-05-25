@@ -51,7 +51,8 @@ public class AddNote extends AppCompatActivity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.addNoteSendButton:
-                Note note = new Note(0, authorEditText.getText().toString(), textEditText.getText().toString(), new Date().toString(), GlobalVariables.ACTUAL_AREA);
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+                Note note = new Note(0, authorEditText.getText().toString(), textEditText.getText().toString(), sdf.format(new Date()), GlobalVariables.ACTUAL_AREA);
                 NoteController.uploadNote(this, note, String.valueOf(GlobalVariables.ACTUAL_AREA));
                 Intent intent = new Intent(this, NoteListView.class);
                 startActivity(intent);
