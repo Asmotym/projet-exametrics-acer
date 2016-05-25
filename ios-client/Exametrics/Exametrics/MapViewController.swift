@@ -25,6 +25,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        //Mise en place des paramètres de la carte
         if (CLLocationManager.locationServicesEnabled())
         {
             locationManager = CLLocationManager()
@@ -34,16 +35,12 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
             locationManager.startUpdatingLocation()
         }
         
+        // Localisation du téléphone
         var currentLocation = CLLocation!()
         currentLocation = locationManager.location
         
         let initialLocation = CLLocation(latitude: currentLocation.coordinate.latitude, longitude: currentLocation.coordinate.longitude)
         centerMapOnLocation(initialLocation)
-        
-        let center = CLLocationCoordinate2D(latitude: initialLocation.coordinate.latitude, longitude: initialLocation.coordinate.longitude)
-        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
-        
-        self.map.setRegion(region, animated: true)
         
         if(pointList.count == 0) {
             let point1 = Point(id: "1",longitude: 41, latitude: 1, idArea: "87")
@@ -55,10 +52,12 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
             pointList.append(point3)
         }
         
+        myArea = Area(id: "1", name: "LaZone", color: "Ox7c880088")
         
         addBoundry()
     }
 
+    // Fonction permettant d'afficher la zone actuelle
     func addBoundry()
     {
         var pointsCLLC = [CLLocationCoordinate2D]()
@@ -78,6 +77,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     
+    
     func centerMapOnLocation(location: CLLocation) {
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate,
                                                                   regionRadius * 2.0, regionRadius * 2.0)
@@ -88,7 +88,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     func mapView(mapView: MKMapView!, rendererForOverlay overlay: MKOverlay!) -> MKOverlayRenderer! {
         if overlay is MKPolygon {
             let polygonView = MKPolygonRenderer(overlay: overlay)
-            polygonView.strokeColor = UIColor.magentaColor()
+            polygonView.strokeColor = UIColor(hex: myArea.getColor())
             
             return polygonView
         }
@@ -96,12 +96,13 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         return nil
     }
     
+    // Permet de recentrer la carte sur le téléphone
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
     {
         
         let location = locations.last! as CLLocation
         let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.001, longitudeDelta: 0.001))
         
         self.map.setRegion(region, animated: true)
     }
@@ -121,7 +122,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         if anView == nil
         {
             anView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
-            anView!.image = UIImage(named:"1.png")
+            anView!.image = UIImage(named:"pin")
             anView!.canShowCallout = true
         }
         else

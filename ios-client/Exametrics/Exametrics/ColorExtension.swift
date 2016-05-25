@@ -32,7 +32,6 @@ extension String {
 extension UIColor {
     
     convenience init(var hex: String) {
-        var alpha: Float = 100
         let hexLength = hex.characters.count
         if !(hexLength == 10) {
             // A hex must be either 7 or 9 characters (#RRGGBBAA)
@@ -41,17 +40,14 @@ extension UIColor {
             return
         }
         
-        if hexLength == 9 {
+        if hexLength == 10 {
             // Note: this uses String subscripts as given below
-            alpha = hex[2...3].floatValue
-            hex = hex[4...9]
+            hex = hex[4...10]
         }
         
         // Establishing the rgb color
         var rgb: UInt32 = 0
         let s: NSScanner = NSScanner(string: hex)
-        // Setting the scan location to ignore the leading `#`
-        s.scanLocation = 1
         // Scanning the int into the rgb colors
         s.scanHexInt(&rgb)
         
@@ -60,7 +56,7 @@ extension UIColor {
             red: CGFloat((rgb & 0xFF0000) >> 16) / 255.0,
             green: CGFloat((rgb & 0x00FF00) >> 8) / 255.0,
             blue: CGFloat(rgb & 0x0000FF) / 255.0,
-            alpha: CGFloat(alpha / 100)
+            alpha: CGFloat(50)
         )
     }
 }

@@ -27,7 +27,7 @@ class HomeViewController: UIViewController, UITableViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //areaList = areaCont.getAreas()
+        areaList = areaCont.getAreas()
         
         //pointList = pointCont.getPoints()
 
@@ -80,11 +80,10 @@ class HomeViewController: UIViewController, UITableViewDataSource {
     }
 
     
-    // Préparation du Segue, envoie de l'Album séléctionné
+    // Préparation du Segue, envoie de la Zone séléctionnée
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if(segue.identifier == "toAddNote") {
             let destination = segue.destinationViewController as! AddNoteViewController
-            destination.noteList = noteList
             destination.mArea = mArea
         }
     }
