@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost:8889
--- Généré le :  Lun 23 Mai 2016 à 19:09
+-- Généré le :  Mer 25 Mai 2016 à 18:29
 -- Version du serveur :  5.5.42
 -- Version de PHP :  5.6.10
 
@@ -24,17 +24,16 @@ CREATE TABLE `area` (
   `idArea` int(11) NOT NULL,
   `nameArea` varchar(45) NOT NULL,
   `colorArea` varchar(45) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=112 DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `area`
 --
 
 INSERT INTO `area` (`idArea`, `nameArea`, `colorArea`) VALUES
-(1, 'The World', '0x7f121212'),
-(2, 'Star Platinum', '0x7f600060'),
-(51, 'Naughty', '0x7f953ff6'),
-(52, 'yummy', '0x7f4e9c45');
+(109, 'intérieur ', '0x7fdb0000'),
+(110, 'extérieur ', '0x7f00d40a'),
+(111, 'cafet', '0x7f0000d0');
 
 -- --------------------------------------------------------
 
@@ -48,19 +47,17 @@ CREATE TABLE `note` (
   `textNote` text NOT NULL,
   `dateNote` datetime NOT NULL,
   `idArea` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `note`
 --
 
 INSERT INTO `note` (`idNote`, `authorNote`, `textNote`, `dateNote`, `idArea`) VALUES
-(1, 'Clément', 'test', '2016-05-19 00:00:00', 1),
-(2, 'Clement', 'test', '2016-05-16 00:00:00', 1),
-(3, 'Anonyme', 'sfgdf', '2016-05-19 00:00:00', 2),
-(4, 'test', 'test choucroute', '2016-05-20 11:00:00', 1),
-(5, '', 'OUI', '2016-05-20 13:00:00', 2),
-(6, '', 'NON', '2016-05-20 14:00:00', 2);
+(25, 'Billy', 'Oui', '0000-00-00 00:00:00', 109),
+(26, 'azerty', 'il fait beau', '0000-00-00 00:00:00', 110),
+(27, 'Sarah', 'ouais j''avoue ', '0000-00-00 00:00:00', 110),
+(28, 'Terminator', 'Sarah Conor ?', '0000-00-00 00:00:00', 111);
 
 -- --------------------------------------------------------
 
@@ -70,33 +67,28 @@ INSERT INTO `note` (`idNote`, `authorNote`, `textNote`, `dateNote`, `idArea`) VA
 
 CREATE TABLE `point` (
   `idPoint` int(11) NOT NULL,
-  `longitude` float NOT NULL,
-  `latitude` float NOT NULL,
+  `longitude` decimal(12,8) NOT NULL,
+  `latitude` decimal(12,8) NOT NULL,
   `idArea` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=245 DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `point`
 --
 
 INSERT INTO `point` (`idPoint`, `longitude`, `latitude`, `idArea`) VALUES
-(3, 41, 1, 1),
-(4, 42, 1, 1),
-(5, 42, 2, 1),
-(6, 41, 2, 1),
-(7, 44, 1, 2),
-(8, 44, 2, 2),
-(9, 45, 2, 2),
-(10, 45, 1, 2),
-(38, -5.52577, 42.1427, 51),
-(39, -10.6926, 42.6641, 51),
-(40, -10.7831, 45.1502, 51),
-(41, 15.1004, 42.7516, 52),
-(42, 9.50772, 41.2911, 52),
-(43, 9.17995, 45.7004, 52),
-(44, 14.2195, 45.5787, 52),
-(45, 17.0773, 44.5226, 52),
-(46, 15.7969, 44.2225, 52);
+(233, '2.84785923', '42.67445792', 109),
+(234, '2.84797858', '42.67426244', 109),
+(235, '2.84783810', '42.67420032', 109),
+(236, '2.84771539', '42.67442045', 109),
+(237, '2.84860455', '42.67467681', 110),
+(238, '2.84849558', '42.67432678', 110),
+(239, '2.84805704', '42.67432357', 110),
+(240, '2.84794573', '42.67445866', 110),
+(241, '2.84845468', '42.67526742', 111),
+(242, '2.84752093', '42.67505765', 111),
+(243, '2.84793198', '42.67454764', 111),
+(244, '2.84873698', '42.67479759', 111);
 
 --
 -- Index pour les tables exportées
@@ -130,17 +122,17 @@ ALTER TABLE `point`
 -- AUTO_INCREMENT pour la table `area`
 --
 ALTER TABLE `area`
-  MODIFY `idArea` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=53;
+  MODIFY `idArea` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=112;
 --
 -- AUTO_INCREMENT pour la table `note`
 --
 ALTER TABLE `note`
-  MODIFY `idNote` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+  MODIFY `idNote` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=29;
 --
 -- AUTO_INCREMENT pour la table `point`
 --
 ALTER TABLE `point`
-  MODIFY `idPoint` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=47;
+  MODIFY `idPoint` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=245;
 --
 -- Contraintes pour les tables exportées
 --
