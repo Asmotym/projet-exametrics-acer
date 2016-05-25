@@ -188,7 +188,7 @@
                   moduleName = "Exametrics"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/emilien/Desktop/Projet%20d&apos;inte%CC%81gration/projet-exametrics-acer/ios-client/Exametrics/Exametrics/NoteController.swift"
-                  timestampString = "485797354.867519"
+                  timestampString = "485813199.722854"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "0"
@@ -203,7 +203,7 @@
                   moduleName = "Exametrics"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/emilien/Desktop/Projet%20d&apos;inte%CC%81gration/projet-exametrics-acer/ios-client/Exametrics/Exametrics/NoteController.swift"
-                  timestampString = "485797354.867752"
+                  timestampString = "485813199.72306"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "0"
@@ -236,12 +236,44 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Exametrics/MapViewController.swift"
-            timestampString = "485797353.339796"
+            timestampString = "485813197.783462"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "64"
-            endingLineNumber = "64"
+            startingLineNumber = "81"
+            endingLineNumber = "81"
             landmarkName = "mapView(_:rendererForOverlay:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Exametrics/MapViewController.swift"
+            timestampString = "485813197.783462"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
+            landmarkName = "addBoundry()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Exametrics/MapViewController.swift"
+            timestampString = "485813197.783462"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
+            landmarkName = "addBoundry()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

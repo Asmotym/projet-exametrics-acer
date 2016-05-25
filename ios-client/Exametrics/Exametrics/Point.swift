@@ -12,8 +12,8 @@ class Point {
     
     // Champs
     private var _id : String!
-    private var _longitude : Float!
-    private var _latitude : Float!
+    private var _longitude : Double!
+    private var _latitude : Double!
     private var _idArea : String!
     
     // Getter & Setter
@@ -25,19 +25,19 @@ class Point {
         _id = id
     }
     
-    func getLongitude() -> Float{
+    func getLongitude() -> Double{
         return _longitude
     }
     
-    func setLongitude(longitude: Float) {
+    func setLongitude(longitude: Double) {
         _longitude = longitude
     }
     
-    func getLatitude() -> Float{
+    func getLatitude() -> Double{
         return _latitude
     }
     
-    func setLatitude(latitude: Float) {
+    func setLatitude(latitude: Double) {
         _latitude = latitude
     }
     
@@ -50,7 +50,7 @@ class Point {
     }
     
     // Constructeurs
-    required init(id: String, longitude: Float, latitude: Float, idArea: String){
+    required init(id: String, longitude: Double, latitude: Double, idArea: String){
         
         _id = id
         _longitude = longitude

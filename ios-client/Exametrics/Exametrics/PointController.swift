@@ -134,7 +134,7 @@ class PointController {
             let newLongitude = result[index]["longitude"] as! String
             let newLatitude  = result[index]["latitude"] as! String
             let newIdArea    = result[index]["idArea"] as! String
-            let newPoint     = Point(id: newIdPoint, longitude: Float(newLongitude)!, latitude: Float(newLatitude)!, idArea: newIdArea)
+            let newPoint     = Point(id: newIdPoint, longitude: Double(newLongitude)!, latitude: Double(newLatitude)!, idArea: newIdArea)
             listPoints.append(newPoint)
         }
         
@@ -159,7 +159,7 @@ class PointController {
             let newLongitude = result[index]["longitude"] as! String
             let newLatitude  = result[index]["latitude"] as! String
             let newIdArea    = result[index]["idArea"] as! String
-            let newPoint     = Point(id: newIdPoint, longitude: Float(newLongitude)!, latitude: Float(newLatitude)!, idArea: newIdArea)
+            let newPoint     = Point(id: newIdPoint, longitude: Double(newLongitude)!, latitude: Double(newLatitude)!, idArea: newIdArea)
             listPoints.append(newPoint)
         }
         

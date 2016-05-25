@@ -14,7 +14,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
 
     // Variables
     var locationManager: CLLocationManager!
-    var listPoints : [Point]!
+    var pointList = [Point]()
     
     // Outlets
     @IBOutlet weak var map: MKMapView!
@@ -35,24 +35,41 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         var currentLocation = CLLocation!()
         currentLocation = locationManager.location
             
-        let initialLocation = CLLocation(latitude: 49.140838, longitude: -123.127886)
+        let initialLocation = CLLocation(latitude: 41, longitude: 1)
         //let initialLocation = CLLocation(latitude: currentLocation.coordinate.latitude, longitude: currentLocation.coordinate.longitude)
         centerMapOnLocation(initialLocation)
+        
+        if(pointList.count == 0) {
+            let point1 = Point(id: "1",longitude: 41, latitude: 1, idArea: "1")
+            let point2 = Point(id: "1",longitude: 42, latitude: 1, idArea: "1")
+            let point3 = Point(id: "1",longitude: 41.5, latitude: 2, idArea: "1")
+            let point4 = Point(id: "1",longitude: 41, latitude: 2, idArea: "1")
+            pointList.append(point1)
+            pointList.append(point2)
+            pointList.append(point3)
+        }
+        
         
         addBoundry()
     }
 
     func addBoundry()
     {
-        var points=[CLLocationCoordinate2DMake(41,  1),CLLocationCoordinate2DMake(42, 1),CLLocationCoordinate2DMake(42, 2),CLLocationCoordinate2DMake(42, 1)]
+        var pointsCLLC = [CLLocationCoordinate2D]()
         
-        let polygon = MKPolygon(coordinates: &points, count: points.count)
+        
+        for point in pointList {
+            let locationCoor = CLLocationCoordinate2DMake(point.getLongitude(), point.getLatitude())
+            pointsCLLC.append(locationCoor)
+        }
+
+        let polygon = MKPolygon(coordinates: &pointsCLLC, count: pointsCLLC.count)
         
         map.addOverlay(polygon)
     }
     
     
-    let regionRadius: CLLocationDistance = 1000
+    let regionRadius: CLLocationDistance = 10000
     func centerMapOnLocation(location: CLLocation) {
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate,
                                                                   regionRadius * 2.0, regionRadius * 2.0)
