@@ -5,8 +5,8 @@ import io.realm.RealmObject;
 public class Point extends RealmObject {
 
     private int idPoint;
-    private float longitude;
-    private float latitude;
+    private String longitude;
+    private String latitude;
     private int idArea;
 
     public int GetIdArea() {
@@ -25,25 +25,25 @@ public class Point extends RealmObject {
         this.idPoint = idPoint;
     }
 
-    public float GetLongitude() {
+    public String GetLongitude() {
         return longitude;
     }
 
-    public void SetLongitude(float longitude) {
+    public void SetLongitude(String longitude) {
         this.longitude = longitude;
     }
 
-    public float GetLatitude() {
+    public String GetLatitude() {
         return latitude;
     }
 
-    public void SetLatitude(float latitude) {
+    public void SetLatitude(String latitude) {
         this.latitude = latitude;
     }
 
     public Point() {}
 
-    public Point(int idPoint, float longitude, float latitude, int idArea) {
+    public Point(int idPoint, String longitude, String latitude, int idArea) {
         SetIdPoint(idPoint);
         SetLongitude(longitude);
         SetLatitude(latitude);

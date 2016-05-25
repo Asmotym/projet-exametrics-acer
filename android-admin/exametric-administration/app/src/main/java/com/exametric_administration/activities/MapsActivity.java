@@ -19,13 +19,18 @@ import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import android.os.Handler;
 import com.androidquery.AQuery;
 import com.androidquery.callback.AjaxCallback;
 import com.androidquery.callback.AjaxStatus;
 import com.exametric_administration.R;
 import com.exametric_administration.classes.classes.Area;
 import com.exametric_administration.classes.classes.Point;
+import com.exametric_administration.classes.realm_classes.RealmArea;
+import com.exametric_administration.classes.realm_classes.RealmPoint;
+import com.exametric_administration.controllers.AreaController;
+import com.exametric_administration.controllers.PointController;
+import com.exametric_administration.tools.RealmConfig;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationRequest;
@@ -52,7 +57,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         View.OnClickListener, GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener {
 
-    private GoogleMap mMap;
+    private static GoogleMap mMap;
     private AQuery ajax;
     private AjaxCallback<JSONObject> cbAreas;
     private AjaxCallback<JSONObject> cbPointsByAreas;
@@ -68,7 +73,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private ArrayList<Area> arraylistAreas;
     private ArrayList<Point> arraylistPoints;
     private PolygonOptions polygonOptions;
-    private Polygon polygon;
+    private static Polygon polygon;
     private Boolean isEditing = false;
     private Button buttonEdit;
     private ArrayList<Marker> markerList;
@@ -131,10 +136,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         ajax = new AQuery(this);
         mMap = googleMap;
-        arraylistAreas = new ArrayList<Area>();
-        arraylistPoints = new ArrayList<Point>();
-        arrayLat = new ArrayList<Double>();
-        arrayLng = new ArrayList<Double>();
+        arraylistAreas = new ArrayList<>();
+        arraylistPoints = new ArrayList<>();
+        arrayLat = new ArrayList<>();
+        arrayLng = new ArrayList<>();
 
         mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
@@ -150,63 +155,29 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 }
             }
         });
-        cbAreas = new AjaxCallback<JSONObject>() {
-            public void callback(String urlAreas, JSONObject json, AjaxStatus status) {
-                try {
-                    JSONArray result = json.getJSONArray("result");
-                    for (int j = 0; j < result.length(); j++) {
-                        area = new Area();
-                        area.SetIdArea(result.getJSONObject(j).getInt("idArea"));
-                        area.SetNameArea(result.getJSONObject(j).getString("nameArea"));
-                        area.SetColorArea(result.getJSONObject(j).getString("colorArea"));
+        ArrayList<Area> areas = RealmArea.getAllAreas(RealmConfig.realmInstance);
+        PointController.getAllPoints(getBaseContext(), areas);
 
-                        cbPointsByAreas = new AjaxCallback<JSONObject>() {
-                            public void callback(String urlPointsByAreas, JSONObject json, AjaxStatus status) {
-                                polygonOptions = new PolygonOptions();
-                                try {
-                                    JSONArray result = json.getJSONArray("result");
-                                    for (int i = 0; i < result.length(); i++) {
-                                        point = new Point();
-                                        point.SetIdPoint(result.getJSONObject(i).getInt("idPoint"));
-
-                                        point.SetLongitude(Float.valueOf(result.getJSONObject(i).getString("longitude")));
-                                        System.out.println("longitude : " + point.GetLongitude());
-
-                                        point.SetLatitude(Float.valueOf(result.getJSONObject(i).getString("latitude")));
-                                        System.out.println("latitude : " + point.GetLatitude());
-
-                                        point.SetIdArea(result.getJSONObject(i).getInt("idArea"));
-                                        polygonOptions.add(new LatLng(point.GetLongitude(), point.GetLatitude()));
-                                        mMap.addMarker(new MarkerOptions().position(new LatLng(point.GetLongitude(), point.GetLatitude())));
-                                        System.out.println(new LatLng(point.GetLongitude(), point.GetLatitude()));
-                                        arraylistPoints.add(point);
-                                    }
-                                    for (int x = 0; x < arraylistAreas.size(); x++) {
-                                        if (arraylistAreas.get(x).GetIdArea() == point.GetIdArea()) {
-                                            polygonOptions.fillColor(Integer.decode(arraylistAreas.get(x).GetColorArea()));
-                                        }
-                                    }
-                                    polygon = mMap.addPolygon(polygonOptions
-                                            .strokeColor(0x00000000)
-                                            .zIndex(100));
-                                } catch (JSONException e) {
-                                    System.out.println("PROBLEME JSON POINTS : " + e.getMessage());
-                                }
-                            }
-                        };
-                        ajax.ajax(urlPointsByArea + area.GetIdArea(), JSONObject.class, cbPointsByAreas);
-                        arraylistAreas.add(area);
-                    }
-                } catch (JSONException e) {
-                    System.out.println("PROBLEME JSON AREA : " + e.getMessage());
-                }
-            }
-        };
-        ajax.ajax(urlAreas, JSONObject.class, cbAreas);
         mMap.setMyLocationEnabled(true);
 
         buildGoogleApiClient();
         mGoogleApiClient.connect();
+    }
+
+    public static void setAllMapPoints(ArrayList<Area> _areas) {
+        for (int i = 0; i < _areas.size(); i++) {
+            PolygonOptions polygonOptions = new PolygonOptions();
+            ArrayList<Point> areaPoints = RealmPoint.getPointsByAreaId(RealmConfig.realmInstance, _areas.get(i).GetIdArea());
+            for (int j = 0; j < areaPoints.size(); j++) {
+                polygonOptions.add(new LatLng(Double.valueOf(areaPoints.get(j).GetLongitude()), Double.valueOf(areaPoints.get(j).GetLatitude())));
+                mMap.addMarker(new MarkerOptions().position(new LatLng(Double.valueOf(areaPoints.get(j).GetLongitude()), Double.valueOf(areaPoints.get(j).GetLatitude()))));
+
+                System.out.println("GetLongitude : " + Double.valueOf(areaPoints.get(j).GetLongitude()));
+                System.out.println("GetLatitude" + Double.valueOf(areaPoints.get(j).GetLatitude()));
+            }
+            polygonOptions.fillColor(Integer.decode(_areas.get(i).GetColorArea()));
+            polygon = mMap.addPolygon(polygonOptions.strokeColor(0x7f000000).zIndex(100));
+        }
     }
 
     protected synchronized void buildGoogleApiClient() {
@@ -255,12 +226,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.animateCamera(CameraUpdateFactory
                 .newCameraPosition(cameraPosition));
     }
-
-    /*@Override
-    public void onMyLocationChange(Location location) {
-        mMap.addMarker(new MarkerOptions().position(new LatLng(location.getLatitude(), location.getLongitude())).title(getResources().getString(R.string.map_marker_name)));
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(), location.getLongitude()), 12.0f));
-    }*/
 
     @Override
     public void onClick(View v) {
@@ -320,9 +285,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 //Do something here with new value
                 btnColor.setBackgroundColor(Color.rgb(seek1.getProgress(), seek2.getProgress(), seek3.getProgress()));
             }
+
             public void onStartTrackingTouch(SeekBar arg0) {
                 // TODO Auto-generated method stub
             }
+
             public void onStopTrackingTouch(SeekBar seekBar) {
                 // TODO Auto-generated method stub
             }
@@ -355,10 +322,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         }
 
 
-                        Area areaUpload = new Area();
-                        areaUpload.SetColorArea(redHexValue + greenHexValue + blueHexValue);
-                        areaUpload.SetNameArea(textName.getText().toString());
-                        uploadArea(areaUpload, arrayLat, arrayLng);
+                        Area area = new Area(0, textName.getText().toString(), redHexValue + greenHexValue + blueHexValue);
+                        ArrayList<Point> points = new ArrayList<>();
+                        for (int i = 0; i < arrayLat.size(); i++) {
+                            points.add(new Point(0, String.valueOf(arrayLng.get(i)), String.valueOf(arrayLat.get(i)), area.GetIdArea()));
+                        }
+                        AreaController.uploadArea(getApplicationContext(), area, points);
+                        //uploadArea(areaUpload, arrayLat, arrayLng);
                     }
 
                 });
@@ -373,57 +343,5 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         );
         popDialog.create();
         popDialog.show();
-    }
-
-    public void uploadArea(final Area theArea, final ArrayList<Double> pointsLat, final ArrayList<Double> pointsLng) {
-        cbLastArea = new AjaxCallback<JSONObject>() {
-            public void callback(String url, JSONObject json, AjaxStatus status) {
-                JSONObject area = new JSONObject();
-                JSONObject point;
-                JSONObject points = new JSONObject();
-
-
-                polygonOptions = new PolygonOptions();
-                try {
-                    JSONArray result = json.getJSONArray("result");
-                    area.put("idArea", result.getJSONObject(0).getInt("idArea") + 1);
-                    area.put("nameArea", theArea.GetNameArea());
-                    area.put("colorArea", "0x7f" + theArea.GetColorArea());
-                    for (int j = 0; j < pointsLat.size(); j++) {
-                        point = new JSONObject();
-                        point.put("idPoint", "");
-                        point.put("longitude", pointsLng.get(j));
-                        point.put("latitude", pointsLat.get(j));
-                        point.put("idArea", result.getJSONObject(0).getInt("idArea") + 1);
-                        points.put("" + j, point);
-                    }
-                    final JSONObject addPoint = points;
-                    cbAddArea = new AjaxCallback<JSONObject>() {
-                        public void callback(String url, JSONObject json, AjaxStatus status) {
-
-                            cbAddPoints = new AjaxCallback<JSONObject>() {
-                                public void callback(String url, JSONObject json, AjaxStatus status) {
-
-                                }
-                            };
-                            ajax.post(urlPoints, addPoint, JSONObject.class, cbAddPoints);
-                        }
-                    };
-
-
-                    System.out.println(area);
-                    System.out.println(points);
-                    System.out.println(addPoint);
-
-                    ajax.post(urlAreas, area, JSONObject.class, cbAddArea);
-
-
-                } catch (JSONException e) {
-                    System.out.println("PROBLEME JSON POINTS : " + e.getMessage());
-                }
-            }
-        };
-        ajax.ajax(urlLastAreas, JSONObject.class, cbLastArea);
-
     }
 }
