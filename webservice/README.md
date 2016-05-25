@@ -63,6 +63,17 @@
 }
 ```
 
+<dl>
+<dt>http://172.30.1.178:8080/exametrics-ws/areas/delete POST</dt>
+<dd>Suppression d'une zone</dd>
+<dd>Exemple du json à envoyer.</dd></dl>
+
+```json
+{
+	"idArea": 10
+}
+```
+
 ### Routes pour les Points
 
 <dl>
@@ -279,3 +290,17 @@
     "idArea": "1"
 }
 ```
+
+<dl>
+<dt>http://172.30.1.178:8080/exametrics-ws/areas/delete POST</dt>
+<dd>Suppression d'une zone</dd>
+<dd>Exemple du json à envoyer.</dd></dl>
+
+```json
+{
+	"idNote": 23
+}
+```
+
+
+<dt>Des Questions ? clement.boucherpro@gmail.com</dt>
