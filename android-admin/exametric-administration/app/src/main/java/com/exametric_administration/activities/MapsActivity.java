@@ -179,10 +179,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             PolygonOptions polygonOptions = new PolygonOptions();
             ArrayList<Point> areaPoints = RealmPoint.getPointsByAreaId(RealmConfig.realmInstance, _areas.get(i).GetIdArea());
             for (int j = 0; j < areaPoints.size(); j++) {
-                polygonOptions.add(new LatLng(Double.valueOf(areaPoints.get(j).GetLatitude()), Double.valueOf(areaPoints.get(j).GetLongitude())));
-                mMap.addMarker(new MarkerOptions().position(new LatLng(Double.valueOf(areaPoints.get(j).GetLatitude()), Double.valueOf(areaPoints.get(j).GetLongitude()))));
-                lat += Double.valueOf(areaPoints.get(j).GetLatitude());
-                lng += Double.valueOf(areaPoints.get(j).GetLongitude());
+                polygonOptions.add(new LatLng(areaPoints.get(j).GetLatitude(), areaPoints.get(j).GetLongitude()));
+                mMap.addMarker(new MarkerOptions().position(new LatLng(areaPoints.get(j).GetLatitude(), areaPoints.get(j).GetLongitude())));
+                lat += areaPoints.get(j).GetLatitude();
+                lng += areaPoints.get(j).GetLongitude();
             }
             addText(context, mMap, new LatLng(lat/areaPoints.size(), lng/areaPoints.size()), _areas.get(i).GetNameArea(), 0, 30);
             polygonOptions.fillColor(Integer.decode(_areas.get(i).GetColorArea())).strokeColor(0x7f000000).zIndex(100);
@@ -334,7 +334,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         Area area = new Area(0, textName.getText().toString(), redHexValue + greenHexValue + blueHexValue);
                         ArrayList<Point> points = new ArrayList<>();
                         for (int i = 0; i < arrayLat.size(); i++) {
-                            points.add(new Point(0, String.valueOf(arrayLng.get(i)), String.valueOf(arrayLat.get(i)), area.GetIdArea()));
+                            points.add(new Point(0, arrayLng.get(i), arrayLat.get(i), area.GetIdArea()));
                         }
                         AreaController.uploadArea(getApplicationContext(), area, points);
                         //uploadArea(areaUpload, arrayLat, arrayLng);
