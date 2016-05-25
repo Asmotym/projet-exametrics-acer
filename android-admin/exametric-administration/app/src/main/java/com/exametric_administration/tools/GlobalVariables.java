@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 
 public class GlobalVariables {
-    public static String BASE_URL = "http://172.30.1.178:8080/exametrics-ws";
+    public static String BASE_URL = "http://192.168.1.10:80/exametrics";
 
     public static String AREAS_URI = "/areas";
     public static String BY_ID_AREAS_URI = "/areas?id=";
