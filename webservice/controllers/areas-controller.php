@@ -23,7 +23,7 @@ class AreaController {
 	 * Request an Area into DB
 	 * @param int $id identifier of an area
 	 */
-	public static function getAreasById(int $id) {
+	public static function getAreasById($id) {
 		$db = Flight::db(false);
 		$response = new stdClass();
 		$req = $db->query("select * from area where idArea = $id");
@@ -41,7 +41,7 @@ class AreaController {
 	 * Request an Area with the name of it
 	 * @param string $name
 	 */
-	public static function getAreaByName(string $name) {
+	public static function getAreaByName($name) {
 		$db = Flight::db(false);
 		$response = new stdClass();
 		$req = $db->query("select MAX(idArea) as idArea from area where nameArea like '$name'");
@@ -61,7 +61,7 @@ class AreaController {
 	 * @param string $name name of the area
 	 * @param string $color HEX color of the area
 	 */
-	public static function addArea(int $id, string $name, string $color) {
+	public static function addArea($id, $name, $color) {
 		$db = Flight::db(false);
 		$req = $db->prepare("insert into area values('', :areaName, :areaColor)");
 		if ($req->execute(array("areaName" => "$name", "areaColor" => "$color"))) {
@@ -75,7 +75,7 @@ class AreaController {
 	 * Delete an Area
 	 * @param int $idArea
 	 */
-	public static function deleteArea(int $idArea) {
+	public static function deleteArea($idArea) {
 		$db = Flight::db(false);
 		$req = $db->prepare("delete from area where idArea = $idArea");
 		if ($result = $req->execute()) {
