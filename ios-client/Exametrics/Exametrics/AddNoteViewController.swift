@@ -62,7 +62,6 @@ class AddNoteViewController: UIViewController {
     // Préparation du Segue, envoie de l'Album séléctionné
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
             let destination = segue.destinationViewController as! HomeViewController
-            destination.noteList = noteList
             destination.mArea = mArea
     }
     

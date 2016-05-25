@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import Realm
+
 class NoteController {
     
     
@@ -18,7 +20,7 @@ class NoteController {
     }
     
     // Fonction permettant de vérifier le formulaire de connexion
-    func getNotes() -> [Note]{
+    func getNotes(){
         
         // Déclaration de l'url et de la liste de Points
         
@@ -31,27 +33,27 @@ class NoteController {
             dataMaybe, _, errorMaybe in
             
             guard errorMaybe == nil else {
-                NSLog("PoinController : N'as pas pu télécharger : \(errorMaybe!.description)")
+                NSLog("NoteController : N'as pas pu télécharger : \(errorMaybe!.description)")
                 return
             }
             
             guard let data = dataMaybe else {
-                NSLog("PoinController : Pas de données disponibles")
+                NSLog("NoteController : Pas de données disponibles")
                 return
             }
             
             guard let rootObj = try? NSJSONSerialization.JSONObjectWithData(data, options: []) else {
-                NSLog("PoinController : Erreur dans le JSON ")
+                NSLog("NoteController : Erreur dans le JSON ")
                 return
             }
             
             guard let root = rootObj as? NSDictionary else {
-                NSLog("PoinController : Erreur dans  le format")
+                NSLog("NoteController : Erreur dans  le format")
                 return
             }
             
             guard let result = root["result"] as? NSArray else {
-                NSLog("PoinController : Probleme result")
+                NSLog("NoteController : Probleme result")
                 return
             }
             
@@ -65,6 +67,16 @@ class NoteController {
                 
                 let newNote = Note(id: newId, author: newAuthor, text: newText, date: newDate, idArea: newIdArea)
                 
+                do {
+                    let realm = RLMRealm.defaultRealm()
+                    try realm.transactionWithBlock(){
+                        realm.addObject(newNote)
+                    }
+                    
+                }catch {
+                    print("Error Realm getNotes")
+                }
+                
                 listNotes.append(newNote)
             }
             
@@ -76,13 +88,11 @@ class NoteController {
         
         task.resume()
         
-        return listNotes
-        
     }
     
     
     // Fonction permettant de récupérer les Notes selon l'id d'une Zone
-    func getNotesByIdArea(idArea: String) -> [Note]{
+    func getNotesByIdArea(idArea: String) {
         
         // Déclaration de l'url et de la liste de Note
         var listNotes = [Note]()
@@ -95,27 +105,27 @@ class NoteController {
             dataMaybe, _, errorMaybe in
             
             guard errorMaybe == nil else {
-                NSLog("PoinController : N'as pas pu télécharger : \(errorMaybe!.description)")
+                NSLog("NoteController : N'as pas pu télécharger : \(errorMaybe!.description)")
                 return
             }
             
             guard let data = dataMaybe else {
-                NSLog("PoinController : Pas de données disponibles")
+                NSLog("NoteController : Pas de données disponibles")
                 return
             }
             
             guard let rootObj = try? NSJSONSerialization.JSONObjectWithData(data, options: []) else {
-                NSLog("PoinController : Erreur dans le JSON ")
+                NSLog("NoteController : Erreur dans le JSON ")
                 return
             }
             
             guard let root = rootObj as? NSDictionary else {
-                NSLog("PoinController : Erreur dans  le format")
+                NSLog("NoteController : Erreur dans  le format")
                 return
             }
             
             guard let result = root["result"] as? NSArray else {
-                NSLog("PoinController : Probleme result")
+                NSLog("NoteController : Probleme result")
                 return
             }
             
@@ -129,6 +139,16 @@ class NoteController {
                 
                 let newNote = Note(id: newId, author: newAuthor, text: newText, date: newDate, idArea: newIdArea)
                 
+                do {
+                    let realm = RLMRealm.defaultRealm()
+                    try realm.transactionWithBlock(){
+                        realm.addObject(newNote)
+                    }
+                    
+                }catch {
+                    print("Error Realm getNoteByIdArea")
+                }
+                
                 listNotes.append(newNote)
             }
             
@@ -140,7 +160,6 @@ class NoteController {
         
         task.resume()
         
-        return listNotes
         
     }
     

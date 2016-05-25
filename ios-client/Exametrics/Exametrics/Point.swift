@@ -7,8 +7,9 @@
 //
 
 import Foundation
+import Realm
 
-class Point {
+class Point : RLMObject {
     
     // Champs
     private var _id : String!
@@ -49,6 +50,10 @@ class Point {
         _idArea = idArea
     }
     
+    override init() {
+        super.init()
+    }
+    
     // Constructeurs
     required init(id: String, longitude: Double, latitude: Double, idArea: String){
         
@@ -56,7 +61,7 @@ class Point {
         _longitude = longitude
         _latitude = latitude
         _idArea = idArea
-        
+        super.init()
     }
     
 }

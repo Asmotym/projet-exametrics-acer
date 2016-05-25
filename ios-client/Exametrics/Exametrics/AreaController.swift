@@ -7,19 +7,20 @@
 //
 
 import Foundation
+import Realm
 
 class AreaController {
     
     // Champs
-    var urlPath = "http://172.30.1.178:8080/exametrics-ws/"
-    
+    //var urlPath = "http://172.30.1.178:8080/exametrics-ws/"
+    var urlPath = "http://127.0.0.1:8888/exametrics-ws/"
     
     // Init
     init(){
     }
     
     // Fonction permettant de récupérer la liste de toutes les zones
-    func getAreas() -> [Area]{
+    func getAreas(){
         
         // Déclaration de l'url et de la liste de Zones
         
@@ -56,29 +57,47 @@ class AreaController {
                 return
             }
             
-            for index in 0...(result.count - 1) {
+            for index in 0..<result.count {
                 let newId    = result[index]["idArea"] as! String
                 let newName  = result[index]["nameArea"] as! String
                 let newColor = result[index]["colorArea"] as! String
                 
                 let newArea = Area(id: newId, name: newName, color: newColor)
                 
+                do {
+                    let realm = RLMRealm.defaultRealm()
+                    try realm.transactionWithBlock(){
+                        realm.addObject(newArea)
+                    }
+                    
+                }catch {
+                    print("Error Realm getArea")
+                }
+
                 listAreas.append(newArea)
             }
             
-            // Stock Realm / UserDefault
             
-            // Recharge si besoin
+            NSOperationQueue.mainQueue().addOperationWithBlock({
+                //HomeViewController.refresh(HomeViewController)
+            })
             
         }
         task.resume()
-        
-        return listAreas
-        
     }
     
+    
+    
     // Fonction permettant de récupérer une zone selon son id
-    func getAreaById(idArea: String) -> Area{
+    func getAreaById(idArea: String){
+        
+        var areaList: RLMResults {
+            get {
+                return Area.allObjects()
+            }
+        }
+        
+        // Si un id d'une des Areas de areaList correspond au paramètre idArea, return ?
         
         // Déclaration de l'url et de la Zone
         
@@ -122,7 +141,18 @@ class AreaController {
             
             let newArea = Area(id: newId, name: newName, color: newColor)
             
+            do {
+                let realm = RLMRealm.defaultRealm()
+                try realm.transactionWithBlock(){
+                        realm.addObject(newArea)
+                    }
+                
+                }catch {
+                    print("Error Realm getAreaById")
+            }
+
             myArea = newArea
+            
             
             // Stock Realm / UserDefault
             
@@ -130,8 +160,6 @@ class AreaController {
             
         }
         task.resume()
-        
-        return myArea
         
     }
     

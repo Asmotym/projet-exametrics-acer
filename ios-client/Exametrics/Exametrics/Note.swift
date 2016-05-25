@@ -7,8 +7,9 @@
 //
 
 import Foundation
+import Realm
 
-class Note {
+class Note : RLMObject{
     
     // Champs
     private var _id : String!
@@ -58,6 +59,10 @@ class Note {
         _idArea = idArea
     }
     
+    override init() {
+        super.init()
+    }
+    
     // Constructeurs
     required init(id: String, author: String, text: String, date: String, idArea : String){
         
@@ -66,7 +71,7 @@ class Note {
         _text = text
         _date = date
         _idArea = idArea
-        
+        super.init()
     }
     
 }

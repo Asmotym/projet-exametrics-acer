@@ -9,6 +9,8 @@
 //
 
 import Foundation
+import Realm
+
 class PointController {
     
     
@@ -20,7 +22,7 @@ class PointController {
     }
     
     // Fonction permettant de vérifier le formulaire de connexion
-    func getPoints() -> [Point]{
+    func getPoints(){
         
         // Déclaration de l'url et de la liste de Points
         
@@ -57,12 +59,23 @@ class PointController {
                 return
             }
         
-            for index in 0...result.count {
+            for index in 0..<result.count {
                 let newIdPoint   = result[index]["idPoint"] as! String
                 let newLongitude = result[index]["longitude"] as! String
                 let newLatitude  = result[index]["latitude"] as! String
                 let newIdArea    = result[index]["idArea"] as! String
                 let newPoint     = Point(id: newIdPoint, longitude: Double(newLongitude)!, latitude: Double(newLatitude)!, idArea: newIdArea)
+                
+                do {
+                    let realm = RLMRealm.defaultRealm()
+                    try realm.transactionWithBlock(){
+                        realm.addObject(newPoint)
+                    }
+                    
+                }catch {
+                    print("Error Realm getPoints")
+                }
+                
                 listPoints.append(newPoint)
             }
             
@@ -73,7 +86,6 @@ class PointController {
         }
         task.resume()
         
-        return listPoints
         
     }
     
@@ -117,12 +129,23 @@ class PointController {
                 return
             }
             
-            for index in 0...(result.count - 1) {
+            for index in 0..<result.count {
                 let newIdPoint   = result[index]["idPoint"] as! String
                 let newLongitude = result[index]["longitude"] as! String
                 let newLatitude  = result[index]["latitude"] as! String
                 let newIdArea    = result[index]["idArea"] as! String
                 let newPoint     = Point(id: newIdPoint, longitude: Double(newLongitude)!, latitude: Double(newLatitude)!, idArea: newIdArea)
+                
+                do {
+                    let realm = RLMRealm.defaultRealm()
+                    try realm.transactionWithBlock(){
+                        realm.addObject(newPoint)
+                    }
+                    
+                }catch {
+                    print("Error Realm getPointsByIdArea")
+                }
+                
                 listPoints.append(newPoint)
             }
         
