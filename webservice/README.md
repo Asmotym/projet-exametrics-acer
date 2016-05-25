@@ -20,7 +20,8 @@
 ### Routes pour les Zones
 
 <dl><dt>http://172.30.1.178:8080/exametrics-ws/areas GET</dt>
-<dd>Retourne toute les Zones.</dd></dl>
+<dd>Retourne toute les Zones.</dd>
+
 ```json
 {
 	"count": 2,
@@ -38,7 +39,8 @@
         
 <dl>
 <dt>http://172.30.1.178:8080/exametrics-ws/areas?id=@idArea GET</dt>
-<dd>Retourne une Zone avec l'id.</dd></dl>
+<dd>Retourne une Zone avec l'id.</dd>
+
 ```json
 {
 	"count": 1,
@@ -78,7 +80,7 @@
 
 <dl>
 <dt>http://172.30.1.178:8080/exametrics-ws/points GET</dt>
-<dd>Retourne tous les Points.</dd></dl>
+<dd>Retourne tous les Points.</dd>
 
 ```json
 {
@@ -129,7 +131,7 @@
 
 <dl>
 <dt>http://172.30.1.178:8080/exametrics-ws/points?=@idArea GET</dt>
-<dd>Retourne les Points d'une Zone.</dd></dl>
+<dd>Retourne les Points d'une Zone.</dd>
 
 ```json
 {
@@ -190,7 +192,7 @@
 
 <dl>
 <dt>http://172.30.1.178:8080/exametrics-ws/notes GET</dt>
-<dd>Retourne toutes les notes.</dd></dl>
+<dd>Retourne toutes les notes.</dd>
 
 ```json
 {
