@@ -23,7 +23,7 @@ class NotesController {
 	 * Return all notes 
 	 * @param int $idArea
 	 */
-	public static function getNotesByAreaId(int $idArea) {
+	public static function getNotesByAreaId($idArea) {
 		$db = Flight::db(false);
 		$response = new stdClass();
 		$req = $db->query("select * from note where idArea = $idArea");
@@ -49,6 +49,16 @@ class NotesController {
 		$idArea = $note["idArea"];
 		$req = $db->prepare("insert into note values('', :author, :text, :date, :idArea)");
 		$req->execute(array("author" => "$author", "text" => "$text", "date" => "$date", "idArea" => "$idArea"));
+	}
+	
+	public static function deleteNote($idNote) {
+	$db = Flight::db(false);
+		$req = $db->prepare("delete from note where idNote = $idNote");
+		if ($result = $req->execute()) {
+			return Flight::redirect('/', 201);
+		} else {
+			return Flight::redirect('/', 400);
+		}
 	}
 	
 }

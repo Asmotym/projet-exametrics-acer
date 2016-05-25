@@ -12,3 +12,8 @@ Flight::route('POST /notes', function() {
 	$note = Flight::request()->data;
 	return NotesController::addNote($note);
 });
+
+Flight::route('POST /notes/delete', function() {
+	$idNote = Flight::request()->data->idNote;
+	return NotesController::deleteNote($idNote);
+});
