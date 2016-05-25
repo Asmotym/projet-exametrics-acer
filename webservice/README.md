@@ -1,5 +1,16 @@
 # Webservice APP pour iOS et Android
 
+## Infos sur la mise en place du WebService
+
+À la racine du WebServices (la ou se trouve l'index.php) ne pas oublier de mettre le fichier .htaccess.
+
+```javascript
+	RewriteEngine On
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteRule ^(.*)$ index.php [QSA,L]
+```
+
 ## Routes WebService
 
 - [Zones](#routes-pour-les-zones)
