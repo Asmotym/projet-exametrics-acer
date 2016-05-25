@@ -18,10 +18,10 @@ class ConnectionController {
     init(){
     }
     
-    // Fonction permettant de vérifier le formulaire de connexion
+    // Fonction permettant de récupérer des données
     func getListTuples(tuple: String) -> NSArray{
         
-        // Déclaration de l'url et de la liste de Points
+        // Déclaration de l'url
         var myResult = NSArray()
         urlPath += tuple
         
@@ -66,20 +66,6 @@ class ConnectionController {
     }
     
     
-    func uploadTuple(myJson: [String : String], tuple: String ) {
-        
-        urlPath += tuple
-        let myUrl = NSURL(string: urlPath)!
-        
-        let data = try! NSJSONSerialization.dataWithJSONObject(myJson, options: [])
-        
-        let request = NSMutableURLRequest(URL: myUrl)
-        request.HTTPMethod = "POST"
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        
-        let task = NSURLSession.sharedSession().uploadTaskWithRequest(request, fromData: data)
-        task.resume()
-    }
     
     
     

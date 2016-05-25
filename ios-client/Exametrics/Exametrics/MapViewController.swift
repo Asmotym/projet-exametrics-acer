@@ -16,6 +16,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     var locationManager: CLLocationManager!
     var pointList = [Point]()
     var myArea : Area!
+    let regionRadius: CLLocationDistance = 10000
     
     // Outlets
     @IBOutlet weak var map: MKMapView!
@@ -35,16 +36,20 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         
         var currentLocation = CLLocation!()
         currentLocation = locationManager.location
-            
-        let initialLocation = CLLocation(latitude: 41, longitude: 1)
-        //let initialLocation = CLLocation(latitude: currentLocation.coordinate.latitude, longitude: currentLocation.coordinate.longitude)
+        
+        let initialLocation = CLLocation(latitude: currentLocation.coordinate.latitude, longitude: currentLocation.coordinate.longitude)
         centerMapOnLocation(initialLocation)
         
+        let center = CLLocationCoordinate2D(latitude: initialLocation.coordinate.latitude, longitude: initialLocation.coordinate.longitude)
+        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+        
+        self.map.setRegion(region, animated: true)
+        
         if(pointList.count == 0) {
-            let point1 = Point(id: "1",longitude: 41, latitude: 1, idArea: "1")
-            let point2 = Point(id: "1",longitude: 42, latitude: 1, idArea: "1")
-            let point3 = Point(id: "1",longitude: 41.5, latitude: 2, idArea: "1")
-            let point4 = Point(id: "1",longitude: 41, latitude: 2, idArea: "1")
+            let point1 = Point(id: "1",longitude: 41, latitude: 1, idArea: "87")
+            let point2 = Point(id: "1",longitude: 42, latitude: 1, idArea: "87")
+            let point3 = Point(id: "1",longitude: 41.5, latitude: 2, idArea: "87")
+            let point4 = Point(id: "1",longitude: 41, latitude: 2, idArea: "87")
             pointList.append(point1)
             pointList.append(point2)
             pointList.append(point3)
@@ -66,11 +71,13 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
 
         let polygon = MKPolygon(coordinates: &pointsCLLC, count: pointsCLLC.count)
         
+        //let point = CGPoint(x: 41.5, y: 1.5)
+        
+        
         map.addOverlay(polygon)
     }
     
     
-    let regionRadius: CLLocationDistance = 10000
     func centerMapOnLocation(location: CLLocation) {
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate,
                                                                   regionRadius * 2.0, regionRadius * 2.0)
@@ -93,13 +100,37 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     {
         
         let location = locations.last! as CLLocation
-        
         let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
         let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
         
         self.map.setRegion(region, animated: true)
     }
 
+    
+    func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView!
+    {
+        if !(annotation is MKPointAnnotation)
+        {
+            return nil
+        }
+        
+        let reuseId = "test"
+        
+        var anView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId)
+        
+        if anView == nil
+        {
+            anView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+            anView!.image = UIImage(named:"1.png")
+            anView!.canShowCallout = true
+        }
+        else
+        {
+            anView!.annotation = annotation
+        }
+        
+        return anView
+    }
     
     
     

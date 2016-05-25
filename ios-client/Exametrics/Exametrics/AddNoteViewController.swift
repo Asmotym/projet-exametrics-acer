@@ -13,6 +13,7 @@ class AddNoteViewController: UIViewController {
     // Variables
     var noteList = [Note]()
     var mArea : Area!
+    let noteCont  = NoteController()
     
     // Outlets
     @IBOutlet weak var inputMessage: UITextView!
@@ -46,9 +47,13 @@ class AddNoteViewController: UIViewController {
         dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
         let newStringDate = dateFormatter.stringFromDate(newDate)
         
-        let newNote = Note(id: newId, author: newAuthor!, text: newText, date: newStringDate, idArea: mArea.getId())
+        let newIdArea = "87"
+        
+        let newNote = Note(id: newId, author: newAuthor!, text: newText, date: newStringDate, idArea: newIdArea)
         
         noteList.append(newNote)
+        
+        noteCont.uploadNote(newNote)
     
         navigationController?.popViewControllerAnimated(true)
         

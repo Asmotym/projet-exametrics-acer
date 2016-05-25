@@ -10,6 +10,9 @@ import Foundation
 
 class AreaController {
     
+    // Champs
+    var urlPath = "http://172.30.1.178:8080/exametrics-ws/"
+    
     
     // Init
     init(){
@@ -21,21 +24,54 @@ class AreaController {
         // Déclaration de l'url et de la liste de Zones
         
         var listAreas = [Area]()
-        let connectControl = ConnectionController()
+        urlPath += "areas"
+        let myUrl = NSURL(string: urlPath)!
         
-        let result = connectControl.getListTuples("areas")
-        
-        for index in 0...(result.count - 1) {
-            let newId    = result[index]["idArea"] as! String
-            let newName  = result[index]["nameArea"] as! String
-            let newColor = result[index]["colorArea"] as! String
+        // Mise en place de la tâche
+        let task = NSURLSession.sharedSession().dataTaskWithURL(myUrl) {
+            dataMaybe, _, errorMaybe in
             
-            let newArea = Area(id: newId, name: newName, color: newColor)
+            guard errorMaybe == nil else {
+                NSLog("PoinController : N'as pas pu télécharger : \(errorMaybe!.description)")
+                return
+            }
+            
+            guard let data = dataMaybe else {
+                NSLog("PoinController : Pas de données disponibles")
+                return
+            }
+            
+            guard let rootObj = try? NSJSONSerialization.JSONObjectWithData(data, options: []) else {
+                NSLog("PoinController : Erreur dans le JSON ")
+                return
+            }
+            
+            guard let root = rootObj as? NSDictionary else {
+                NSLog("PoinController : Erreur dans  le format")
+                return
+            }
+            
+            guard let result = root["result"] as? NSArray else {
+                NSLog("PoinController : Probleme result")
+                return
+            }
+            
+            for index in 0...(result.count - 1) {
+                let newId    = result[index]["idArea"] as! String
+                let newName  = result[index]["nameArea"] as! String
+                let newColor = result[index]["colorArea"] as! String
                 
-            listAreas.append(newArea)
+                let newArea = Area(id: newId, name: newName, color: newColor)
+                
+                listAreas.append(newArea)
+            }
+            
+            // Stock Realm / UserDefault
+            
+            // Recharge si besoin
+            
         }
-        
-        // Stockage Realm / UserDefault
+        task.resume()
         
         return listAreas
         
@@ -47,19 +83,53 @@ class AreaController {
         // Déclaration de l'url et de la Zone
         
         var myArea : Area!
-        let connectControl = ConnectionController()
         
-        let result = connectControl.getListTuples("areas?id=\(idArea)")
+        urlPath += "areas?id=\(idArea)"
+        let myUrl = NSURL(string: urlPath)!
         
-        let newId    = result[0]["idArea"] as! String
-        let newName  = result[0]["nameArea"] as! String
-        let newColor = result[0]["colorArea"] as! String
-        
-        let newArea = Area(id: newId, name: newName, color: newColor)
-        
-        myArea = newArea
-        
-        // Stock Realm / UserDefault
+        // Mise en place de la tâche
+        let task = NSURLSession.sharedSession().dataTaskWithURL(myUrl) {
+            dataMaybe, _, errorMaybe in
+            
+            guard errorMaybe == nil else {
+                NSLog("PoinController : N'as pas pu télécharger : \(errorMaybe!.description)")
+                return
+            }
+            
+            guard let data = dataMaybe else {
+                NSLog("PoinController : Pas de données disponibles")
+                return
+            }
+            
+            guard let rootObj = try? NSJSONSerialization.JSONObjectWithData(data, options: []) else {
+                NSLog("PoinController : Erreur dans le JSON ")
+                return
+            }
+            
+            guard let root = rootObj as? NSDictionary else {
+                NSLog("PoinController : Erreur dans  le format")
+                return
+            }
+            
+            guard let result = root["result"] as? NSArray else {
+                NSLog("PoinController : Probleme result")
+                return
+            }
+            
+            let newId    = result[0]["idArea"] as! String
+            let newName  = result[0]["nameArea"] as! String
+            let newColor = result[0]["colorArea"] as! String
+            
+            let newArea = Area(id: newId, name: newName, color: newColor)
+            
+            myArea = newArea
+            
+            // Stock Realm / UserDefault
+            
+            // Recharge si besoin
+            
+        }
+        task.resume()
         
         return myArea
         

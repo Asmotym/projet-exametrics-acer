@@ -14,8 +14,10 @@ class HomeViewController: UIViewController, UITableViewDataSource {
 
     // Variables
     var mArea : Area!
+    var areaList  = [Area]()
     var noteList  = [Note]()
     var pointList = [Point]()
+    let areaCont  = AreaController()
     let pointCont = PointController()
     let noteCont  = NoteController()
     
@@ -25,9 +27,11 @@ class HomeViewController: UIViewController, UITableViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //areaList = areaCont.getAreas()
+        
         //pointList = pointCont.getPoints()
 
-        noteList = noteCont.getNotes()
+        //noteList = noteCont.getNotes()
         
         if(noteList.count == 0)
         {
@@ -37,14 +41,15 @@ class HomeViewController: UIViewController, UITableViewDataSource {
             dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
             let newStringDate = dateFormatter.stringFromDate(newDate)
             
-            mArea = Area(id: "1", name: "Za Waludo", color: "cd13b8")
+            mArea = Area(id: "87", name: "Za Waludo", color: "cd13b8")
             
             let note1 = Note(id: "0", author: "Admin", text: "Premier test IOS", date: newStringDate, idArea: mArea.getId())
             let note2 = Note(id: "1", author: "Admin", text: "Second test IOS MDR", date: newStringDate, idArea: mArea.getId())
             noteList.append(note1)
             noteList.append(note2)
             
-            //noteCont.uploadNote(note2)
+            //noteCont.uploadNote(note1)
+            
         }
 
         // self.title = mArea.getName()
