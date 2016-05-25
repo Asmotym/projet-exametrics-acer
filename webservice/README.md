@@ -301,6 +301,3 @@
 	"idNote": 23
 }
 ```
-
-
-<dt>Des Questions ? clement.boucherpro@gmail.com</dt>
