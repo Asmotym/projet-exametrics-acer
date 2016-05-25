@@ -17,6 +17,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import io.realm.Realm;
+
 public class NoteController {
 
     public static void downloadNotesById(Context _context, int _idArea) {
@@ -39,7 +41,7 @@ public class NoteController {
         });
     }
 
-    public static void uploadNote(final Context _context, Note _note, String _idArea) {
+    public static void uploadNote(final Context _context, Note _note, final String _idArea) {
         String url = GlobalVariables.BASE_URL + GlobalVariables.UPLOAD_NOTE_URI;
         JSONObject json = new JSONObject();
         try {
@@ -53,13 +55,7 @@ public class NoteController {
             aq.post(url, json, JSONObject.class, new AjaxCallback<JSONObject>() {
                 @Override
                 public void callback(String url, JSONObject object, AjaxStatus status) {
-                    System.out.println(status.getCode());
-                    if (status.getCode() == 201) {
-                        Toast.makeText(_context.getApplicationContext(), _context.getResources().getString(R.string.add_note_success), Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(_context.getApplicationContext(), _context.getResources().getString(R.string.add_note_fail), Toast.LENGTH_SHORT).show();
-                    }
-
+                    downloadNotesById(_context, Integer.valueOf(_idArea));
                 }
             });
         } catch (JSONException jse) {

@@ -9,14 +9,14 @@ Flight::route('GET /areas', function() {
 	}
 });
 
-// Add an area
+// Add an area and return the id of the area created
 Flight::route('POST /areas', function(){
 	$data = Flight::request()->data;
 	return AreaController::addArea($data->idArea, $data->nameArea, $data->colorArea);
 });
 
-// Get the last area id
-Flight::route('GET /areas/last', function() {
-	return AreaController::getLastAreaId();
+Flight::route('POST /areas/delete', function() {
+	$idArea = Flight::request()->data->idArea;
+	return AreaController::deleteArea($idArea);
 });
 

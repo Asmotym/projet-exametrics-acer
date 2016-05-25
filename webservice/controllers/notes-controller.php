@@ -23,7 +23,7 @@ class NotesController {
 	 * Return all notes 
 	 * @param int $idArea
 	 */
-	public static function getNotesByAreaId($idArea) {
+	public static function getNotesByAreaId(int $idArea) {
 		$db = Flight::db(false);
 		$response = new stdClass();
 		$req = $db->query("select * from note where idArea = $idArea");
