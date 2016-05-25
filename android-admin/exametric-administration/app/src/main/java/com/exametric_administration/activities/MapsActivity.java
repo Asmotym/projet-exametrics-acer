@@ -118,6 +118,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         buttonEdit.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (isEditing == false) {
+                    arrayLat.clear();
+                    arrayLng.clear();
                     buttonEdit.setText("✔");
                     markerList = new ArrayList<Marker>();
                     isEditing = true;
@@ -337,7 +339,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             points.add(new Point(0, arrayLng.get(i), arrayLat.get(i), area.GetIdArea()));
                         }
                         AreaController.uploadArea(getApplicationContext(), area, points);
-                        //uploadArea(areaUpload, arrayLat, arrayLng);
+                        arrayLat.clear();
+                        arrayLng.clear();
                     }
 
                 });
