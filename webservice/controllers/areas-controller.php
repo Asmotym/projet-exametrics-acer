@@ -38,6 +38,24 @@ class AreaController {
 	}
 	
 	/**
+	 * Request an Area with the name of it
+	 * @param String $name
+	 */
+	public static function getAreaByName($name) {
+		$db = Flight::db(false);
+		$response = new stdClass();
+		$req = $db->query("select MAX(idArea) as idArea from area where nameArea like '$name'");
+		if ($result = $req->fetchAll(PDO::FETCH_OBJ)) {
+			$response->count = 1;
+			$response->result = $result;
+		} else {
+			$response->count = 0;
+			$response->result = "error";
+		}
+		return Flight::json($response);
+	}
+	
+	/**
 	 * Insert an Area to the DB
 	 * @param int $id identifier of the area (can be empty)
 	 * @param string $name name of the area
@@ -47,7 +65,7 @@ class AreaController {
 		$db = Flight::db(false);
 		$req = $db->prepare("insert into area values('', :areaName, :areaColor)");
 		if ($req->execute(array("areaName" => "$name", "areaColor" => "$color"))) {
-			return Flight::redirect('new/location', 201);
+			return self::getAreaByName($name);
 		} else {
 			return Flight::redirect('new/location', 400);
 		}

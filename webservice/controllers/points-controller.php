@@ -39,10 +39,11 @@ class PointsController {
 	
 	/**
 	 * Add multiple points to the DB
-	 * @param unknown $points
+	 * @param stdClass $points
 	 */
 	public static function addPoints($points) {
 		$db = Flight::db(false);
+		$result = $points->points;
 		foreach ($points as $point) {
 			$longitude = $point["longitude"];
 			$latitude = $point["latitude"];

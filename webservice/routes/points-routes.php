@@ -9,6 +9,7 @@ Flight::route('GET /points/@idArea', function($idArea) {
 });
 
 Flight::route('POST /points', function() {
+	//$points = new stdClass();
 	$points = Flight::request()->data;
 	return PointsController::addPoints($points);
 });
