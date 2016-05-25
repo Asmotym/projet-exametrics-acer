@@ -40,9 +40,13 @@ class AddNoteViewController: UIViewController {
         let newId      = "\(noteList.count + 1)"
         let newAuthor  = inputAuthor.text
         let newText    = inputMessage.text
-        let newDate    = NSDate()
         
-        let newNote = Note(id: newId, author: newAuthor!, text: newText, date: newDate, idArea: mArea.getId())
+        let newDate    = NSDate()
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
+        let newStringDate = dateFormatter.stringFromDate(newDate)
+        
+        let newNote = Note(id: newId, author: newAuthor!, text: newText, date: newStringDate, idArea: mArea.getId())
         
         noteList.append(newNote)
     

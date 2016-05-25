@@ -14,7 +14,7 @@ class Note {
     private var _id : String!
     private var _author : String!
     private var _text : String!
-    private var _date : NSDate!
+    private var _date : String!
     private var _idArea : String!
     
     // Getter & Setter
@@ -42,11 +42,11 @@ class Note {
         _text = text
     }
     
-    func getDate() -> NSDate{
+    func getDate() -> String{
         return _date
     }
     
-    func setDate(date: NSDate) {
+    func setDate(date: String) {
         _date = date
     }
     
@@ -59,7 +59,7 @@ class Note {
     }
     
     // Constructeurs
-    required init(id: String, author: String, text: String, date: NSDate, idArea : String){
+    required init(id: String, author: String, text: String, date: String, idArea : String){
         
         _id = id
         _author = author

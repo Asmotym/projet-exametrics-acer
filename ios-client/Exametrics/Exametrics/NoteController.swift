@@ -166,15 +166,8 @@ class NoteController {
             let newDate      = result[index]["dateNote"] as! String
             let newIdArea    = result[index]["idArea"] as! String
                 
-            // Formattage de la date
-            let dateFormatter = NSDateFormatter()
-            dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
-            guard let newNSDate = dateFormatter.dateFromString(newDate) else {
-                NSLog("Note Controller : Format date error")
-                break
-            }
-                
-            let newNote = Note(id: newId, author: newAuthor, text: newText, date: newNSDate, idArea: newIdArea)
+            
+            let newNote = Note(id: newId, author: newAuthor, text: newText, date: newDate, idArea: newIdArea)
                 
             listNotes.append(newNote)
         }
@@ -202,15 +195,8 @@ class NoteController {
             let newDate      = result[index]["dateNote"] as! String
             let newIdArea    = result[index]["idArea"] as! String
             
-            // Formattage de la date
-            let dateFormatter = NSDateFormatter()
-            dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
-            guard let newNSDate = dateFormatter.dateFromString(newDate) else {
-                NSLog("Note Controller : Format date error")
-                break
-            }
             
-            let newNote = Note(id: newId, author: newAuthor, text: newText, date: newNSDate, idArea: newIdArea)
+            let newNote = Note(id: newId, author: newAuthor, text: newText, date: newDate, idArea: newIdArea)
             
             listNotes.append(newNote)
         }
@@ -219,6 +205,15 @@ class NoteController {
         // Stock Realm / UserDefault
         
         return listNotes
+        
+    }
+    
+    
+    func uploadNote(newNote: Note){
+        
+        let raw = ["idNote": "", "authorNote": newNote.getAuthor(), "textNote": newNote.getText(), "dateNote": newNote.getDate(), "idArea" : newNote.getIdArea()]
+        
+        connectControl.uploadTuples(raw, tuple: "notes")
         
     }
     

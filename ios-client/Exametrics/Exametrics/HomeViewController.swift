@@ -27,15 +27,24 @@ class HomeViewController: UIViewController, UITableViewDataSource {
         
         //pointList = pointCont.getPoints()
 
-        //noteList = noteCont.getNotes()
+        noteList = noteCont.getNotes()
         
         if(noteList.count == 0)
         {
+            
+            let newDate    = NSDate()
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
+            let newStringDate = dateFormatter.stringFromDate(newDate)
+            
             mArea = Area(id: "1", name: "Za Waludo", color: "cd13b8")
-            let note1 = Note(id: "0", author: "Admin", text: "Premier test", date: NSDate(), idArea: mArea.getId())
-            let note2 = Note(id: "1", author: "Admin", text: "Second test", date: NSDate(), idArea: mArea.getId())
+            
+            let note1 = Note(id: "0", author: "Admin", text: "Premier test IOS", date: newStringDate, idArea: mArea.getId())
+            let note2 = Note(id: "1", author: "Admin", text: "Second test IOS MDR", date: newStringDate, idArea: mArea.getId())
             noteList.append(note1)
             noteList.append(note2)
+            
+            //noteCont.uploadNote(note2)
         }
 
         // self.title = mArea.getName()
@@ -59,11 +68,7 @@ class HomeViewController: UIViewController, UITableViewDataSource {
         let text   = noteList[indexPath.row].getText()
         let date   = noteList[indexPath.row].getDate()
         
-        let timestamp = NSDateFormatter()
-        timestamp.dateFormat = "dd/MM/yyyy à hh:mm"
-        let string = timestamp.stringFromDate(date)
-        
-        cell.configureWithData(author, text: text, date: string)
+        cell.configureWithData(author, text: text, date: date)
         
         return cell
         

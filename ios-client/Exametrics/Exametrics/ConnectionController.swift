@@ -6,7 +6,7 @@
 //  Copyright © 2016 IMERIR. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class ConnectionController {
     
@@ -19,16 +19,16 @@ class ConnectionController {
     }
     
     // Fonction permettant de vérifier le formulaire de connexion
-    func getListTuples(tuples: String) -> NSArray{
+    func getListTuples(tuple: String) -> NSArray{
         
         // Déclaration de l'url et de la liste de Points
         var myResult = NSArray()
-        urlPath += tuples
+        urlPath += tuple
         
-        let myUrl = NSURL(string: "http://172.30.1.178:8080/exametrics-ws/points")!
+        let myUrl = NSURL(string: urlPath)!
         
         // Mise en place de la tâche
-        let task = NSURLSession.sharedSession().dataTaskWithURL(myUrl) {
+        let task = NSURLSession.sharedSession().data {
             dataMaybe, _, errorMaybe in
             
             guard errorMaybe == nil else {
@@ -64,4 +64,23 @@ class ConnectionController {
         
         
     }
+    
+    
+    func uploadTuples(myJson: [String : String], tuple: String ) {
+        
+        urlPath += tuple
+        let myUrl = NSURL(string: urlPath)!
+        
+        let data = try! NSJSONSerialization.dataWithJSONObject(myJson, options: [])
+        
+        let request = NSMutableURLRequest(URL: myUrl)
+        request.HTTPMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let task = NSURLSession.sharedSession().uploadTaskWithRequest(request, fromData: data)
+        task.resume()
+    }
+    
+    
+    
 }

@@ -15,6 +15,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     // Variables
     var locationManager: CLLocationManager!
     var pointList = [Point]()
+    var myArea : Area!
     
     // Outlets
     @IBOutlet weak var map: MKMapView!
