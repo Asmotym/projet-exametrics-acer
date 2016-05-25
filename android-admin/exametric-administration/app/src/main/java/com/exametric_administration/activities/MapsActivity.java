@@ -3,7 +3,11 @@ package com.exametric_administration.activities;
 import android.content.Context;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Rect;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -89,11 +93,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private Marker currLocationMarker;
     private LatLng latLng;
     private int mZoom = 18;
+    private static Double lat;
+    private static Double lng;
+    private static Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.map_edit);
+        context = getBaseContext();
         switchMapType = (Switch) findViewById(R.id.switchMap);
         switchMapType.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -166,17 +174,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     public static void setAllMapPoints(ArrayList<Area> _areas) {
         for (int i = 0; i < _areas.size(); i++) {
+            lat = 0.0;
+            lng = 0.0;
             PolygonOptions polygonOptions = new PolygonOptions();
             ArrayList<Point> areaPoints = RealmPoint.getPointsByAreaId(RealmConfig.realmInstance, _areas.get(i).GetIdArea());
             for (int j = 0; j < areaPoints.size(); j++) {
-                polygonOptions.add(new LatLng(Double.valueOf(areaPoints.get(j).GetLongitude()), Double.valueOf(areaPoints.get(j).GetLatitude())));
-                mMap.addMarker(new MarkerOptions().position(new LatLng(Double.valueOf(areaPoints.get(j).GetLongitude()), Double.valueOf(areaPoints.get(j).GetLatitude()))));
-
-                System.out.println("GetLongitude : " + Double.valueOf(areaPoints.get(j).GetLongitude()));
-                System.out.println("GetLatitude" + Double.valueOf(areaPoints.get(j).GetLatitude()));
+                polygonOptions.add(new LatLng(Double.valueOf(areaPoints.get(j).GetLatitude()), Double.valueOf(areaPoints.get(j).GetLongitude())));
+                mMap.addMarker(new MarkerOptions().position(new LatLng(Double.valueOf(areaPoints.get(j).GetLatitude()), Double.valueOf(areaPoints.get(j).GetLongitude()))));
+                lat += Double.valueOf(areaPoints.get(j).GetLatitude());
+                lng += Double.valueOf(areaPoints.get(j).GetLongitude());
             }
-            polygonOptions.fillColor(Integer.decode(_areas.get(i).GetColorArea()));
-            polygon = mMap.addPolygon(polygonOptions.strokeColor(0x7f000000).zIndex(100));
+            addText(context, mMap, new LatLng(lat/areaPoints.size(), lng/areaPoints.size()), _areas.get(i).GetNameArea(), 0, 30);
+            polygonOptions.fillColor(Integer.decode(_areas.get(i).GetColorArea())).strokeColor(0x7f000000).zIndex(100);
+            System.out.println("COLOR : "+_areas.get(i).GetColorArea());
+            polygon = mMap.addPolygon(polygonOptions);
         }
     }
 
@@ -255,7 +266,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         //  seekBar1
         seek1.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                //Do something here with new value
                 btnColor.setBackgroundColor(Color.rgb(seek1.getProgress(), seek2.getProgress(), seek3.getProgress()));
             }
             public void onStartTrackingTouch(SeekBar arg0) {
@@ -269,7 +279,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         //  seekBar2
         seek2.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                //Do something here with new value
                 btnColor.setBackgroundColor(Color.rgb(seek1.getProgress(), seek2.getProgress(), seek3.getProgress()));
             }
             public void onStartTrackingTouch(SeekBar arg0) {
@@ -343,5 +352,43 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         );
         popDialog.create();
         popDialog.show();
+    }
+
+    public static Marker addText(final Context context, final GoogleMap map, final LatLng location, final String text, final int padding, final int fontSize) {
+        Marker marker = null;
+
+        if (context == null || map == null || location == null || text == null
+                || fontSize <= 0) {
+            return marker;
+        }
+
+        final TextView textView = new TextView(context);
+        textView.setText(text);
+        textView.setTextSize(fontSize);
+
+        final Paint paintText = textView.getPaint();
+
+        final Rect boundsText = new Rect();
+        paintText.getTextBounds(text, 0, textView.length(), boundsText);
+        paintText.setTextAlign(Paint.Align.CENTER);
+
+        final Bitmap.Config conf = Bitmap.Config.ARGB_8888;
+        final Bitmap bmpText = Bitmap.createBitmap(boundsText.width() + 2
+                * padding, boundsText.height() + 2 * padding, conf);
+
+        final Canvas canvasText = new Canvas(bmpText);
+        paintText.setColor(Color.BLACK);
+
+        canvasText.drawText(text, canvasText.getWidth() / 2,
+                canvasText.getHeight() - padding, paintText);
+
+        final MarkerOptions markerOptions = new MarkerOptions()
+                .position(location)
+                .icon(BitmapDescriptorFactory.fromBitmap(bmpText))
+                .anchor(0.5f, 1);
+
+        marker = map.addMarker(markerOptions);
+
+        return marker;
     }
 }
