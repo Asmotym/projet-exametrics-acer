@@ -17,12 +17,15 @@ _- SALLES Rémy_
 - Variables Global / Constante : MA_VARIABLE
 - Variables simple : nomEditText
 - Variable de classe : MaClasse
-- Champs privés de classe : _id
+- Champs privés de classe : idArea
 - Getteurs / Setteurs : GetId / SetId
 - Fonctions : maFoncion / getAllId
 - Langue de codages : Anglais / Text Français
+- Commentaires : Français
 
 ## Framework
 
 - AQuery (Android)
 - Realm (iOS et Android)
+- Google Map Api (Android)
+- 
