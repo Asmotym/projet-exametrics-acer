@@ -325,8 +325,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             polygonOptions.add(new LatLng(arrayLat.get(i), arrayLng.get(i)));
                         }
                         polygon = mMap.addPolygon(polygonOptions
-                                .fillColor(Color.argb(128, seek1.getProgress(), seek2.getProgress(), seek3.getProgress()))
-                                .strokeColor(0xaa000000)
+                                .strokeColor(Color.argb(128, seek1.getProgress(), seek2.getProgress(), seek3.getProgress()))
                                 .zIndex(100));
 
                         String redHexValue = Integer.toHexString(seek1.getProgress());
@@ -388,7 +387,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         final Bitmap.Config conf = Bitmap.Config.ARGB_8888;
         final Bitmap bmpText = Bitmap.createBitmap(boundsText.width() + 2
-                * padding, boundsText.height() + 2 * padding, conf);
+                * padding, boundsText.height() + 15, conf);
 
         final Canvas canvasText = new Canvas(bmpText);
         paintText.setColor(Color.BLACK);
