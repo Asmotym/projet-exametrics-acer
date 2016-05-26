@@ -49,7 +49,9 @@ class AddNoteViewController: UIViewController {
         
         let newIdArea = "87"
         
-        let newNote = Note(id: newId, author: newAuthor!, text: newText, date: newStringDate, idArea: newIdArea)
+        let newNote = Note()
+        newNote.setNote(newId, author: newAuthor!, text: newText, date: newStringDate, idArea: newIdArea)
+        
         
         noteList.append(newNote)
         

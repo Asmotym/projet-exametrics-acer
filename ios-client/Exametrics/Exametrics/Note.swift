@@ -7,16 +7,17 @@
 //
 
 import Foundation
+import RealmSwift
 import Realm
 
-class Note : RLMObject{
+class Note : Object{
     
     // Champs
-    private var _id : String!
-    private var _author : String!
-    private var _text : String!
-    private var _date : String!
-    private var _idArea : String!
+    private dynamic var _id     : String = ""
+    private dynamic var _author : String = ""
+    private dynamic var _text   : String = ""
+    private dynamic var _date   : String = ""
+    private dynamic var _idArea : String = ""
     
     // Getter & Setter
     func getId() -> String{
@@ -59,19 +60,15 @@ class Note : RLMObject{
         _idArea = idArea
     }
     
-    override init() {
-        super.init()
-    }
     
     // Constructeurs
-    required init(id: String, author: String, text: String, date: String, idArea : String){
+    func setNote(id: String, author: String, text: String, date: String, idArea : String){
         
         _id = id
         _author = author
         _text = text
         _date = date
         _idArea = idArea
-        super.init()
     }
     
 }

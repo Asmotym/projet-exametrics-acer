@@ -9,13 +9,13 @@
 //
 
 import Foundation
-import Realm
+import RealmSwift
 
 class PointController {
     
     
     // Champs
-    var urlPath = "http://127.0.0.1:8888/exametrics-ws/"
+    var urlPath = "http://172.30.1.178:8080/exametrics-ws/"
     
     // Init
     init(){
@@ -64,22 +64,19 @@ class PointController {
                 let newLongitude = result[index]["longitude"] as! String
                 let newLatitude  = result[index]["latitude"] as! String
                 let newIdArea    = result[index]["idArea"] as! String
-                let newPoint     = Point(id: newIdPoint, longitude: Double(newLongitude)!, latitude: Double(newLatitude)!, idArea: newIdArea)
                 
-                do {
-                    let realm = RLMRealm.defaultRealm()
-                    try realm.transactionWithBlock(){
-                        realm.addObject(newPoint)
-                    }
-                    
-                }catch {
-                    print("Error Realm getPoints")
+                let newPoint     = Point()
+                newPoint.setPoint(newIdPoint, longitude: Double(newLongitude)!, latitude: Double(newLatitude)!, idArea: newIdArea)
+                
+                let realm = try! Realm()
+                
+                try! realm.write {
+                    realm.add(newPoint)
                 }
                 
                 listPoints.append(newPoint)
             }
             
-             // Stock Realm / UserDefault
             
             // Recharge si besoin
             
@@ -134,24 +131,20 @@ class PointController {
                 let newLongitude = result[index]["longitude"] as! String
                 let newLatitude  = result[index]["latitude"] as! String
                 let newIdArea    = result[index]["idArea"] as! String
-                let newPoint     = Point(id: newIdPoint, longitude: Double(newLongitude)!, latitude: Double(newLatitude)!, idArea: newIdArea)
+                let newPoint     = Point()
+                newPoint.setPoint(newIdPoint, longitude: Double(newLongitude)!, latitude: Double(newLatitude)!, idArea: newIdArea)
                 
-                do {
-                    let realm = RLMRealm.defaultRealm()
-                    try realm.transactionWithBlock(){
-                        realm.addObject(newPoint)
-                    }
-                    
-                }catch {
-                    print("Error Realm getPointsByIdArea")
+                let realm = try! Realm()
+                
+                try! realm.write {
+                    realm.add(newPoint)
                 }
                 
                 listPoints.append(newPoint)
             }
         
-            // Stock Realm / UserDefault
-            
-            // Recharge si besoin
+            NSOperationQueue.mainQueue().addOperationWithBlock({
+            })
             
         }
         task.resume()

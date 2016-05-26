@@ -7,13 +7,13 @@
 //
 
 import Foundation
-import Realm
+import RealmSwift
 
 class AreaController {
     
     // Champs
-    //var urlPath = "http://172.30.1.178:8080/exametrics-ws/"
-    var urlPath = "http://127.0.0.1:8888/exametrics-ws/"
+    var urlPath = "http://172.30.1.178:8080/exametrics-ws/"
+    var pointCont = PointController()
     
     // Init
     init(){
@@ -62,25 +62,18 @@ class AreaController {
                 let newName  = result[index]["nameArea"] as! String
                 let newColor = result[index]["colorArea"] as! String
                 
-                let newArea = Area(id: newId, name: newName, color: newColor)
+                let newArea = Area()
+                newArea.setArea(newId, name: newName, color: newColor)
                 
-                do {
-                    let realm = RLMRealm.defaultRealm()
-                    try realm.transactionWithBlock(){
-                        realm.addObject(newArea)
-                    }
-                    
-                }catch {
-                    print("Error Realm getArea")
+                let realm = try! Realm()
+                
+                try! realm.write {
+                    realm.add(newArea)
                 }
+                
 
                 listAreas.append(newArea)
             }
-            
-            
-            NSOperationQueue.mainQueue().addOperationWithBlock({
-                //HomeViewController.refresh(HomeViewController)
-            })
             
         }
         task.resume()
@@ -91,11 +84,6 @@ class AreaController {
     // Fonction permettant de récupérer une zone selon son id
     func getAreaById(idArea: String){
         
-        var areaList: RLMResults {
-            get {
-                return Area.allObjects()
-            }
-        }
         
         // Si un id d'une des Areas de areaList correspond au paramètre idArea, return ?
         
@@ -139,16 +127,13 @@ class AreaController {
             let newName  = result[0]["nameArea"] as! String
             let newColor = result[0]["colorArea"] as! String
             
-            let newArea = Area(id: newId, name: newName, color: newColor)
+            let newArea = Area()
+            newArea.setArea(newId, name: newName, color: newColor)
             
-            do {
-                let realm = RLMRealm.defaultRealm()
-                try realm.transactionWithBlock(){
-                        realm.addObject(newArea)
-                    }
-                
-                }catch {
-                    print("Error Realm getAreaById")
+            let realm = try! Realm()
+            
+            try! realm.write {
+                realm.add(newArea)
             }
 
             myArea = newArea

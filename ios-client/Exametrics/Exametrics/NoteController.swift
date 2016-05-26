@@ -7,13 +7,13 @@
 //
 
 import Foundation
-import Realm
+import RealmSwift
 
 class NoteController {
     
     
     // Champs
-    var urlPath = "http://127.0.0.1:8888/exametrics-ws/"
+    var urlPath = "http://172.30.1.178:8080/exametrics-ws/"
     
     // Init
     init(){
@@ -65,16 +65,13 @@ class NoteController {
                 let newIdArea    = result[index]["idArea"] as! String
                 
                 
-                let newNote = Note(id: newId, author: newAuthor, text: newText, date: newDate, idArea: newIdArea)
+                let newNote = Note()
+                newNote.setNote(newId, author: newAuthor, text: newText, date: newDate, idArea: newIdArea)
                 
-                do {
-                    let realm = RLMRealm.defaultRealm()
-                    try realm.transactionWithBlock(){
-                        realm.addObject(newNote)
-                    }
-                    
-                }catch {
-                    print("Error Realm getNotes")
+                let realm = try! Realm()
+                
+                try! realm.write {
+                    realm.add(newNote)
                 }
                 
                 listNotes.append(newNote)
@@ -137,16 +134,13 @@ class NoteController {
                 let newIdArea    = result[index]["idArea"] as! String
                 
                 
-                let newNote = Note(id: newId, author: newAuthor, text: newText, date: newDate, idArea: newIdArea)
+                let newNote = Note()
+                newNote.setNote(newId, author: newAuthor, text: newText, date: newDate, idArea: newIdArea)
                 
-                do {
-                    let realm = RLMRealm.defaultRealm()
-                    try realm.transactionWithBlock(){
-                        realm.addObject(newNote)
-                    }
-                    
-                }catch {
-                    print("Error Realm getNoteByIdArea")
+                let realm = try! Realm()
+                
+                try! realm.write {
+                    realm.add(newNote)
                 }
                 
                 listNotes.append(newNote)

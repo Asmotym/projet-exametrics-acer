@@ -7,14 +7,15 @@
 //
 
 import Foundation
+import RealmSwift
 import Realm
 
-class Area: RLMObject {
+class Area : Object{
     
     // Champs
-    private dynamic var _id    : String!
-    private dynamic var _name  : String!
-    private dynamic var _color : String!
+    private dynamic var _id    : String = ""
+    private dynamic var _name  : String = ""
+    private dynamic var _color : String = ""
     
     // Getter & Setter
     func getId() -> String{
@@ -41,15 +42,11 @@ class Area: RLMObject {
         _color = color
     }
     
-    override init() {
-        super.init()
-    }
     // Constructeurs
-    required init(id: String, name: String, color: String){
-        
+    func setArea(id: String, name: String, color: String){
         _id = id
         _name = name
         _color = color
-        super.init()
     }
+    
 }

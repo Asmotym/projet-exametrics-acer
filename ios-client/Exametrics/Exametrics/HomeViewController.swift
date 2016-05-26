@@ -9,7 +9,7 @@
 // Clef GoogleAPI IOS : AIzaSyBrBX4Q_tXvnCezexSX0c61SjvGICiJ_0w
 
 import UIKit
-import Realm
+import RealmSwift
 import CoreLocation
 import MapKit
 
@@ -17,50 +17,50 @@ class HomeViewController: UIViewController, UITableViewDataSource,CLLocationMana
 
     // Variables
     var mArea : Area!
-    var pointList = [Point]()
-    var noteList = [Note]()
-    var areaList: RLMResults!
-    //var pointList: RLMResults!
-    //var noteList: RLMResults!
+    var areaList : Results<(Area)>!
+    var pointList : Results<(Point)>!
+    var noteList : Results<(Note)>!
+    
+    var realm = try! Realm()
+    
     let areaCont  = AreaController()
     let pointCont = PointController()
     let noteCont  = NoteController()
+    
     var locationManager: CLLocationManager!
     var myLatitude : CLLocationDegrees!
     var myLongitude : CLLocationDegrees!
-    
     
     // Outlets
     @IBOutlet weak var noteTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+       
+        // Supprime tous les objets de Realm
+        try! realm.write {
+            realm.deleteAll()
+        }
         
+        getDatas()
         
+        areaList  = realm.objects(Area)
+        pointList = realm.objects(Point)
+        noteList  = realm.objects(Note)
         
-        //areaCont.getAreas()
-        
-        //pointCont.getPoints()
-        
-
-        
-        let point1 = Point(id: "1",longitude: 2.84692917, latitude: 42.67417863, idArea: "87")
-        let point2 = Point(id: "1",longitude: 2.84581672, latitude: 42.67432826, idArea: "87")
-        let point3 = Point(id: "1",longitude: 2.84641989, latitude: 42.67505938, idArea: "87")
-        let point4 = Point(id: "1",longitude: 2.84797993, latitude: 42.67518164, idArea: "87")
-        let point5 = Point(id: "1",longitude: 2.84828033, latitude: 42.67409975, idArea: "87")
-        pointList.append(point1)
-        pointList.append(point2)
-        pointList.append(point3)
-        pointList.append(point4)
-        pointList.append(point5)
         
         // Chargement des notes selon la zone actuelle
         
-        checkLocation(pointList)
-        
-        //        
+        // Localisation
     }
+    
+    
+    
+    func getDatas(){
+        areaCont.getAreas()
+        pointCont.getPoints()
+    }
+    
     
     // Localisation de la zone actuelle
     func checkLocation(pointList: [Point]){
@@ -94,7 +94,8 @@ class HomeViewController: UIViewController, UITableViewDataSource,CLLocationMana
         let polygon = MKPolygon(coordinates: &pointsCLLC, count: pointsCLLC.count)
 
         if (isPointInPolygon(point, polygon: polygon)){
-            mArea = Area(id: "Ok", name: "YEAH", color: "Ox7cFF00FF")
+            mArea = Area()
+            mArea.setArea("Ok", name: "YEAH", color: "Ox7cFF00FF")
             self.title = mArea.getName()
             
         }
@@ -125,28 +126,10 @@ class HomeViewController: UIViewController, UITableViewDataSource,CLLocationMana
         print(isInsidePolygon)
     }
     
-    /*
     func refresh() {
-        areaList = RLMResults {
-            get {
-                return Area.allObjects()
-            }
-        }
-     
-        pointList: RLMResults {
-            get {
-                return Point.allObjects()
-            }
-        }
-        
-        var noteList: RLMResults {
-            get {
-                return Note.allObjects()
-            }
-        }
+        noteTableView.reloadData()
     }
-     */
-    
+ 
     // Fonctions du TableView
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return Int(noteList.count)

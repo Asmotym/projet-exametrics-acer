@@ -7,15 +7,16 @@
 //
 
 import Foundation
+import RealmSwift
 import Realm
 
-class Point : RLMObject {
+class Point : Object{
     
     // Champs
-    private var _id : String!
-    private var _longitude : Double!
-    private var _latitude : Double!
-    private var _idArea : String!
+    private dynamic var _id        : String = ""
+    private dynamic var _longitude : String = ""
+    private dynamic var _latitude  : String = ""
+    private dynamic var _idArea    : String = ""
     
     // Getter & Setter
     func getId() -> String{
@@ -27,19 +28,19 @@ class Point : RLMObject {
     }
     
     func getLongitude() -> Double{
-        return _longitude
+        return Double(_longitude)!
     }
     
     func setLongitude(longitude: Double) {
-        _longitude = longitude
+        _longitude = String(longitude)
     }
     
     func getLatitude() -> Double{
-        return _latitude
+        return Double(_latitude)!
     }
     
     func setLatitude(latitude: Double) {
-        _latitude = latitude
+        _latitude = String(latitude)
     }
     
     func getIdArea() -> String{
@@ -50,19 +51,15 @@ class Point : RLMObject {
         _idArea = idArea
     }
     
-    override init() {
-        super.init()
-    }
-    
     // Constructeurs
-    required init(id: String, longitude: Double, latitude: Double, idArea: String){
+    func setPoint(id: String, longitude: Double, latitude: Double, idArea: String){
         
         _id = id
-        _longitude = longitude
-        _latitude = latitude
+        _longitude = String(longitude)
+        _latitude = String(latitude)
         _idArea = idArea
-        super.init()
     }
+    
     
 }
 

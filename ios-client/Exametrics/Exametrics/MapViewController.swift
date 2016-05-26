@@ -42,19 +42,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         let initialLocation = CLLocation(latitude: currentLocation.coordinate.latitude, longitude: currentLocation.coordinate.longitude)
         centerMapOnLocation(initialLocation)
         
-        if(pointList.count == 0) {
-            let point1 = Point(id: "1",longitude: 2.84692917, latitude: 42.67417863, idArea: "87")
-            let point2 = Point(id: "2",longitude: 2.84581672, latitude: 42.67432826, idArea: "87")
-            let point3 = Point(id: "3",longitude: 2.84641989, latitude: 42.67505938, idArea: "87")
-            let point4 = Point(id: "4",longitude: 2.84797993, latitude: 42.67518164, idArea: "87")
-            let point5 = Point(id: "5",longitude: 2.84828033, latitude: 42.67409975, idArea: "87")
-            pointList.append(point1)
-            pointList.append(point2)
-            pointList.append(point3)
-            
-        }
-        
-        myArea = Area(id: "1", name: "LaZone", color: "Ox7c880088")
+        let newArea = Area()
+        newArea.setArea("1", name: "LaZone", color: "Ox7c880088")
         
         addBoundry()
     }
