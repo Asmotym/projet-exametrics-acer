@@ -25,11 +25,11 @@ public class AreaListView extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_area);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.areaToolbar);
-        setSupportActionBar(toolbar);
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle(getResources().getString(R.string.app_name));
+        // on configure la toolbar
+        setUpActionBar();
+        // on configure Realm
         RealmConfig.configure(this);
+        // on télécharge toutes les zones
         AreaController.downloadAllAreas(getBaseContext());
     }
 
@@ -44,6 +44,13 @@ public class AreaListView extends AppCompatActivity {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu, menu);
         return true;
+    }
+
+    private void setUpActionBar() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.areaToolbar);
+        setSupportActionBar(toolbar);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle(getResources().getString(R.string.app_name));
     }
 
     @Override

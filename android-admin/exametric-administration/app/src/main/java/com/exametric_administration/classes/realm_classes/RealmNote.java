@@ -7,18 +7,22 @@ import io.realm.RealmResults;
 
 public class RealmNote {
 
-    public static void copyToRealm(Realm _realm, Note _note) {
-        _realm.beginTransaction();
-        _realm.copyToRealm(_note);
-        _realm.commitTransaction();
-    }
-
+    /**
+     * Créer une note à partir d'une chaine JSON
+     * @param _realm Instance Realm
+     * @param _json Chaine JSON
+     */
     public static void createObjectFromJson(Realm _realm, String _json) {
         _realm.beginTransaction();
         _realm.createObjectFromJson(Note.class, _json);
         _realm.commitTransaction();
     }
 
+    /**
+     * Obtient toutes les notes de Realm
+     * @param _realm Instance Realm
+     * @return ArrayList de Notes
+     */
     public static ArrayList<Note> getAllNotes(Realm _realm) {
         _realm.beginTransaction();
         ArrayList<Note> notes = new ArrayList<>();
@@ -35,6 +39,12 @@ public class RealmNote {
         }
     }
 
+    /**
+     * Obtient une note par son id
+     * @param _realm Instance Realm
+     * @param _idNote id de la note
+     * @return Objet Note
+     */
     public static Note getNoteById(Realm _realm, int _idNote) {
         _realm.beginTransaction();
         Note note = _realm.where(Note.class).equalTo("idNote", _idNote).findFirst();
@@ -42,6 +52,10 @@ public class RealmNote {
         return note;
     }
 
+    /**
+     * Vide toutes les Note de Realm
+     * @param _realm Instance Realm
+     */
     public static void clearNotes(Realm _realm) {
         _realm.beginTransaction();
         _realm.delete(Note.class);

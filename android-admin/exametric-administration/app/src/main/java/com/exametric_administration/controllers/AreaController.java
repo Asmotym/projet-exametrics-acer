@@ -18,8 +18,8 @@ import java.util.ArrayList;
 public class AreaController {
 
     /**
-     * Download all areas from the Database using the Web Service
-     * @param _context
+     * Télécharge toutes les zone de la base de données
+     * @param _context Contexte de l'avtivité
      */
     public static void downloadAllAreas(Context _context) {
         String url = GlobalVariables.BASE_URL+GlobalVariables.AREAS_URI;
@@ -41,6 +41,12 @@ public class AreaController {
         });
     }
 
+    /**
+     * Envoie une zone et ses points au serveur
+     * @param _context Contexte de l'avtivité
+     * @param _area Zone à envoyer
+     * @param _points Liste des points de la zone
+     */
     public static void uploadArea(final Context _context, final Area _area, final ArrayList<Point> _points) {
         String url = GlobalVariables.BASE_URL + GlobalVariables.UPLOAD_AREA_URI;
         AQuery aq = new AQuery(_context);

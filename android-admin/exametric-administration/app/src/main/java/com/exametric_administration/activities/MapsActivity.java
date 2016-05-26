@@ -166,8 +166,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 }
             }
         });
+<<<<<<< Updated upstream
 
 
+=======
+        ArrayList<Area> areas = RealmArea.getAllAreas(RealmConfig.realmInstance);
+        PointController.getAllPoints(getBaseContext());
+>>>>>>> Stashed changes
 
         mMap.setMyLocationEnabled(true);
 

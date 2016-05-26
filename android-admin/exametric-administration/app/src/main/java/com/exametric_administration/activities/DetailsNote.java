@@ -32,15 +32,10 @@ public class DetailsNote extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.details_note);
+        // On récupère la note entière
         note = RealmNote.getNoteById(RealmConfig.realmInstance, getIntent().getExtras().getInt("idNote"));
         color = getIntent().getExtras().getString("color");
-        Toolbar toolbar = (Toolbar) findViewById(R.id.detailsNoteToolbar);
-        setSupportActionBar(toolbar);
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle(getResources().getString(R.string.notesAdapterAuthorPrefix, note.GetAuthorNote()));
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#80" + color)));
-        actionBar.setDisplayShowTitleEnabled(true);
+        // On remplis la vue
         textNoteTextView = (TextView) findViewById(R.id.textDetailsNoteTextView);
         dateNoteTextView = (TextView) findViewById(R.id.dateDetailsNoteTextView);
         textNoteTextView.setText(note.GetTextNote());
@@ -51,6 +46,8 @@ public class DetailsNote extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        // On paramètre la toolbar
+        setUpActionBar();
     }
 
     @Override
@@ -58,6 +55,16 @@ public class DetailsNote extends AppCompatActivity {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu, menu);
         return true;
+    }
+
+    private void setUpActionBar() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.detailsNoteToolbar);
+        setSupportActionBar(toolbar);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle(getResources().getString(R.string.notesAdapterAuthorPrefix, note.GetAuthorNote()));
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#80" + color)));
+        actionBar.setDisplayShowTitleEnabled(true);
     }
 
 }

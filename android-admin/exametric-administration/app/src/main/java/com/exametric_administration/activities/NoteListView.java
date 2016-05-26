@@ -34,24 +34,25 @@ public class NoteListView extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_note);
+
+        // Si ACTUAL_AREA n'est pas égale à 0 c'est que l'utilisateur à fait un retour arrière donc ont récupère la zone actuel
         if (GlobalVariables.ACTUAL_AREA == 0) {
             area = RealmArea.getAreaById(RealmConfig.realmInstance, getIntent().getExtras().getInt("idArea"));
         } else {
             area = RealmArea.getAreaById(RealmConfig.realmInstance, GlobalVariables.ACTUAL_AREA);
         }
-        Toolbar toolbar = (Toolbar) findViewById(R.id.noteToolbar);
-        setSupportActionBar(toolbar);
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle(area.GetNameArea());
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#80" + area.GetColorArea().substring(4))));
-        actionBar.setDisplayShowTitleEnabled(true);
+
+        // On paramètre la toolbar
+        setUpActionBar();
+
+        // Ont télécharge les notes cela peut prendre un peu de temps
         NoteController.downloadNotesById(getBaseContext(), area.GetIdArea());
     }
 
     @Override
     public void onResume() {
         super.onResume();
+        // On affiche les notes déjà dans Realm
         setUpNotesAdapter(RealmNote.getAllNotes(RealmConfig.realmInstance));
     }
 
@@ -62,6 +63,20 @@ public class NoteListView extends AppCompatActivity {
         return true;
     }
 
+    private void setUpActionBar() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.noteToolbar);
+        setSupportActionBar(toolbar);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle(area.GetNameArea());
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#80" + area.GetColorArea().substring(4))));
+        actionBar.setDisplayShowTitleEnabled(true);
+    }
+
+    /**
+     * Mise en place de la ListView et son Adapter
+     * @param _notes
+     */
     public void setUpNotesAdapter(ArrayList<Note> _notes) {
         notesListView = (ListView) findViewById(R.id.noteListView);
         NoteAdapter noteAdapter = new NoteAdapter(getBaseContext(), _notes);
@@ -69,6 +84,10 @@ public class NoteListView extends AppCompatActivity {
         notesListView.setOnItemClickListener(new OnNoteItemClickListener(noteAdapter, area.GetColorArea().substring(4)));
     }
 
+    /**
+     * Pour avertir d'un changement dans les données.
+     * @param _notes
+     */
     public static void notifyDataChange(ArrayList<Note> _notes) {
         NoteAdapter noteAdapter = (NoteAdapter) notesListView.getAdapter();
         noteAdapter.setData(_notes);

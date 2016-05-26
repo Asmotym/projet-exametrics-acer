@@ -15,6 +15,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Locale;
 
+/**
+ * Adapteur pour la liste des notes
+ */
 public class NoteAdapter extends BaseAdapter {
     private ArrayList<Note> notes;
     LayoutInflater inflater;

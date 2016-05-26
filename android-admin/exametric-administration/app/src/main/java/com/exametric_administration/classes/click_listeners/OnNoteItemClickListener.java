@@ -22,6 +22,7 @@ public class OnNoteItemClickListener implements ListView.OnItemClickListener {
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        // Ont récupère la note et on envoie son ID et la couleur de la zone a l'activité DetailsNote
         Note note = (Note) noteAdapter.getItem(position);
         GlobalVariables.ACTUAL_AREA = note.GetIdArea();
         Intent intent = new Intent(view.getContext(), DetailsNote.class);

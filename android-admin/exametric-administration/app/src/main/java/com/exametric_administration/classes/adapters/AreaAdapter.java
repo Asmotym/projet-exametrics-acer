@@ -11,6 +11,9 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import java.util.ArrayList;
 
+/**
+ * Adapteur pour la liste des zones
+ */
 public class AreaAdapter extends BaseAdapter {
     private ArrayList<Area> areas;
     LayoutInflater inflater;

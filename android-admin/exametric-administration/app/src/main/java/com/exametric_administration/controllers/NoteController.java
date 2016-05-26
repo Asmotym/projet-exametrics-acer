@@ -20,7 +20,11 @@ import org.json.JSONObject;
 import io.realm.Realm;
 
 public class NoteController {
-
+    /**
+     * Télécharge toutes les notes d'une zone
+     * @param _context Contexte de l'avtivité
+     * @param _idArea L'id de la zone
+     */
     public static void downloadNotesById(Context _context, int _idArea) {
         String url = GlobalVariables.BASE_URL + GlobalVariables.BY_ID_NOTES_URI+_idArea;
         RealmNote.clearNotes(RealmConfig.realmInstance);
@@ -41,6 +45,12 @@ public class NoteController {
         });
     }
 
+    /**
+     * Envoie une note au serveur
+     * @param _context Contexte de l'avtivité
+     * @param _note La note à envoyer
+     * @param _idArea L'id de la zone
+     */
     public static void uploadNote(final Context _context, Note _note, final String _idArea) {
         String url = GlobalVariables.BASE_URL + GlobalVariables.UPLOAD_NOTE_URI;
         JSONObject json = new JSONObject();

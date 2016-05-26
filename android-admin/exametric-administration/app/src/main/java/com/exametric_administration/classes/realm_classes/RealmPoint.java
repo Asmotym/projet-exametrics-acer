@@ -9,18 +9,22 @@ import io.realm.RealmResults;
 
 public class RealmPoint {
 
-    public static void copyToRealm(Realm _realm, Point _note) {
-        _realm.beginTransaction();
-        _realm.copyToRealm(_note);
-        _realm.commitTransaction();
-    }
-
+    /**
+     * Créer un objet Point dans Realm à partir d'une chaine JSON
+     * @param _realm Instance Realm
+     * @param _json Chaine JSON
+     */
     public static void createObjectFromJson(Realm _realm, String _json) {
         _realm.beginTransaction();
         _realm.createObjectFromJson(Point.class, _json);
         _realm.commitTransaction();
     }
 
+    /**
+     * Obtient tous les points dans Realm
+     * @param _realm Instance Realm
+     * @return ArrayList d'objet Point
+     */
     public static ArrayList<Point> getAllPoints(Realm _realm) {
         _realm.beginTransaction();
         ArrayList<Point> points = new ArrayList<>();
@@ -32,6 +36,13 @@ public class RealmPoint {
         return points;
     }
 
+    /**
+     * Obtient tous les points d'une zone définie
+     * Get all points from a defined area
+     * @param _realm Instance Realm
+     * @param _idArea Id de la zone
+     * @return ArrayList d'objet Point
+     */
     public static ArrayList<Point> getPointsByAreaId(Realm _realm, int _idArea) {
         _realm.beginTransaction();
         ArrayList<Point> points = new ArrayList<>();
@@ -43,6 +54,10 @@ public class RealmPoint {
         return points;
     }
 
+    /**
+     * Vide tous les objets point de Realm
+     * @param _realm Instance Realm
+     */
     public static void clearPoints(Realm _realm) {
         _realm.beginTransaction();
         _realm.delete(Point.class);

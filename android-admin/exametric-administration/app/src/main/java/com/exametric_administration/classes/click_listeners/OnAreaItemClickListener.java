@@ -22,6 +22,7 @@ public class OnAreaItemClickListener implements ListView.OnItemClickListener {
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        // Ont set la variable Actual area pour éviter les bugs plus tard et ont envoie l'id de l'area en extra
         GlobalVariables.ACTUAL_AREA = 0;
         RealmNote.clearNotes(RealmConfig.realmInstance);
         Area area = (Area) areaAdapter.getItem(position);
