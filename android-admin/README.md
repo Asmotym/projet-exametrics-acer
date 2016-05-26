@@ -19,15 +19,15 @@
   - [click_listeners]() Listeners pour les listes
     - [OnAreaItemClickListener]() Listener pour le clique sur une zone
     - [OnNoteItemClickListener]() Listener pour le clique sur une note
-  - [realm_classes]()
-    - [RealmArea]()
-    - [RealmNote]()
-    - [RealmPoint]()
-- [controllers]()
-  - [AreaController]()
-  - [NoteController]()
-  - [PointController]()
-- [tools]()
-  - [GlobalVariables]()
-  - [RealmConfig]()
+  - [realm_classes]() Classes Realm
+    - [RealmArea]() Classe Realm pour les zones
+    - [RealmNote]() Classes Realm pour les notes
+    - [RealmPoint]() Classe Realm pour les points
+- [controllers]() Controlleurs pour les téléchargements des données
+  - [AreaController]() Controlleur pour les zones
+  - [NoteController]() Controlleur pour les notes
+  - [PointController]() Controlleur pour les points
+- [tools]() Classes utilitaire
+  - [GlobalVariables]() Variables globale
+  - [RealmConfig]() Classe d'instance Realm
 
