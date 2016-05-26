@@ -54,22 +54,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Exametrics/HomeViewController.swift"
-            timestampString = "485901469.667285"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -144,6 +128,132 @@
             startingLineNumber = "37"
             endingLineNumber = "37"
             landmarkName = "getPoints()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Exametrics/HomeViewController.swift"
+            timestampString = "485948790.043085"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "19"
+            endingLineNumber = "19"
+            landmarkName = "HomeViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Exametrics.HomeViewController.mArea.getter : Swift.ImplicitlyUnwrappedOptional&lt;Exametrics.Area&gt;"
+                  moduleName = "Exametrics"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/emilien/Desktop/Projet%20d&apos;inte%CC%81gration/projet-exametrics-acer/ios-client/Exametrics/Exametrics/HomeViewController.swift"
+                  timestampString = "485948837.204792"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "19"
+                  endingLineNumber = "19"
+                  offsetFromSymbolStart = "48">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Exametrics.HomeViewController.mArea.setter : Swift.ImplicitlyUnwrappedOptional&lt;Exametrics.Area&gt;"
+                  moduleName = "Exametrics"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/emilien/Desktop/Projet%20d&apos;inte%CC%81gration/projet-exametrics-acer/ios-client/Exametrics/Exametrics/HomeViewController.swift"
+                  timestampString = "485948837.204949"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "19"
+                  endingLineNumber = "19"
+                  offsetFromSymbolStart = "80">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Exametrics.HomeViewController.init (nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;__ObjC.NSBundle&gt;) -&gt; Exametrics.HomeViewController"
+                  moduleName = "Exametrics"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/emilien/Desktop/Projet%20d&apos;inte%CC%81gration/projet-exametrics-acer/ios-client/Exametrics/Exametrics/HomeViewController.swift"
+                  timestampString = "485948837.205055"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "19"
+                  endingLineNumber = "19"
+                  offsetFromSymbolStart = "120">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Exametrics.HomeViewController.init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;Exametrics.HomeViewController&gt;"
+                  moduleName = "Exametrics"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/emilien/Desktop/Projet%20d&apos;inte%CC%81gration/projet-exametrics-acer/ios-client/Exametrics/Exametrics/HomeViewController.swift"
+                  timestampString = "485948837.205157"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "19"
+                  endingLineNumber = "19"
+                  offsetFromSymbolStart = "80">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Exametrics/HomeViewController.swift"
+            timestampString = "485950373.289427"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Exametrics/HomeViewController.swift"
+            timestampString = "485950373.289427"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Exametrics/MapViewController.swift"
+            timestampString = "485950564.90326"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
+            landmarkName = "addBoundry()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
