@@ -25,30 +25,29 @@ class AreaController {
         // Déclaration de l'url et de la liste de Zones
         
         var listAreas = [Area]()
-        urlPath += "areas"
-        let myUrl = NSURL(string: urlPath)!
+        let myUrl = NSURL(string: "\(urlPath)areas")!
         
         // Mise en place de la tâche
         let task = NSURLSession.sharedSession().dataTaskWithURL(myUrl) {
             dataMaybe, _, errorMaybe in
             
             guard errorMaybe == nil else {
-                NSLog("PoinController : N'as pas pu télécharger : \(errorMaybe!.description)")
+                NSLog("AreaController : N'as pas pu télécharger : \(errorMaybe!.description)")
                 return
             }
             
             guard let data = dataMaybe else {
-                NSLog("PoinController : Pas de données disponibles")
+                NSLog("AreaController : Pas de données disponibles")
                 return
             }
             
             guard let rootObj = try? NSJSONSerialization.JSONObjectWithData(data, options: []) else {
-                NSLog("PoinController : Erreur dans le JSON ")
+                NSLog("AreaController : Erreur dans le JSON ")
                 return
             }
             
             guard let root = rootObj as? NSDictionary else {
-                NSLog("PoinController : Erreur dans  le format")
+                NSLog("AreaController : Erreur dans  le format")
                 return
             }
             
@@ -90,8 +89,7 @@ class AreaController {
         
         var myArea : Area!
         
-        urlPath += "areas?id=\(idArea)"
-        let myUrl = NSURL(string: urlPath)!
+        let myUrl = NSURL(string: "\(urlPath)areas?id=\(idArea)")!
         
         // Mise en place de la tâche
         let task = NSURLSession.sharedSession().dataTaskWithURL(myUrl) {

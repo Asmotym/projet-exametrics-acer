@@ -27,8 +27,7 @@ class PointController {
         // Déclaration de l'url et de la liste de Points
         
         var listPoints = [Point]()
-        urlPath += "points"
-        let myUrl = NSURL(string: urlPath)!
+        let myUrl = NSURL(string: "\(urlPath)points")!
         
         // Mise en place de la tâche
         let task = NSURLSession.sharedSession().dataTaskWithURL(myUrl) {
@@ -93,12 +92,10 @@ class PointController {
         // Déclaration de l'url et de la liste de Point
         
         var listPoints = [Point]()
-        urlPath += "point?id=\(idArea)"
-        
-        let url = NSURL(string: urlPath.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)!
+        let url = NSURL(string: "\(urlPath)point?id=\(idArea)")
         
         // Mise en place de la tâche
-        let task = NSURLSession.sharedSession().dataTaskWithURL(url) {
+        let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {
             dataMaybe, _, errorMaybe in
             
             guard errorMaybe == nil else {

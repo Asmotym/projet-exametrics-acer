@@ -25,11 +25,10 @@ class NoteController {
         // Déclaration de l'url et de la liste de Points
         
         var listNotes = [Note]()
-        urlPath += "notes"
-        let url = NSURL(string: urlPath.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)!
+        let url = NSURL(string: "\(urlPath)notes")
         
         // Mise en place de la tâche
-        let task = NSURLSession.sharedSession().dataTaskWithURL(url) {
+        let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {
             dataMaybe, _, errorMaybe in
             
             guard errorMaybe == nil else {
@@ -89,12 +88,11 @@ class NoteController {
         
         // Déclaration de l'url et de la liste de Note
         var listNotes = [Note]()
-        urlPath += "notes?id=\(idArea)"
         
-        let url = NSURL(string: urlPath.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)!
+        let url = NSURL(string: "\(urlPath)notes?id=\(idArea)")
         
         // Mise en place de la tâche
-        let task = NSURLSession.sharedSession().dataTaskWithURL(url) {
+        let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {
             dataMaybe, _, errorMaybe in
             
             guard errorMaybe == nil else {
