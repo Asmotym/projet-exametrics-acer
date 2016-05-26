@@ -137,6 +137,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
 
+
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
@@ -146,11 +147,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         ajax = new AQuery(this);
         mMap = googleMap;
+        mMap.clear();
         arraylistAreas = new ArrayList<>();
         arraylistPoints = new ArrayList<>();
         arrayLat = new ArrayList<>();
         arrayLng = new ArrayList<>();
-
         mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng arg0) {
@@ -165,31 +166,36 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 }
             }
         });
-        ArrayList<Area> areas = RealmArea.getAllAreas(RealmConfig.realmInstance);
-        PointController.getAllPoints(getBaseContext(), areas);
+
+
 
         mMap.setMyLocationEnabled(true);
 
         buildGoogleApiClient();
         mGoogleApiClient.connect();
+
+        PointController.getAllPoints(context);
     }
 
     public static void setAllMapPoints(ArrayList<Area> _areas) {
         for (int i = 0; i < _areas.size(); i++) {
+            ArrayList<LatLng> latlng = new ArrayList<LatLng>();
             lat = 0.0;
             lng = 0.0;
             PolygonOptions polygonOptions = new PolygonOptions();
             ArrayList<Point> areaPoints = RealmPoint.getPointsByAreaId(RealmConfig.realmInstance, _areas.get(i).GetIdArea());
             for (int j = 0; j < areaPoints.size(); j++) {
-                polygonOptions.add(new LatLng(areaPoints.get(j).GetLatitude(), areaPoints.get(j).GetLongitude()));
-                mMap.addMarker(new MarkerOptions().position(new LatLng(areaPoints.get(j).GetLatitude(), areaPoints.get(j).GetLongitude())));
+                latlng.add(new LatLng(areaPoints.get(j).GetLatitude(), areaPoints.get(j).GetLongitude()));
+                //polygonOptions.add(new LatLng(areaPoints.get(j).GetLatitude(), areaPoints.get(j).GetLongitude()));
+                //mMap.addMarker(new MarkerOptions().position(new LatLng(areaPoints.get(j).GetLatitude(), areaPoints.get(j).GetLongitude())));
                 lat += areaPoints.get(j).GetLatitude();
                 lng += areaPoints.get(j).GetLongitude();
             }
-            addText(context, mMap, new LatLng(lat/areaPoints.size(), lng/areaPoints.size()), _areas.get(i).GetNameArea(), 0, 30);
-            polygonOptions.fillColor(Integer.decode(_areas.get(i).GetColorArea())).strokeColor(0x7f000000).zIndex(100);
-            System.out.println("COLOR : "+_areas.get(i).GetColorArea());
-            polygon = mMap.addPolygon(polygonOptions);
+            mMap.addPolygon(polygonOptions.strokeColor(Integer.decode(_areas.get(i).GetColorArea())).zIndex(100).addAll(latlng));
+
+            addText(context, mMap, new LatLng(lat / areaPoints.size(), lng / areaPoints.size()), _areas.get(i).GetNameArea(), 0, 30);
+
+
         }
     }
 
@@ -315,7 +321,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         }
                         polygon = mMap.addPolygon(polygonOptions
                                 .fillColor(Color.argb(128, seek1.getProgress(), seek2.getProgress(), seek3.getProgress()))
-                                .strokeColor(0x00000000)
+                                .strokeColor(0xaa000000)
                                 .zIndex(100));
 
                         String redHexValue = Integer.toHexString(seek1.getProgress());
