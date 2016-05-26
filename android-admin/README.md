@@ -11,3 +11,5 @@
 - [classes]()
   - [adapters]()
     - [AreaAdapter]()
+    - [NoteAdapter]()
+  - [classes]()
