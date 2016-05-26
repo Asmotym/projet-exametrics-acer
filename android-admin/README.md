@@ -2,5 +2,5 @@
 
 ## Arboréscences des fichiers
 
-[- activities]()
-  [- AddNote]()
+- [activities]()
+  - [AddNote]()
