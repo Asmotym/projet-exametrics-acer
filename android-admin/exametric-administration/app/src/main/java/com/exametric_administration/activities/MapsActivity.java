@@ -63,17 +63,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private static GoogleMap mMap;
     private AQuery ajax;
-    private AjaxCallback<JSONObject> cbAreas;
-    private AjaxCallback<JSONObject> cbPointsByAreas;
-    private AjaxCallback<JSONObject> cbLastArea;
-    private AjaxCallback<JSONObject> cbAddArea;
-    private AjaxCallback<JSONObject> cbAddPoints;
-    private String urlAreas = "http://172.30.1.178:8080/exametrics-ws/areas";
-    private String urlLastAreas = "http://172.30.1.178:8080/exametrics-ws/areas/last";
-    private String urlPoints = "http://172.30.1.178:8080/exametrics-ws/points";
-    private String urlPointsByArea = "http://172.30.1.178:8080/exametrics-ws/points/";
     private Area area;
-    private Point point;
     private ArrayList<Area> arraylistAreas;
     private ArrayList<Point> arraylistPoints;
     private PolygonOptions polygonOptions;
@@ -102,6 +92,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         super.onCreate(savedInstanceState);
         setContentView(R.layout.map_edit);
         context = getBaseContext();
+
+        //Cela permet de changer le type de map lorsque l'on change le switch button (Plan // Satellite), par defaut type 1 (Plan)
         switchMapType = (Switch) findViewById(R.id.switchMap);
         switchMapType.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -114,6 +106,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 }
             }
         });
+        //Active le mode création d'Areas en touchant le bouton "+"
         buttonEdit = (Button) findViewById(R.id.btnAddMap);
         buttonEdit.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -125,6 +118,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     isEditing = true;
                 } else {
                     if (arrayLat.size() >= 3) {
+                        //Si l'utilisateur a posé plus de 3 points, un fenetre s'ouvre pour finaliser la création.
                         ShowDialog();
                     }
                     for (Marker theMarker : markerList) {
@@ -152,6 +146,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         arraylistPoints = new ArrayList<>();
         arrayLat = new ArrayList<>();
         arrayLng = new ArrayList<>();
+        //Lorsque l'on touche la map et que le mode création est actif, on place u marker sur l'emplacement touché et on en retient les coordonnées
         mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng arg0) {
@@ -166,14 +161,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 }
             }
         });
-<<<<<<< Updated upstream
 
 
-=======
         ArrayList<Area> areas = RealmArea.getAllAreas(RealmConfig.realmInstance);
         PointController.getAllPoints(getBaseContext());
->>>>>>> Stashed changes
-
+//Ici on active l'accés a la localisation de l'utilisateur
         mMap.setMyLocationEnabled(true);
 
         buildGoogleApiClient();
@@ -181,7 +173,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         PointController.getAllPoints(context);
     }
-
+//On récupère les zones mémorisées dans Realm, ensuite pour chaque zone on récupere les points. Puis une fois que les points sont récupérés, ils sont stokés et passé en parametre du créateur de polygone.
     public static void setAllMapPoints(ArrayList<Area> _areas) {
         for (int i = 0; i < _areas.size(); i++) {
             ArrayList<LatLng> latlng = new ArrayList<LatLng>();
@@ -203,7 +195,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         }
     }
-
+//ici on se connecte a l'api google permettant la géolocalisation de l'utilisateur
     protected synchronized void buildGoogleApiClient() {
         Toast.makeText(this,"buildGoogleApiClient", Toast.LENGTH_SHORT).show();
         mGoogleApiClient = new GoogleApiClient.Builder(this)
@@ -212,7 +204,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .addApi(LocationServices.API)
                 .build();
     }
-
+//On récupere et on centre la caméra sur la positio de l'utilisateur une fois que la connexion a l'api est établie et que la géolocalisation est activée
     @Override
     public void onConnected(Bundle bundle) {
         Location mLastLocation = LocationServices.FusedLocationApi.getLastLocation(
@@ -239,18 +231,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onConnectionFailed(ConnectionResult connectionResult) {
     }
 
-    public void onLocationChanged(Location location) {
-        if (currLocationMarker != null) {
-            currLocationMarker.remove();
-        }
-        latLng = new LatLng(location.getLatitude(), location.getLongitude());
-
-        CameraPosition cameraPosition = new CameraPosition.Builder()
-                .target(latLng).zoom(mZoom).build();
-        mMap.animateCamera(CameraUpdateFactory
-                .newCameraPosition(cameraPosition));
-    }
-
     @Override
     public void onClick(View v) {
 
@@ -260,7 +240,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapClick(LatLng latLng) {
 
     }
-
+//Cette méthode fait apparaitre une fenetre qui demande a l'utilisateur d'entrer un nom et une couleur pour l'Area crée.
+//Et une fois que l'utilisateur appuie sur "valider", l'appli post le json contenant la zone et ensuite le json contenant les points qui lui correspondent.
     public void ShowDialog() {
         final AlertDialog.Builder popDialog = new AlertDialog.Builder(this);
         final LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
@@ -276,7 +257,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         seek1 = (SeekBar) Viewlayout.findViewById(R.id.seekBar1);
         seek2 = (SeekBar) Viewlayout.findViewById(R.id.seekBar2);
         seek3 = (SeekBar) Viewlayout.findViewById(R.id.seekBar3);
-        //  seekBar1
+        //  La seekBar permet de faire varier les valeur rgb qui seront attribués a la couleur de l'Area.
+        // Et aussi changent le couleur du bouton du dialog, pour permettre a l'utilisateur de connaitre la couleur qui en résulte
         seek1.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 btnColor.setBackgroundColor(Color.rgb(seek1.getProgress(), seek2.getProgress(), seek3.getProgress()));
@@ -316,7 +298,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 // TODO Auto-generated method stub
             }
         });
-        // Button OK
+        // Lors de la validation, un polygone correspondant aux coordonnées est déssiné, et l'upload se fait a la fin de la méthode.
         popDialog.setPositiveButton("Valider",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
@@ -366,7 +348,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         popDialog.create();
         popDialog.show();
     }
-
+//Cette méthode permet de placer un marker personalisé contenant le nom de l'Area au centre ce celle-ci (en faisant une moyenne des coordonnées des points de l'Area).
     public static Marker addText(final Context context, final GoogleMap map, final LatLng location, final String text, final int padding, final int fontSize) {
         Marker marker = null;
 
