@@ -35,7 +35,7 @@ extension UIColor {
         let hexLength = hex.characters.count
         if !(hexLength == 10) {
             // A hex must be either 7 or 9 characters (#RRGGBBAA)
-            print("improper call to 'colorFromHex', hex length must be 10 (GGRRBBAA)")
+            print("improper call to 'colorFromHex', hex length must be 10 (Ox7cGGRRBBAA)")
             self.init(white: 0, alpha: 1)
             return
         }

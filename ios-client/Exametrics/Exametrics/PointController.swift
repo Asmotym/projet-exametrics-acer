@@ -144,6 +144,7 @@ class PointController {
             }
         
             NSOperationQueue.mainQueue().addOperationWithBlock({
+                
             })
             
         }

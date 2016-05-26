@@ -48,23 +48,46 @@ class HomeViewController: UIViewController, UITableViewDataSource,CLLocationMana
         pointList = realm.objects(Point)
         noteList  = realm.objects(Note)
         
+        // Permet de recharger les données au lancement
+        let myTimerFirst = NSTimer(timeInterval: 2.0, target: self, selector: #selector(HomeViewController.refresh), userInfo: nil, repeats: false)
+        NSRunLoop.mainRunLoop().addTimer(myTimerFirst, forMode: NSDefaultRunLoopMode)
         
-        // Chargement des notes selon la zone actuelle
+        let myTimerMap = NSTimer(timeInterval: 2.0, target: self, selector: #selector(HomeViewController.checkLocation), userInfo: nil, repeats: false)
+        NSRunLoop.mainRunLoop().addTimer(myTimerMap, forMode: NSDefaultRunLoopMode)
         
-        // Localisation
+        let myTimerBase = NSTimer(timeInterval: 30.0, target: self, selector: #selector(HomeViewController.getDatas), userInfo: nil, repeats: true)
+        NSRunLoop.mainRunLoop().addTimer(myTimerBase, forMode: NSDefaultRunLoopMode)
+        
+        
+        
     }
     
-    
-    
+    // Récupère les données sur le serveur
     func getDatas(){
         areaCont.getAreas()
         pointCont.getPoints()
+        noteCont.getNotes()
+    }
+    
+    // Pour chaque Zone, récupère la liste de Points et vérifie si l'utilisateur se trouve dedans
+    func checkLocation(){
+        for area in areaList {
+            
+            var currentPointList = [Point]()
+            for point in pointList {
+                if(point.getIdArea() == area.getId()){
+                    currentPointList.append(point)
+                }
+            }
+            checkLocationWithPoints(currentPointList)
+        }
     }
     
     
     // Localisation de la zone actuelle
-    func checkLocation(pointList: [Point]){
+    internal func checkLocationWithPoints(pointList: [Point]){
         
+        let areaId = pointList[1].getIdArea()
         
         if (CLLocationManager.locationServicesEnabled())
         {
@@ -74,6 +97,7 @@ class HomeViewController: UIViewController, UITableViewDataSource,CLLocationMana
             locationManager.requestAlwaysAuthorization()
             locationManager.startUpdatingLocation()
         }
+        
         // Localisation du téléphone
         var currentLocation = CLLocation!()
         currentLocation = locationManager.location
@@ -93,15 +117,19 @@ class HomeViewController: UIViewController, UITableViewDataSource,CLLocationMana
         let point   = MKMapPoint(x: myLongitude , y: myLatitude)
         let polygon = MKPolygon(coordinates: &pointsCLLC, count: pointsCLLC.count)
 
+        // Si le point est dans le polygon, on vérifie si la Zone a changée
         if (isPointInPolygon(point, polygon: polygon)){
-            mArea = Area()
-            mArea.setArea("Ok", name: "YEAH", color: "Ox7cFF00FF")
-            self.title = mArea.getName()
-            
+            if(mArea.getId() != areaId){
+                mArea = realm.objects(Area).filter("age == \(areaId)").first
+                self.title = mArea.getName()
+                self.navigationController!.navigationBar.barTintColor = UIColor(hex: mArea.getColor())
+                self.getDatas()
+            }
         }
 
     }
     
+    // Vérifie si un Point est dans un Polygon
     func isPointInPolygon(point : MKMapPoint, polygon : MKPolygon) -> Bool{
         
         let a = polygon.points()
@@ -121,15 +149,15 @@ class HomeViewController: UIViewController, UITableViewDataSource,CLLocationMana
                 isInsidePolygon = !isInsidePolygon;
             }
         }
-        
         return isInsidePolygon;
-        print(isInsidePolygon)
     }
     
     func refresh() {
         noteTableView.reloadData()
     }
  
+    
+    
     // Fonctions du TableView
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return Int(noteList.count)
@@ -139,10 +167,10 @@ class HomeViewController: UIViewController, UITableViewDataSource,CLLocationMana
        
         // Déclaration de la cellule
         let cell = tableView.dequeueReusableCellWithIdentifier(NoteTableViewCell.identifier, forIndexPath: indexPath) as! NoteTableViewCell
-        /*
+        
         // Récupération des notes
-        let index = UInt(indexPath.row)
-        let noteItem = noteList.objectAtIndex(index) as! Note // [4]
+        let index = Int(indexPath.row)
+        let noteItem = noteList[index]
         
         // Configuration de la cellule
         let author = noteItem.getAuthor()
@@ -150,7 +178,7 @@ class HomeViewController: UIViewController, UITableViewDataSource,CLLocationMana
         let date   = noteItem.getDate()
         
         cell.configureWithData(author, text: text, date: date)
-        */
+        
         return cell
         
     }

@@ -71,7 +71,6 @@ class AreaController {
                     realm.add(newArea)
                 }
                 
-
                 listAreas.append(newArea)
             }
             
@@ -137,11 +136,6 @@ class AreaController {
             }
 
             myArea = newArea
-            
-            
-            // Stock Realm / UserDefault
-            
-            // Recharge si besoin
             
         }
         task.resume()

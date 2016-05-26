@@ -7,11 +7,11 @@
 //
 
 import UIKit
+import RealmSwift
 
 class AddNoteViewController: UIViewController {
 
     // Variables
-    var noteList = [Note]()
     var mArea : Area!
     let noteCont  = NoteController()
     
@@ -38,7 +38,7 @@ class AddNoteViewController: UIViewController {
 
     @IBAction func touchAddButton(sender: AnyObject) {
         
-        let newId      = "\(noteList.count + 1)"
+        let newId      = ""
         let newAuthor  = inputAuthor.text
         let newText    = inputMessage.text
         
@@ -47,24 +47,20 @@ class AddNoteViewController: UIViewController {
         dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
         let newStringDate = dateFormatter.stringFromDate(newDate)
         
-        let newIdArea = "87"
+        let newIdArea = mArea.getId()
         
         let newNote = Note()
         newNote.setNote(newId, author: newAuthor!, text: newText, date: newStringDate, idArea: newIdArea)
         
+        let realm = try! Realm()
         
-        noteList.append(newNote)
+        try! realm.write {
+            realm.add(newNote)
+        }
         
         noteCont.uploadNote(newNote)
-    
+        
         navigationController?.popViewControllerAnimated(true)
         
     }
-
-    // Préparation du Segue, envoie de l'Album séléctionné
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-            let destination = segue.destinationViewController as! HomeViewController
-            destination.mArea = mArea
-    }
-    
 }

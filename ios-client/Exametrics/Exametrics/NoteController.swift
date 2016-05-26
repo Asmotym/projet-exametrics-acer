@@ -53,7 +53,7 @@ class NoteController {
             }
             
             guard let result = root["result"] as? NSArray else {
-                NSLog("NoteController : Probleme result")
+                NSLog("NoteController : Probleme result, peut être pas de note sur server.")
                 return
             }
             
@@ -76,10 +76,6 @@ class NoteController {
                 
                 listNotes.append(newNote)
             }
-            
-            // Stock Realm / UserDefault
-            // Recharge si besoin
-            
             
         }
         
@@ -146,14 +142,9 @@ class NoteController {
                 listNotes.append(newNote)
             }
             
-            // Stock Realm / UserDefault
-            // Recharge si besoin
-            
-            
         }
         
         task.resume()
-        
         
     }
     
