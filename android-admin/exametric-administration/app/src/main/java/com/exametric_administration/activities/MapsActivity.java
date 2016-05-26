@@ -375,7 +375,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         paintText.setColor(Color.BLACK);
 
         canvasText.drawText(text, canvasText.getWidth() / 2,
-                canvasText.getHeight() - padding, paintText);
+                canvasText.getHeight() - 15, paintText);
 
         final MarkerOptions markerOptions = new MarkerOptions()
                 .position(location)
