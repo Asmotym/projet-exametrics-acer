@@ -42,7 +42,12 @@ class HomeViewController: UIViewController, UITableViewDataSource,CLLocationMana
             realm.deleteAll()
         }
         
-        getDatas()
+        myArea = Area()
+        myArea.setArea("none", name: "none", color: "Ox7cFFFFFF")
+        
+        areaCont.getAreas()
+        pointCont.getPoints()
+        noteCont.getNotes()
         
         areaList  = realm.objects(Area)
         pointList = realm.objects(Point)
@@ -52,10 +57,10 @@ class HomeViewController: UIViewController, UITableViewDataSource,CLLocationMana
         let myTimerFirst = NSTimer(timeInterval: 2.0, target: self, selector: #selector(HomeViewController.refresh), userInfo: nil, repeats: false)
         NSRunLoop.mainRunLoop().addTimer(myTimerFirst, forMode: NSDefaultRunLoopMode)
         
-        let myTimerMap = NSTimer(timeInterval: 2.0, target: self, selector: #selector(HomeViewController.checkLocation), userInfo: nil, repeats: true)
+        let myTimerMap = NSTimer(timeInterval: 5.0, target: self, selector: #selector(HomeViewController.checkLocation), userInfo: nil, repeats: true)
         NSRunLoop.mainRunLoop().addTimer(myTimerMap, forMode: NSDefaultRunLoopMode)
         
-        let myTimerBase = NSTimer(timeInterval: 30.0, target: self, selector: #selector(HomeViewController.getDatas), userInfo: nil, repeats: true)
+        let myTimerBase = NSTimer(timeInterval: 30.0, target: self, selector: #selector(HomeViewController.getNotes), userInfo: nil, repeats: true)
         NSRunLoop.mainRunLoop().addTimer(myTimerBase, forMode: NSDefaultRunLoopMode)
         
         
@@ -65,21 +70,14 @@ class HomeViewController: UIViewController, UITableViewDataSource,CLLocationMana
     
     // Fonction permettant de recharger les notes dans le tableView
     func refresh() {
-        
-        myArea = realm.objects(Area).filter("_id == '129'").first
-        self.title = myArea.getName()
-        self.navigationController!.navigationBar.barTintColor = UIColor(hex: myArea.getColor())
-        noteList = realm.objects(Note).filter("_idArea == '\(myArea.getId())'")
         noteTableView.reloadData()
     }
     
-    // Récupère les données sur le serveur
-    func getDatas(){
+    // Récupère les notes sur le serveur
+    func getNotes(){
         try! realm.write {
-            realm.deleteAll()
+            realm.delete(noteList)
         }
-        areaCont.getAreas()
-        pointCont.getPoints()
         noteCont.getNotes()
     }
     
@@ -90,6 +88,7 @@ class HomeViewController: UIViewController, UITableViewDataSource,CLLocationMana
         
         for area in areaList {
             
+            print(area.getId())
             var currentPointList = [Point]()
             for point in pointList {
                 if(point.getIdArea() == area.getId()){
@@ -97,7 +96,7 @@ class HomeViewController: UIViewController, UITableViewDataSource,CLLocationMana
                     print("\(point.getLatitude()) & \(point.getLongitude())")
                 }
             }
-            checkLocationWithPoints(currentPointList)
+            checkLocationWithPoints(currentPointList, areaId: area.getId())
             print("CHECK")
         }
     }
@@ -107,9 +106,7 @@ class HomeViewController: UIViewController, UITableViewDataSource,CLLocationMana
     
     
     // Localisation de la zone actuelle
-    internal func checkLocationWithPoints(pointList: [Point]){
-        
-        let areaId = pointList[1].getIdArea()
+    internal func checkLocationWithPoints(pointList: [Point], areaId: String){
         
         if (CLLocationManager.locationServicesEnabled())
         {
@@ -143,10 +140,11 @@ class HomeViewController: UIViewController, UITableViewDataSource,CLLocationMana
         if (isPointInPolygon(point, polygon: polygon)){
             if(myArea.getId() != areaId){
                 
-                myArea = realm.objects(Area).filter("_id == \(areaId)").first
+                myArea = realm.objects(Area).filter("_id == '\(areaId)'").first
                 self.title = myArea.getName()
                 self.navigationController!.navigationBar.barTintColor = UIColor(hex: myArea.getColor())
-                self.getDatas()
+                noteList = realm.objects(Note).filter("_idArea == '\(myArea.getId())'")
+                self.refresh()
             }
         }
 
@@ -155,31 +153,16 @@ class HomeViewController: UIViewController, UITableViewDataSource,CLLocationMana
     // Vérifie si un Point est dans un Polygon
     func isPointInPolygon(point : MKMapPoint, polygon : MKPolygon) -> Bool{
         
-        var isInsidePolygon = false
         
+        let polygonRenderer = MKPolygonRenderer(polygon: polygon)
+        let currentMapPoint: MKMapPoint = MKMapPointForCoordinate((locationManager.location?.coordinate)!)
+        let polygonViewPoint: CGPoint = polygonRenderer.pointForMapPoint(currentMapPoint)
         
-        
-        let polygonPath:CGMutablePathRef  = CGPathCreateMutable()
-        // get points of polygon
-        let arrPoints = polygon.points()
-        
-        
-        /*
-        
-        for (var i:Int=0; i < polygon.pointCount; i++){
-            let polygonMapPoint: MKMapPoint = arrPoints[i]
-            let polygonCoordinate = MKCoordinateForMapPoint(polygonMapPoint)
-            let polygonPoint = self.mapView.convertCoordinate(polygonPointAsCoordinate, toPointToView: self.mapView)
-            if (i == 0){
-                CGPathMoveToPoint(polygonPath, nil, polygonPoint.x, polygonPoint.y)
-            }
-            else{
-                CGPathAddLineToPoint(polygonPath, nil, CGFloat(mp.x), CGFloat(mp.y))
-            }
+        if CGPathContainsPoint(polygonRenderer.path, nil, polygonViewPoint, true) {
+            print("Your location was inside your polygon.")
+            return true
         }
-        
-        return CGPathContainsPoint(polygonPath , nil, mapPointAsCGP, false)
- */
+ 
     
         return false
     }
