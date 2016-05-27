@@ -132,7 +132,7 @@ class HomeViewController: UIViewController, UITableViewDataSource,CLLocationMana
         
         
         for point in pointList {
-            let locationCoor = CLLocationCoordinate2DMake(point.getLongitude(), point.getLatitude())
+            let locationCoor = CLLocationCoordinate2DMake(point.getLatitude(), point.getLongitude())
             pointsCLLC.append(locationCoor)
         }
         
@@ -156,14 +156,32 @@ class HomeViewController: UIViewController, UITableViewDataSource,CLLocationMana
     func isPointInPolygon(point : MKMapPoint, polygon : MKPolygon) -> Bool{
         
         var isInsidePolygon = false
-        let polygonRenderer = MKPolygonRenderer(polygon: polygon)
-        let polygonViewPoint: CGPoint = polygonRenderer.pointForMapPoint(point)
         
-        if CGPathContainsPoint(polygonRenderer.path, nil, polygonViewPoint, true) {
-            print("Your location was inside your polygon.")
-            isInsidePolygon = true
+        
+        
+        let polygonPath:CGMutablePathRef  = CGPathCreateMutable()
+        // get points of polygon
+        let arrPoints = polygon.points()
+        
+        
+        /*
+        
+        for (var i:Int=0; i < polygon.pointCount; i++){
+            let polygonMapPoint: MKMapPoint = arrPoints[i]
+            let polygonCoordinate = MKCoordinateForMapPoint(polygonMapPoint)
+            let polygonPoint = self.mapView.convertCoordinate(polygonPointAsCoordinate, toPointToView: self.mapView)
+            if (i == 0){
+                CGPathMoveToPoint(polygonPath, nil, polygonPoint.x, polygonPoint.y)
+            }
+            else{
+                CGPathAddLineToPoint(polygonPath, nil, CGFloat(mp.x), CGFloat(mp.y))
+            }
         }
-        return isInsidePolygon;
+        
+        return CGPathContainsPoint(polygonPath , nil, mapPointAsCGP, false)
+ */
+    
+        return false
     }
     
  

@@ -19,6 +19,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     var myArea : Area!
     let regionRadius: CLLocationDistance = 10000
     var realm = try! Realm()
+    let dropPin = MKPointAnnotation()
     
     // Outlets
     @IBOutlet weak var map: MKMapView!
@@ -32,6 +33,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         self.navigationController!.navigationBar.barTintColor = UIColor(hex: myArea.getColor())
         
         pointList = realm.objects(Point).filter("_idArea == '\(myArea.getId())'")
+        
+        
         
         getLocalisation()
         addBoundry()
@@ -51,6 +54,14 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         // Localisation du téléphone
         var currentLocation = CLLocation!()
         currentLocation = locationManager.location
+        
+        
+        
+        // Drop a pin
+        
+        dropPin.coordinate = CLLocationCoordinate2DMake(currentLocation.coordinate.latitude, currentLocation.coordinate.longitude)
+        dropPin.title = "You"
+        map.addAnnotation(dropPin)
         
         let initialLocation = CLLocation(latitude: currentLocation.coordinate.latitude, longitude: currentLocation.coordinate.longitude)
         centerMapOnLocation(initialLocation)
@@ -98,6 +109,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         let location = locations.last! as CLLocation
         let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
         let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.001, longitudeDelta: 0.001))
+        
+        dropPin.coordinate = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude)
+        dropPin.title = "You"
+        map.addAnnotation(dropPin)
         
         self.map.setRegion(region, animated: true)
     }
