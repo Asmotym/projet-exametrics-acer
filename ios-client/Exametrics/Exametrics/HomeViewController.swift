@@ -75,6 +75,7 @@ class HomeViewController: UIViewController, UITableViewDataSource,CLLocationMana
     
     // Récupère les notes sur le serveur
     func getNotes(){
+        noteTableView.reloadData()
         try! realm.write {
             realm.delete(noteList)
         }
@@ -208,4 +209,12 @@ class HomeViewController: UIViewController, UITableViewDataSource,CLLocationMana
     }
 
 
+    // Préparation du Segue, envoie de la centrale séléctionnée
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if(segue.identifier == "toAddNote") {
+            let destination = segue.destinationViewController as! AddNoteViewController
+            destination.myArea = myArea
+            
+        }
+    }
 }

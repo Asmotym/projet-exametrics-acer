@@ -27,8 +27,6 @@ class AddNoteViewController: UIViewController {
 
         self.title = "Ajoutez une note"
         
-        myArea = realm.objects(Area).filter("_id == '129'").first
-        
         inputAuthor.layer.borderColor = UIColor.blackColor().CGColor;
         inputAuthor.layer.borderColor = UIColor(red: 0.5, green: 0.5, blue:0, alpha: 1.0 ).CGColor;
         inputAuthor.layer.borderWidth = 1.0;
@@ -40,7 +38,7 @@ class AddNoteViewController: UIViewController {
         inputMessage.layer.cornerRadius = 5.0;
         
         // Reconnait un toucher
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(AddNoteViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
         
     }
@@ -61,7 +59,6 @@ class AddNoteViewController: UIViewController {
         dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
         let newStringDate = dateFormatter.stringFromDate(newDate)
     
-        myArea = realm.objects(Area).filter("_id == '129'").first
         let newIdArea = myArea.getId()
         
         let newNote = Note()
