@@ -9,11 +9,14 @@
 import UIKit
 import RealmSwift
 
+
 class AddNoteViewController: UIViewController {
 
     // Variables
-    var mArea : Area!
+    var myArea : Area!
     let noteCont  = NoteController()
+    let realm = try! Realm()
+    
     
     // Outlets
     @IBOutlet weak var inputMessage: UITextView!
@@ -23,6 +26,8 @@ class AddNoteViewController: UIViewController {
         super.viewDidLoad()
 
         self.title = "Ajoutez une note"
+        
+        myArea = realm.objects(Area).filter("_id == '129'").first
         
         inputAuthor.layer.borderColor = UIColor.blackColor().CGColor;
         inputAuthor.layer.borderColor = UIColor(red: 0.5, green: 0.5, blue:0, alpha: 1.0 ).CGColor;
@@ -34,8 +39,17 @@ class AddNoteViewController: UIViewController {
         inputMessage.layer.borderWidth = 1.0;
         inputMessage.layer.cornerRadius = 5.0;
         
+        // Reconnait un toucher
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        view.addGestureRecognizer(tap)
+        
     }
 
+    func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
+    }
+    
     @IBAction func touchAddButton(sender: AnyObject) {
         
         let newId      = ""
@@ -46,13 +60,12 @@ class AddNoteViewController: UIViewController {
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
         let newStringDate = dateFormatter.stringFromDate(newDate)
-        
-        let newIdArea = mArea.getId()
+    
+        myArea = realm.objects(Area).filter("_id == '129'").first
+        let newIdArea = myArea.getId()
         
         let newNote = Note()
         newNote.setNote(newId, author: newAuthor!, text: newText, date: newStringDate, idArea: newIdArea)
-        
-        let realm = try! Realm()
         
         try! realm.write {
             realm.add(newNote)

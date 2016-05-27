@@ -9,14 +9,16 @@
 import UIKit
 import CoreLocation
 import MapKit
+import RealmSwift
 
 class MapViewController: UIViewController, CLLocationManagerDelegate {
 
     // Variables
     var locationManager: CLLocationManager!
-    var pointList = [Point]()
+    var pointList : Results<(Point)>!
     var myArea : Area!
     let regionRadius: CLLocationDistance = 10000
+    var realm = try! Realm()
     
     // Outlets
     @IBOutlet weak var map: MKMapView!
@@ -24,7 +26,18 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        myArea = realm.objects(Area).filter("_id == '129'").first
+        self.title = myArea.getName()
+        self.navigationController!.navigationBar.barTintColor = UIColor(hex: myArea.getColor())
+        
+        pointList = realm.objects(Point).filter("_idArea == '\(myArea.getId())'")
+        
+        getLocalisation()
+        addBoundry()
+    }
 
+    func getLocalisation(){
         //Mise en place des paramètres de la carte
         if (CLLocationManager.locationServicesEnabled())
         {
@@ -41,27 +54,19 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         
         let initialLocation = CLLocation(latitude: currentLocation.coordinate.latitude, longitude: currentLocation.coordinate.longitude)
         centerMapOnLocation(initialLocation)
-        
-        let newArea = Area()
-        newArea.setArea("1", name: "LaZone", color: "Ox7c880088")
-        
-        addBoundry()
     }
-
+    
     // Fonction permettant d'afficher la zone actuelle
     func addBoundry()
     {
         var pointsCLLC = [CLLocationCoordinate2D]()
         
         for point in pointList {
-            let locationCoor = CLLocationCoordinate2DMake(point.getLongitude(), point.getLatitude())
+            let locationCoor = CLLocationCoordinate2DMake(point.getLatitude(), point.getLongitude())
             pointsCLLC.append(locationCoor)
         }
 
         let polygon = MKPolygon(coordinates: &pointsCLLC, count: pointsCLLC.count)
-        
-        //let point = CGPoint(x: 41.5, y: 1.5)
-        
         
         map.addOverlay(polygon)
     }
@@ -92,12 +97,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         
         let location = locations.last! as CLLocation
         let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005))
+        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.001, longitudeDelta: 0.001))
         
         self.map.setRegion(region, animated: true)
     }
 
-    
-    
-    
 }

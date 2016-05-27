@@ -16,7 +16,7 @@ import MapKit
 class HomeViewController: UIViewController, UITableViewDataSource,CLLocationManagerDelegate {
 
     // Variables
-    var mArea : Area!
+    var myArea : Area!
     var areaList : Results<(Area)>!
     var pointList : Results<(Point)>!
     var noteList : Results<(Note)>!
@@ -36,7 +36,7 @@ class HomeViewController: UIViewController, UITableViewDataSource,CLLocationMana
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+
         // Supprime tous les objets de Realm
         try! realm.write {
             realm.deleteAll()
@@ -62,6 +62,17 @@ class HomeViewController: UIViewController, UITableViewDataSource,CLLocationMana
         
     }
     
+    
+    // Fonction permettant de recharger les notes dans le tableView
+    func refresh() {
+        
+        myArea = realm.objects(Area).filter("_id == '129'").first
+        self.title = myArea.getName()
+        self.navigationController!.navigationBar.barTintColor = UIColor(hex: myArea.getColor())
+        noteList = realm.objects(Note).filter("_idArea == '\(myArea.getId())'")
+        noteTableView.reloadData()
+    }
+    
     // Récupère les données sur le serveur
     func getDatas(){
         try! realm.write {
@@ -72,8 +83,11 @@ class HomeViewController: UIViewController, UITableViewDataSource,CLLocationMana
         noteCont.getNotes()
     }
     
+    
+    
     // Pour chaque Zone, récupère la liste de Points et vérifie si l'utilisateur se trouve dedans
     func checkLocation(){
+        
         for area in areaList {
             
             var currentPointList = [Point]()
@@ -87,6 +101,9 @@ class HomeViewController: UIViewController, UITableViewDataSource,CLLocationMana
             print("CHECK")
         }
     }
+    
+    
+    
     
     
     // Localisation de la zone actuelle
@@ -124,11 +141,11 @@ class HomeViewController: UIViewController, UITableViewDataSource,CLLocationMana
 
         // Si le point est dans le polygon, on vérifie si la Zone a changée
         if (isPointInPolygon(point, polygon: polygon)){
-            if(mArea.getId() != areaId){
+            if(myArea.getId() != areaId){
                 
-                mArea = realm.objects(Area).filter("id == \(areaId)").first
-                self.title = mArea.getName()
-                self.navigationController!.navigationBar.barTintColor = UIColor(hex: mArea.getColor())
+                myArea = realm.objects(Area).filter("_id == \(areaId)").first
+                self.title = myArea.getName()
+                self.navigationController!.navigationBar.barTintColor = UIColor(hex: myArea.getColor())
                 self.getDatas()
             }
         }
@@ -142,10 +159,6 @@ class HomeViewController: UIViewController, UITableViewDataSource,CLLocationMana
         let polygonRenderer = MKPolygonRenderer(polygon: polygon)
         let polygonViewPoint: CGPoint = polygonRenderer.pointForMapPoint(point)
         
-        
-        // test local
-        
-        
         if CGPathContainsPoint(polygonRenderer.path, nil, polygonViewPoint, true) {
             print("Your location was inside your polygon.")
             isInsidePolygon = true
@@ -153,11 +166,10 @@ class HomeViewController: UIViewController, UITableViewDataSource,CLLocationMana
         return isInsidePolygon;
     }
     
-    // Fonction permettant de recharger les notes dans le tableView
-    func refresh() {
-        noteTableView.reloadData()
-    }
  
+    
+    
+    
     
     
     // Fonctions du TableView
@@ -172,14 +184,18 @@ class HomeViewController: UIViewController, UITableViewDataSource,CLLocationMana
         
         // Récupération des notes
         let index = Int(indexPath.row)
-        let noteItem = noteList[index]
         
-        // Configuration de la cellule
-        let author = noteItem.getAuthor()
-        let text   = noteItem.getText()
-        let date   = noteItem.getDate()
         
-        cell.configureWithData(author, text: text, date: date)
+        if(noteList.count > 0){
+            let noteItem = noteList[index]
+            
+            // Configuration de la cellule
+            let author = noteItem.getAuthor()
+            let text   = noteItem.getText()
+            let date   = noteItem.getDate()
+            
+            cell.configureWithData(author, text: text, date: date)
+        }
         
         return cell
         
@@ -190,13 +206,5 @@ class HomeViewController: UIViewController, UITableViewDataSource,CLLocationMana
         noteTableView.reloadData() 
     }
 
-    
-    // Préparation du Segue, envoie de la Zone séléctionnée
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if(segue.identifier == "toAddNote") {
-            let destination = segue.destinationViewController as! AddNoteViewController
-            destination.mArea = mArea
-        }
-    }
 
 }
