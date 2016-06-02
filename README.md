@@ -23,4 +23,3 @@ _- SALLES Rémy_
 - AQuery (Android)
 - Realm (iOS et Android)
 - Google Map Api (Android)
-- 
